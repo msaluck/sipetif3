@@ -1,0 +1,73 @@
+[Sun Mar 12 07:18:21.171173 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 07:18:21.225037 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Sun Mar 12 07:18:21.398593 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 07:18:21.452785 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Sun Mar 12 07:18:24.429670 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 07:18:24.476543 2023] [authz_core:error] [pid 37040:tid 1868] [client ::1:59752] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Sun Mar 12 18:06:50.090942 2023] [authz_core:error] [pid 37040:tid 1824] [client ::1:60520] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 18:06:50.261486 2023] [authz_core:error] [pid 37040:tid 1824] [client ::1:60520] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/menu/home
+[Sun Mar 12 18:06:54.183018 2023] [authz_core:error] [pid 37040:tid 1824] [client ::1:60520] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 18:06:54.537529 2023] [authz_core:error] [pid 37040:tid 1824] [client ::1:60520] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Sun Mar 12 18:06:54.607265 2023] [authz_core:error] [pid 37040:tid 1824] [client ::1:60520] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Sun Mar 12 19:18:42.401317 2023] [authz_core:error] [pid 24116:tid 1876] [client ::1:61072] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 09:52:35.051360 2023] [authz_core:error] [pid 24116:tid 1868] [client ::1:59415] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 10:13:03.336969 2023] [authz_core:error] [pid 24116:tid 1836] [client ::1:53884] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 10:13:20.223682 2023] [authz_core:error] [pid 24116:tid 1868] [client ::1:53885] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 10:13:20.934425 2023] [authz_core:error] [pid 24116:tid 1868] [client ::1:53885] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 11:57:45.485183 2023] [authz_core:error] [pid 13132:tid 1860] [client ::1:56205] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:07:38.503829 2023] [authz_core:error] [pid 67184:tid 1880] [client ::1:49951] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:07:59.169857 2023] [authz_core:error] [pid 67184:tid 1868] [client ::1:49952] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:16.502630 2023] [authz_core:error] [pid 43620:tid 1876] [client ::1:49979] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:18.802606 2023] [authz_core:error] [pid 43620:tid 1876] [client ::1:49979] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:19.548865 2023] [authz_core:error] [pid 43620:tid 1876] [client ::1:49979] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:36.947910 2023] [authz_core:error] [pid 43620:tid 1868] [client ::1:49980] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:38.263966 2023] [authz_core:error] [pid 43620:tid 1868] [client ::1:49980] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:39.871434 2023] [authz_core:error] [pid 43620:tid 1868] [client ::1:49980] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:09:40.919277 2023] [authz_core:error] [pid 43620:tid 1868] [client ::1:49980] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:53:27.415846 2023] [authz_core:error] [pid 62956:tid 1872] [client ::1:51804] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:53:27.597357 2023] [authz_core:error] [pid 62956:tid 1872] [client ::1:51804] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 12:53:43.522677 2023] [authz_core:error] [pid 62956:tid 1864] [client ::1:51805] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:53:43.582516 2023] [authz_core:error] [pid 62956:tid 1864] [client ::1:51805] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/dashboard/
+[Mon Mar 13 12:56:16.725403 2023] [authz_core:error] [pid 60764:tid 1900] [client ::1:51863] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:56:16.895368 2023] [authz_core:error] [pid 60764:tid 1900] [client ::1:51863] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 12:56:45.733605 2023] [authz_core:error] [pid 60764:tid 1884] [client ::1:51864] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 12:56:45.786726 2023] [authz_core:error] [pid 60764:tid 1884] [client ::1:51864] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:16:00.253670 2023] [authz_core:error] [pid 19820:tid 1932] [client ::1:51864] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:16:00.438382 2023] [authz_core:error] [pid 19820:tid 1932] [client ::1:51864] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:16:00.503085 2023] [authz_core:error] [pid 19820:tid 1932] [client ::1:51864] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:34:49.918589 2023] [core:alert] [pid 47040:tid 1876] [client ::1:52937] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters
+[Mon Mar 13 13:34:50.071180 2023] [core:alert] [pid 47040:tid 1868] [client ::1:52938] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:35:51.334189 2023] [core:alert] [pid 47040:tid 1868] [client ::1:52946] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters
+[Mon Mar 13 13:35:51.384023 2023] [core:alert] [pid 47040:tid 1876] [client ::1:52947] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:35:58.087386 2023] [core:alert] [pid 47040:tid 1876] [client ::1:52948] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters
+[Mon Mar 13 13:35:58.136245 2023] [core:alert] [pid 47040:tid 1868] [client ::1:52949] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:36:07.295977 2023] [core:alert] [pid 47040:tid 1876] [client ::1:52954] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters
+[Mon Mar 13 13:36:07.480321 2023] [core:alert] [pid 47040:tid 1876] [client ::1:52955] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters
+[Mon Mar 13 13:36:07.538167 2023] [core:alert] [pid 47040:tid 1860] [client ::1:52956] D:/job/Software/xampp/htdocs/sipetif3/.htaccess: RewriteRule: bad flag delimiters, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:38:02.963012 2023] [authz_core:error] [pid 47040:tid 1868] [client ::1:61580] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:38:03.053770 2023] [authz_core:error] [pid 47040:tid 1868] [client ::1:61580] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:38:24.246770 2023] [authz_core:error] [pid 47040:tid 1860] [client ::1:61581] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:38:24.301676 2023] [authz_core:error] [pid 47040:tid 1860] [client ::1:61581] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:38:29.962394 2023] [authz_core:error] [pid 47040:tid 1868] [client ::1:61588] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:38:30.160716 2023] [authz_core:error] [pid 47040:tid 1868] [client ::1:61588] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:38:30.240503 2023] [authz_core:error] [pid 47040:tid 1868] [client ::1:61588] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:50:57.064587 2023] [authz_core:error] [pid 51116:tid 1860] [client ::1:63282] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:50:57.240225 2023] [authz_core:error] [pid 51116:tid 1860] [client ::1:63282] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:15.584943 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:18.110591 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:19.123735 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:19.173574 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:51:19.506684 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:19.552562 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:51:19.728125 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:51:19.778954 2023] [authz_core:error] [pid 47796:tid 1876] [client ::1:63291] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Mon Mar 13 13:52:34.603367 2023] [authz_core:error] [pid 47796:tid 1860] [client ::1:52591] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:52:34.866106 2023] [authz_core:error] [pid 47796:tid 1860] [client ::1:52591] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Mon Mar 13 13:52:34.923952 2023] [authz_core:error] [pid 47796:tid 1860] [client ::1:52591] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Tue Mar 14 03:03:25.167473 2023] [authz_core:error] [pid 43232:tid 1860] [client ::1:60726] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Tue Mar 14 03:03:25.639128 2023] [authz_core:error] [pid 43232:tid 1860] [client ::1:60726] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Tue Mar 14 03:03:25.706945 2023] [authz_core:error] [pid 43232:tid 1860] [client ::1:60726] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Tue Mar 14 03:36:11.504024 2023] [authz_core:error] [pid 52880:tid 1880] [client ::1:59757] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Tue Mar 14 03:36:11.606752 2023] [authz_core:error] [pid 52880:tid 1880] [client ::1:59757] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
+[Tue Mar 14 03:36:14.022182 2023] [authz_core:error] [pid 52880:tid 1880] [client ::1:59757] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe
+[Tue Mar 14 03:36:14.072050 2023] [authz_core:error] [pid 52880:tid 1880] [client ::1:59757] AH01630: client denied by server configuration: D:/job/Software/xampp/php7224php-cgi.exe, referer: http://sipetif3.localhost/
