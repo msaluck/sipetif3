@@ -13,28 +13,19 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Portfolio Database</label>
+                            <label class="col-md-2" for="int">Submission Type Id</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="portfolio_database" id="portfolio_database" placeholder="Portfolio Database" value="<?= $portfolio_database; ?>" />
-                                <?= form_error('portfolio_database') ?>
+                                <input type="text" class="form-control" name="submission_type_id" id="submission_type_id" placeholder="Submission Type Id" value="<?= $submission_type_id; ?>" />
+                                <?= form_error('submission_type_id') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Portfolio Id</label>
+                            <label class="col-md-2" for="smallint">Submission Status Id</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="portfolio_id" id="portfolio_id" placeholder="Portfolio Id" value="<?= $portfolio_id; ?>" />
-                                <?= form_error('portfolio_id') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="int">Submission Status</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="submission_status" id="submission_status" placeholder="Submission Status" value="<?= $submission_status; ?>" />
-                                <?= form_error('submission_status') ?>
+                                <input type="text" class="form-control" name="submission_status_id" id="submission_status_id" placeholder="Submission Status Id" value="<?= $submission_status_id; ?>" />
+                                <?= form_error('submission_status_id') ?>
                             </div>
                         </div>
                     </div>
@@ -44,6 +35,15 @@
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="user_id" id="user_id" placeholder="User Id" value="<?= $user_id; ?>" />
                                 <?= form_error('user_id') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="timestamp">Submission Date</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="submission_date" id="submission_date" placeholder="Submission Date" value="<?= $submission_date; ?>" />
+                                <?= form_error('submission_date') ?>
                             </div>
                         </div>
                     </div>

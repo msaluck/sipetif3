@@ -17,20 +17,68 @@
 							<td><?= $title; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Author</b></td>
-							<td><?= $author; ?></td>
+							<td width="20%"><b>First Author</b></td>
+							<td><?= $first_author; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Last Author</b></td>
+							<td><?= $last_author; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Authors</b></td>
+							<td><?= $authors; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Publish Date</b></td>
+							<td><?= $publish_date; ?></td>
 						</tr>
 						<tr>
 							<td width="20%"><b>Journal Name</b></td>
 							<td><?= $journal_name; ?></td>
 						</tr>
 						<tr>
+							<td width="20%"><b>Citation</b></td>
+							<td><?= $citation; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Abstract</b></td>
+							<td><?= $abstract; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Publish Type</b></td>
+							<td><?= $publish_type; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Publish Year</b></td>
+							<td><?= $publish_year; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Page Begin</b></td>
+							<td><?= $page_begin; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Page End</b></td>
+							<td><?= $page_end; ?></td>
+						</tr>
+						<tr>
 							<td width="20%"><b>Issn</b></td>
 							<td><?= $issn; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Citation</b></td>
-							<td><?= $citation; ?></td>
+							<td width="20%"><b>Eissn</b></td>
+							<td><?= $eissn; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Url</b></td>
+							<td><?= $url; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Author</b></td>
+							<td><?= $author; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>File</b></td>
+							<td><?= $file; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('wos') ?>" class="btn btn-danger float-right">

@@ -68,11 +68,43 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= site_url('scopus') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Scopus</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('wos') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Web of Science</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('google_scholar') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_scholar' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Google Scholar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('iprs') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>IPRs</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('book') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Book</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="<?= site_url('submissions') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
-                        <p>Daftar Pengajuan</p>
+                        <p>Pengajuan</p>
                     </a>
                 </li>
                 <li class="nav-item">
