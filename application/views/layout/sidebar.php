@@ -40,6 +40,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= site_url('submissions') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Pengajuan Saya</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= site_url('submission') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Pengajuan</p>
