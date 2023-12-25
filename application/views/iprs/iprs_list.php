@@ -33,14 +33,13 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-								<th>Id</th>
+								<th>Title</th>
 								<th>Category</th>
 								<th>Request Year</th>
 								<th>Request Number</th>
 								<th>Inventor</th>
 								<th>Patent Holder</th>
 								<th>Publication Date</th>
-								<th>Title</th>
 								<th class="text-center" width="15%">Aksi</th>
                             </tr>
                         </thead>
@@ -48,18 +47,17 @@
 							<?php $no = 1; foreach ($iprs_data as $value) : ?>
                             <tr>
 								<td class="text-center"><?= $no++ ?></td>
-								<td><?= $value->id ?></td>
+								<td><?= $value->title ?></td>
 								<td><?= $value->category ?></td>
 								<td><?= $value->request_year ?></td>
 								<td><?= $value->request_number ?></td>
 								<td><?= $value->inventor ?></td>
 								<td><?= $value->patent_holder ?></td>
 								<td><?= $value->publication_date ?></td>
-								<td><?= $value->title ?></td>
 								<td class="text-center">
-                                    <a href="<?= site_url('iprs/read/'.$value->) ?>" title="Lihat Detail Data"class="btn btn-success"><i class="fa fa-eye"></i></a>
-                                    <a href="<?= site_url('iprs/update/'.$value->) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <a href="<?= site_url('iprs/delete/'.$value->) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
+                                    <a href="<?= site_url('iprs/read/'.$value->id) ?>" title="Lihat Detail Data"class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                    <a href="<?= site_url('iprs/update/'.$value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="<?= site_url('iprs/delete/'.$value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
 							<?php endforeach ?>

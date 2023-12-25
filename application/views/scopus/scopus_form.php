@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Title</label>
                             <div class="col-md-6">
@@ -20,16 +20,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="int">Quartile</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="quartile" id="quartile" placeholder="Quartile" value="<?= $quartile; ?>" />
-                                <?= form_error('quartile') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Publication Name</label>
                             <div class="col-md-6">
@@ -38,61 +29,25 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Creator</label>
+                            <label class="col-md-2" for="int">Quartile</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="creator" id="creator" placeholder="Creator" value="<?= $creator; ?>" />
-                                <?= form_error('creator') ?>
+                                <input type="text" class="form-control" name="quartile" id="quartile" placeholder="Quartile" value="<?= $quartile; ?>" />
+                                <?= form_error('quartile') ?>
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Page</label>
+                            <label class="col-md-2" for="int">ISSN</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="page" id="page" placeholder="Page" value="<?= $page; ?>" />
-                                <?= form_error('page') ?>
+                                <input type="text" class="form-control" name="issn" id="issn" placeholder="ISSN" value="<?= $issn; ?>" />
+                                <?= form_error('issn') ?>
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="int">Volume</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="volume" id="volume" placeholder="Volume" value="<?= $volume; ?>" />
-                                <?= form_error('volume') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Cover Date</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cover_date" id="cover_date" placeholder="Cover Date" value="<?= $cover_date; ?>" />
-                                <?= form_error('cover_date') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Cover Display Date</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cover_display_date" id="cover_display_date" placeholder="Cover Display Date" value="<?= $cover_display_date; ?>" />
-                                <?= form_error('cover_display_date') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Doi</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="doi" id="doi" placeholder="Doi" value="<?= $doi; ?>" />
-                                <?= form_error('doi') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Citeby Count</label>
                             <div class="col-md-6">
@@ -101,7 +56,61 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Creator</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="creator" id="creator" placeholder="Creator" value="<?= $creator; ?>" />
+                                <?= form_error('creator') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="int">Page</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="page" id="page" placeholder="Page" value="<?= $page; ?>" />
+                                <?= form_error('page') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="int">Volume</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="volume" id="volume" placeholder="Volume" value="<?= $volume; ?>" />
+                                <?= form_error('volume') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Cover Date</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cover_date" id="cover_date" placeholder="Cover Date" value="<?= $cover_date; ?>" />
+                                <?= form_error('cover_date') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Cover Display Date</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cover_display_date" id="cover_display_date" placeholder="Cover Display Date" value="<?= $cover_display_date; ?>" />
+                                <?= form_error('cover_display_date') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Doi</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="doi" id="doi" placeholder="Doi" value="<?= $doi; ?>" />
+                                <?= form_error('doi') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Aggregation Type</label>
                             <div class="col-md-6">
@@ -110,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Url</label>
                             <div class="col-md-6">
@@ -119,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Author</label>
                             <div class="col-md-6">
@@ -128,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">File</label>
                             <div class="col-md-6">
@@ -137,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-md-6 offset-md-2">
                                 <input type="hidden" name="id" value="<?= $id; ?>" />
@@ -146,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-				</form>
+                </form>
             </div>
         </div>
     </div>

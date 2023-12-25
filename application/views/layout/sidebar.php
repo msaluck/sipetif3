@@ -64,7 +64,7 @@
                 <li class="nav-item">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
-                        <p>Portofolio
+                        <p>Portofolio Saya
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

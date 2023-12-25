@@ -54,7 +54,7 @@
                                     <td class="text-center">
                                         <a href="<?= site_url('scopus/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         <a href="<?= site_url('scopus/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= site_url('scopus/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
+                                        <a href="<?= site_url('submissions/') ?>" title="Ajukan Portofolio" class="btn btn-secondary ajukan"><i class="fa fa-check"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

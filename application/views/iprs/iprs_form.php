@@ -13,10 +13,10 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Id</label>
+                            <label class="col-md-2" for="varchar">Title</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="id" id="id" placeholder="Id" value="<?= $id; ?>" />
-                                <?= form_error('id') ?>
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?= $title; ?>" />
+                                <?= form_error('title') ?>
                             </div>
                         </div>
                     </div>
@@ -76,17 +76,8 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Title</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?= $title; ?>" />
-                                <?= form_error('title') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
                             <div class="col-md-6 offset-md-2">
-                                <input type="hidden" name="" value="<?= $; ?>" />
+                                <input type="hidden" name="id" value="<?= $id; ?>" />
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= $button ?></button>
                                 <a href="<?= site_url('iprs') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                             </div>

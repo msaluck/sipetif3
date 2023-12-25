@@ -47,13 +47,13 @@ class Iprs extends CI_Controller
         if ($row) {
             $data = array(
 				'id' => $row->id,
+				'title' => $row->title,
 				'category' => $row->category,
 				'request_year' => $row->request_year,
 				'request_number' => $row->request_number,
 				'inventor' => $row->inventor,
 				'patent_holder' => $row->patent_holder,
 				'publication_date' => $row->publication_date,
-				'title' => $row->title,
 			);
             $this->template->load('layout/master','iprs/iprs_read', $data);
         } else {
@@ -68,13 +68,13 @@ class Iprs extends CI_Controller
             'button' => 'Tambah',
             'action' => site_url('iprs/create_action'),
 			'id' => set_value('id'),
+			'title' => set_value('title'),
 			'category' => set_value('category'),
 			'request_year' => set_value('request_year'),
 			'request_number' => set_value('request_number'),
 			'inventor' => set_value('inventor'),
 			'patent_holder' => set_value('patent_holder'),
 			'publication_date' => set_value('publication_date'),
-			'title' => set_value('title'),
 		);
         $this->template->load('layout/master','iprs/iprs_form', $data);
     }
@@ -87,14 +87,13 @@ class Iprs extends CI_Controller
             $this->create();
         } else {
             $data = array(
-				'id' => $this->input->post('id',TRUE),
+				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'request_year' => $this->input->post('request_year',TRUE),
 				'request_number' => $this->input->post('request_number',TRUE),
 				'inventor' => $this->input->post('inventor',TRUE),
 				'patent_holder' => $this->input->post('patent_holder',TRUE),
 				'publication_date' => $this->input->post('publication_date',TRUE),
-				'title' => $this->input->post('title',TRUE),
 			);
 
             $this->Iprs_model->insert($data);
@@ -112,13 +111,13 @@ class Iprs extends CI_Controller
                 'button' => 'Ubah',
                 'action' => site_url('iprs/update_action'),
 				'id' => set_value('id', $row->id),
+				'title' => set_value('title', $row->title),
 				'category' => set_value('category', $row->category),
 				'request_year' => set_value('request_year', $row->request_year),
 				'request_number' => set_value('request_number', $row->request_number),
 				'inventor' => set_value('inventor', $row->inventor),
 				'patent_holder' => set_value('patent_holder', $row->patent_holder),
 				'publication_date' => set_value('publication_date', $row->publication_date),
-				'title' => set_value('title', $row->title),
 			);
             $this->template->load('layout/master','iprs/iprs_form', $data);
         } else {
@@ -132,20 +131,19 @@ class Iprs extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('', TRUE));
+            $this->update($this->input->post('id', TRUE));
         } else {
             $data = array(
-				'id' => $this->input->post('id',TRUE),
+				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'request_year' => $this->input->post('request_year',TRUE),
 				'request_number' => $this->input->post('request_number',TRUE),
 				'inventor' => $this->input->post('inventor',TRUE),
 				'patent_holder' => $this->input->post('patent_holder',TRUE),
 				'publication_date' => $this->input->post('publication_date',TRUE),
-				'title' => $this->input->post('title',TRUE),
 			);
 
-            $this->Iprs_model->update($this->input->post('', TRUE), $data);
+            $this->Iprs_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
             redirect(site_url('iprs'));
         }
@@ -167,16 +165,15 @@ class Iprs extends CI_Controller
 
     public function _rules() 
     {
-		$this->form_validation->set_rules('id', 'id', 'trim|required');
+		$this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('category', 'category', 'trim|required');
 		$this->form_validation->set_rules('request_year', 'request year', 'trim|required');
 		$this->form_validation->set_rules('request_number', 'request number', 'trim|required');
 		$this->form_validation->set_rules('inventor', 'inventor', 'trim|required');
 		$this->form_validation->set_rules('patent_holder', 'patent holder', 'trim|required');
 		$this->form_validation->set_rules('publication_date', 'publication date', 'trim|required');
-		$this->form_validation->set_rules('title', 'title', 'trim|required');
 
-		$this->form_validation->set_rules('', '', 'trim');
+		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
@@ -184,5 +181,5 @@ class Iprs extends CI_Controller
 
 /* End of file Iprs.php */
 /* Location: ./application/controllers/Iprs.php */
-/* Created at 2023-12-25 05:14:40 */
+/* Created at 2023-12-25 12:01:08 */
 /* Please DO NOT modify this information : */

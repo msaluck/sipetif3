@@ -5,7 +5,7 @@ class Iprs_model extends CI_Model
 {
 
     public $table = 'iprs';
-    public $id = '';
+    public $id = 'id';
     public $order = 'DESC';
 
     function __construct()
@@ -29,15 +29,14 @@ class Iprs_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('', $q);
-		$this->db->or_like('id', $q);
+        $this->db->like('id', $q);
+		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('request_year', $q);
 		$this->db->or_like('request_number', $q);
 		$this->db->or_like('inventor', $q);
 		$this->db->or_like('patent_holder', $q);
 		$this->db->or_like('publication_date', $q);
-		$this->db->or_like('title', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -45,15 +44,14 @@ class Iprs_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('', $q);
-		$this->db->or_like('id', $q);
+        $this->db->like('id', $q);
+		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('request_year', $q);
 		$this->db->or_like('request_number', $q);
 		$this->db->or_like('inventor', $q);
 		$this->db->or_like('patent_holder', $q);
 		$this->db->or_like('publication_date', $q);
-		$this->db->or_like('title', $q);
 		$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -82,5 +80,5 @@ class Iprs_model extends CI_Model
 
 /* End of file Iprs_model.php */
 /* Location: ./application/models/Iprs_model.php */
-/* Created at 2023-12-25 05:14:40 */
+/* Created at 2023-12-25 12:01:08 */
 /* Please DO NOT modify this information : */

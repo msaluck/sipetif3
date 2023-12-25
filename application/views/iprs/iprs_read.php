@@ -13,8 +13,8 @@
 				<div style="padding: 15px;">
 					<table class="table table-striped">
 						<tr>
-							<td width="20%"><b>Id</b></td>
-							<td><?= $id; ?></td>
+							<td width="20%"><b>Title</b></td>
+							<td><?= $title; ?></td>
 						</tr>
 						<tr>
 							<td width="20%"><b>Category</b></td>
@@ -39,10 +39,6 @@
 						<tr>
 							<td width="20%"><b>Publication Date</b></td>
 							<td><?= $publication_date; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Title</b></td>
-							<td><?= $title; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('iprs') ?>" class="btn btn-danger float-right">
