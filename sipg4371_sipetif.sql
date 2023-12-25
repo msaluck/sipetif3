@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 25, 2023 at 03:35 AM
+-- Generation Time: Dec 25, 2023 at 11:50 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.2.24
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `sipg4371_sipetif`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book`
+--
+
+CREATE TABLE `book` (
+  `id` int NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `category` varchar(128) NOT NULL,
+  `isbn` varchar(32) NOT NULL,
+  `authors` varchar(256) NOT NULL,
+  `place` varchar(32) NOT NULL,
+  `publisher` varchar(128) NOT NULL,
+  `year` varchar(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`id`, `title`, `category`, `isbn`, `authors`, `place`, `publisher`, `year`) VALUES
+(1, 'Fabrikasi dan Karakterisasi Material', 'buku ajar', '9786234650303', 'Dr.-Ing. R. Wahyu Widanarto, Dr. Kartika Sari ; editor, Wahyu Tri Cahyanto, Ph.D, Aldi Aditya, M.Hum.', 'Purwokerto', 'Universitas Jenderal Soedirman', '2022');
 
 -- --------------------------------------------------------
 
@@ -54,6 +78,57 @@ INSERT INTO `faculties` (`id`, `name`, `description`) VALUES
 (1, 'Pertanian', 'Fakutas Pertanian'),
 (2, 'Biologi', 'Fakultas Biologi'),
 (3, 'Saryono', 'Ilmu-ilmu Kesehatan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `google_scholar`
+--
+
+CREATE TABLE `google_scholar` (
+  `id` int NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `abstract` varchar(512) NOT NULL,
+  `authors` varchar(256) NOT NULL,
+  `journal_name` varchar(128) NOT NULL,
+  `publish_year` varchar(4) NOT NULL,
+  `citation` int NOT NULL,
+  `author` varchar(64) NOT NULL,
+  `file` varchar(256) NOT NULL,
+  `issn` varchar(10) NOT NULL,
+  `url` varchar(1024) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `google_scholar`
+--
+
+INSERT INTO `google_scholar` (`id`, `title`, `abstract`, `authors`, `journal_name`, `publish_year`, `citation`, `author`, `file`, `issn`, `url`) VALUES
+(1, 'Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental', '-', 'N Veldasari, A Fadli, AW Wardhana, MS Aliim', 'Jurnal Pendidikan dan Teknologi Indonesia 2 (7), 329-339, 2022', '2022', 2, 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-', '-', 'https://scholar.google.com/scholar?q=+intitle:\"Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental\"');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iprs`
+--
+
+CREATE TABLE `iprs` (
+  `id` int NOT NULL,
+  `title` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(128) NOT NULL,
+  `request_year` varchar(4) NOT NULL,
+  `request_number` varchar(32) NOT NULL,
+  `inventor` varchar(256) NOT NULL,
+  `patent_holder` varchar(32) NOT NULL,
+  `publication_date` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `iprs`
+--
+
+INSERT INTO `iprs` (`id`, `title`, `category`, `request_year`, `request_number`, `inventor`, `patent_holder`, `publication_date`) VALUES
+(1, 'METODE PEMBUATAN PENYERAP GELOMBANG MIKRO DARI BAHAN LANTANUM STRONSIUM FERIT', 'paten', '2017', 'P00201709354', 'Mukhtar Effendi,Wahyu Tri Cahyanto,Wahyu Widanarto', 'LPPM Universitas jenderal Soedir', '2018-07-13');
 
 -- --------------------------------------------------------
 
@@ -112,20 +187,28 @@ INSERT INTO `reviewer_assignments` (`id`, `submission_id`, `user_id`, `reviewer_
 CREATE TABLE `scopus` (
   `id` int NOT NULL,
   `title` varchar(512) NOT NULL,
-  `quartile` int NOT NULL,
   `publication_name` varchar(256) NOT NULL,
+  `quartile` int NOT NULL,
+  `issn` varchar(16) NOT NULL,
+  `citeby_count` int NOT NULL,
   `creator` varchar(64) NOT NULL,
   `page` int NOT NULL,
   `volume` int NOT NULL,
-  `cover_date` int NOT NULL,
-  `cover_display_date` int NOT NULL,
+  `cover_date` varchar(10) NOT NULL,
+  `cover_display_date` varchar(32) NOT NULL,
   `doi` varchar(64) NOT NULL,
-  `citeby_count` int NOT NULL,
-  `aggregation_type` int NOT NULL,
-  `url` int NOT NULL,
+  `aggregation_type` varchar(64) NOT NULL,
+  `url` varchar(1024) NOT NULL,
   `author` varchar(64) NOT NULL,
   `file` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `scopus`
+--
+
+INSERT INTO `scopus` (`id`, `title`, `publication_name`, `quartile`, `issn`, `citeby_count`, `creator`, `page`, `volume`, `cover_date`, `cover_display_date`, `doi`, `aggregation_type`, `url`, `author`, `file`) VALUES
+(1, 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', 'AIP Conference Proceedings', 4, '0094243X', 0, 'Aliim M.S.', 0, 2482, '2023-02-21', '21 February 2023', '10.1063/5.0110764', 'Conference Proceedin', 'https://www.scopus.com/record/display.uri?eid=2-s2.0-85149920003&origin=resultslist&sort=plf-f', 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-');
 
 -- --------------------------------------------------------
 
@@ -135,6 +218,27 @@ CREATE TABLE `scopus` (
 
 CREATE TABLE `submissions` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `portfolio_id` int NOT NULL,
+  `portfolio_database` varchar(16) NOT NULL,
+  `submission_status` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `submissions`
+--
+
+INSERT INTO `submissions` (`id`, `user_id`, `portfolio_id`, `portfolio_database`, `submission_status`) VALUES
+(1, 1, 1, 'scopus', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submissions.backup`
+--
+
+CREATE TABLE `submissions.backup` (
+  `id` int NOT NULL,
   `submission_type_id` int NOT NULL,
   `submission_status_id` smallint NOT NULL,
   `user_id` int NOT NULL,
@@ -142,10 +246,10 @@ CREATE TABLE `submissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `submissions`
+-- Dumping data for table `submissions.backup`
 --
 
-INSERT INTO `submissions` (`id`, `submission_type_id`, `submission_status_id`, `user_id`, `submission_date`) VALUES
+INSERT INTO `submissions.backup` (`id`, `submission_type_id`, `submission_status_id`, `user_id`, `submission_date`) VALUES
 (61, 3, 6, 5, '2023-06-09 18:51:55'),
 (62, 2, 6, 6, '2023-06-09 18:51:55'),
 (63, 1, 6, 6, '2023-06-09 18:51:55'),
@@ -685,9 +789,52 @@ INSERT INTO `user_types` (`id`, `name`, `description`) VALUES
 (3, 'normal', 'normal user'),
 (4, 'dean', 'dekan');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wos`
+--
+
+CREATE TABLE `wos` (
+  `id` int NOT NULL,
+  `publon_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `wos_id` varchar(16) NOT NULL,
+  `doi` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `first_author` varchar(256) NOT NULL,
+  `last_author` varchar(256) NOT NULL,
+  `authors` varchar(256) NOT NULL,
+  `publish_date` varchar(10) NOT NULL,
+  `journal_name` varchar(128) NOT NULL,
+  `citation` int NOT NULL,
+  `abstract` varchar(1024) NOT NULL,
+  `publish_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `publish_year` varchar(4) NOT NULL,
+  `page_begin` int NOT NULL,
+  `page_end` int NOT NULL,
+  `issn` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `eissn` varchar(16) NOT NULL,
+  `url` varchar(1024) NOT NULL,
+  `author` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `file` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `wos`
+--
+
+INSERT INTO `wos` (`id`, `publon_id`, `wos_id`, `doi`, `title`, `first_author`, `last_author`, `authors`, `publish_date`, `journal_name`, `citation`, `abstract`, `publish_type`, `publish_year`, `page_begin`, `page_end`, `issn`, `eissn`, `url`, `author`, `file`) VALUES
+(1, '', '', '', 'A GasFET for chlorine detection', 'Sulima, T; Knittel, T; Freitag, G;', 'Eisele, I', 'Sulima, T; Knittel, T; Freitag, G; Widanarto, W; Eisele, I;', '2005', '2005 IEEE SENSORS, VOLS 1 AND 2', 1, 'The work function potential shift due to the chemical reaction of gold in a chlorine gas ambient is electrically measured. The sensor principle is based on a hybrid suspended gate field effect transistor. Gas measurements show that at 190 degrees C a reversible chlorine detection without any cross sensitivities to other gas species is possible.', 'Books in series', '2005', 113, 115, '1930-0395', '-', 'https://www.webofscience.com/wos/woscc/full-record/WOS:000237003500028', 'Dr R WAHYU WIDANARTO, S.Si, M.Si', '-');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `departments`
@@ -699,6 +846,18 @@ ALTER TABLE `departments`
 -- Indexes for table `faculties`
 --
 ALTER TABLE `faculties`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `google_scholar`
+--
+ALTER TABLE `google_scholar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `iprs`
+--
+ALTER TABLE `iprs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -723,6 +882,12 @@ ALTER TABLE `scopus`
 -- Indexes for table `submissions`
 --
 ALTER TABLE `submissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `submissions.backup`
+--
+ALTER TABLE `submissions.backup`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -769,8 +934,20 @@ ALTER TABLE `user_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `wos`
+--
+ALTER TABLE `wos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -783,6 +960,18 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `faculties`
   MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `google_scholar`
+--
+ALTER TABLE `google_scholar`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `iprs`
+--
+ALTER TABLE `iprs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -800,12 +989,18 @@ ALTER TABLE `reviewer_assignments`
 -- AUTO_INCREMENT for table `scopus`
 --
 ALTER TABLE `scopus`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `submissions.backup`
+--
+ALTER TABLE `submissions.backup`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
@@ -851,6 +1046,12 @@ ALTER TABLE `user_types`
   MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `wos`
+--
+ALTER TABLE `wos`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -858,7 +1059,7 @@ ALTER TABLE `user_types`
 -- Constraints for table `submission_details`
 --
 ALTER TABLE `submission_details`
-  ADD CONSTRAINT `submission_details_ibfk_1` FOREIGN KEY (`submission_id`) REFERENCES `submissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `submission_details_ibfk_1` FOREIGN KEY (`submission_id`) REFERENCES `submissions.backup` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
