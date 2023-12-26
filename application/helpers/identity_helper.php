@@ -2,7 +2,7 @@
 
 function nama_aplikasi()
 {
-	$data = "Sistem Pengajuan Insentif <br> LPPM UNSOED";
+	$data = "Sistem Pengajuan Insentif LPPM UNSOED";
 	return $data;
 }
 
