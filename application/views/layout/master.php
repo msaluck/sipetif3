@@ -2,7 +2,7 @@
 <html>
 <?php
 if ($this->session->userdata('status') != "login_skpi") {
-  //  redirect(site_url('login'));
+    //  redirect(site_url('login'));
 }
 ?>
 
@@ -69,7 +69,9 @@ if ($this->session->userdata('status') != "login_skpi") {
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
-
+        <div style="display: none;">
+            <?= print_r($this->session->userdata) ?>
+        </div>
         <?php $this->load->view('layout/header'); ?>
 
         <?php $this->load->view('layout/sidebar'); ?>
