@@ -50,7 +50,7 @@
                                         <a href="<?= site_url('scopus/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         <a href="<?= site_url('scopus/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <a href="<?= site_url('scopus/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="<?= site_url('scopus/submit/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+                                        <a href="<?= site_url('submissions/submit/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
                                     </td>
                                     <td><?= $value->title ?></td>
                                     <td><?= $value->publication_name ?></td>
