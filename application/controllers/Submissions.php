@@ -43,22 +43,30 @@ class Submissions extends CI_Controller
 
     public function by_users()
     {
-
-        $get_sub_user = $this->db->get_where('submissions', ['user_id' => $this->session->id_user])->result();
+        $id_user = $this->session->id_user;
+        $get_sub_user = $this->db->query("select a.*,b.name as status_name from submissions a,submission_statuses b where a.submission_status = b.id and a.user_id = '$id_user'")->result();
         $data = ['submissions_data' => $get_sub_user];
         $this->template->load('layout/master', 'submissions/submissions_by_user', $data);
     }
 
     public function read($id)
     {
-        $row = $this->Submissions_model->get_by_id($id);
+        // $row = $this->Submissions_model->get_by_id($id);
+        $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
         if ($row) {
+            $namatabel = $row->portfolio_database;
+            $get_title = $this->db->query("select title from $namatabel where id ='$row->portfolio_id'")->row();
+            if ($get_title) {
+                $title = $get_title->title;
+            } else {
+                $title = '';
+            }
             $data = array(
                 'id' => $row->id,
                 'portfolio_database' => $row->portfolio_database,
-                'portfolio_id' => $row->portfolio_id,
-                'submission_status' => $row->submission_status,
-                'user_id' => $row->user_id,
+                'portfolio_id' => $title,
+                'submission_status' => $row->status_name,
+                'user_id' => $row->email,
             );
             $this->template->load('layout/master', 'submissions/submissions_read', $data);
         } else {
@@ -116,6 +124,7 @@ class Submissions extends CI_Controller
                 'portfolio_id' => $id,
                 'submission_status' => 1,
                 'user_id' => $this->session->id_user,
+                'created_at'    => date('Y-m-d H:i:s')
             );
             $this->Submissions_model->insert($data);
         }

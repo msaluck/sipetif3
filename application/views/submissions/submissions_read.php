@@ -3,21 +3,21 @@
 		<div class="card card-success">
 			<div class="card-header">
 				<div class="card-title">
-                    <b><i class="fa fa-eye"></i> Detail Data Submissions</b>
-                </div>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                </div>
+					<b><i class="fa fa-edit"></i> Detail Data Submissions</b>
+				</div>
+				<div class="card-tools">
+					<button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+				</div>
 			</div>
 			<div class="card-body">
-				<div style="padding: 15px;">
+				<div style="padding:5px;">
 					<table class="table table-striped">
 						<tr>
-							<td width="20%"><b>Portfolio Database</b></td>
+							<td width="20%"><b>Portfolio Type</b></td>
 							<td><?= $portfolio_database; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Portfolio Id</b></td>
+							<td width="20%"><b>Title</b></td>
 							<td><?= $portfolio_id; ?></td>
 						</tr>
 						<tr>
@@ -25,11 +25,11 @@
 							<td><?= $submission_status; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>User Id</b></td>
+							<td width="20%"><b>E-mail</b></td>
 							<td><?= $user_id; ?></td>
 						</tr>
 					</table>
-					<a href="<?= site_url('submissions') ?>" class="btn btn-danger float-right">
+					<a href="<?= site_url('submissions/by_users') ?>" class="btn btn-danger float-right">
 						<i class="fa fa-sign-out"></i> Kembali
 					</a>
 				</div>
