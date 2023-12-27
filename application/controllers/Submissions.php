@@ -101,7 +101,7 @@ class Submissions extends CI_Controller
         //  }
     }
 
-    public function submit_scopus($id)
+    public function submit($id)
     {
         $cek_data = $this->db->get_where(
             'submissions',

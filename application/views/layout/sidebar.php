@@ -15,7 +15,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">MENU UTAMA</li>
-                
+
                 <li class="nav-item">
                     <a href="<?= site_url('dashboard') ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' || empty($this->uri->segment(1)) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -108,7 +108,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url('submissions') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
+                    <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(2) == 'by_users' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Pengajuan Saya</p>
                     </a>
