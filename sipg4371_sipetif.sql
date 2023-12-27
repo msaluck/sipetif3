@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 25, 2023 at 11:50 PM
+-- Generation Time: Dec 27, 2023 at 06:02 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.2.24
 
@@ -29,21 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `book` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `title` varchar(512) NOT NULL,
   `category` varchar(128) NOT NULL,
   `isbn` varchar(32) NOT NULL,
   `authors` varchar(256) NOT NULL,
   `place` varchar(32) NOT NULL,
   `publisher` varchar(128) NOT NULL,
-  `year` varchar(4) NOT NULL
+  `year` varchar(4) NOT NULL,
+  `is_submitted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`id`, `title`, `category`, `isbn`, `authors`, `place`, `publisher`, `year`) VALUES
-(1, 'Fabrikasi dan Karakterisasi Material', 'buku ajar', '9786234650303', 'Dr.-Ing. R. Wahyu Widanarto, Dr. Kartika Sari ; editor, Wahyu Tri Cahyanto, Ph.D, Aldi Aditya, M.Hum.', 'Purwokerto', 'Universitas Jenderal Soedirman', '2022');
+INSERT INTO `book` (`id`, `user_id`, `title`, `category`, `isbn`, `authors`, `place`, `publisher`, `year`, `is_submitted`) VALUES
+(1, 0, 'Fabrikasi dan Karakterisasi Material', 'buku ajar', '9786234650303', 'Dr.-Ing. R. Wahyu Widanarto, Dr. Kartika Sari ; editor, Wahyu Tri Cahyanto, Ph.D, Aldi Aditya, M.Hum.', 'Purwokerto', 'Universitas Jenderal Soedirman', '2022', 0);
 
 -- --------------------------------------------------------
 
@@ -87,6 +89,7 @@ INSERT INTO `faculties` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `google_scholar` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `title` varchar(512) NOT NULL,
   `abstract` varchar(512) NOT NULL,
   `authors` varchar(256) NOT NULL,
@@ -96,15 +99,16 @@ CREATE TABLE `google_scholar` (
   `author` varchar(64) NOT NULL,
   `file` varchar(256) NOT NULL,
   `issn` varchar(10) NOT NULL,
-  `url` varchar(1024) NOT NULL
+  `url` varchar(1024) NOT NULL,
+  `is_submitted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `google_scholar`
 --
 
-INSERT INTO `google_scholar` (`id`, `title`, `abstract`, `authors`, `journal_name`, `publish_year`, `citation`, `author`, `file`, `issn`, `url`) VALUES
-(1, 'Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental', '-', 'N Veldasari, A Fadli, AW Wardhana, MS Aliim', 'Jurnal Pendidikan dan Teknologi Indonesia 2 (7), 329-339, 2022', '2022', 2, 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-', '-', 'https://scholar.google.com/scholar?q=+intitle:\"Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental\"');
+INSERT INTO `google_scholar` (`id`, `user_id`, `title`, `abstract`, `authors`, `journal_name`, `publish_year`, `citation`, `author`, `file`, `issn`, `url`, `is_submitted`) VALUES
+(1, 0, 'Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental', '-', 'N Veldasari, A Fadli, AW Wardhana, MS Aliim', 'Jurnal Pendidikan dan Teknologi Indonesia 2 (7), 329-339, 2022', '2022', 2, 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-', '-', 'https://scholar.google.com/scholar?q=+intitle:\"Analisis Perbandingan Metode Certainty Factor, Dempster Shafer dan Teorema Bayes dalam Deteksi Dini Gangguan Kesehatan Mental\"', 0);
 
 -- --------------------------------------------------------
 
@@ -114,21 +118,23 @@ INSERT INTO `google_scholar` (`id`, `title`, `abstract`, `authors`, `journal_nam
 
 CREATE TABLE `iprs` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `title` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `category` varchar(128) NOT NULL,
   `request_year` varchar(4) NOT NULL,
   `request_number` varchar(32) NOT NULL,
   `inventor` varchar(256) NOT NULL,
   `patent_holder` varchar(32) NOT NULL,
-  `publication_date` varchar(10) NOT NULL
+  `publication_date` varchar(10) NOT NULL,
+  `is_submitted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `iprs`
 --
 
-INSERT INTO `iprs` (`id`, `title`, `category`, `request_year`, `request_number`, `inventor`, `patent_holder`, `publication_date`) VALUES
-(1, 'METODE PEMBUATAN PENYERAP GELOMBANG MIKRO DARI BAHAN LANTANUM STRONSIUM FERIT', 'paten', '2017', 'P00201709354', 'Mukhtar Effendi,Wahyu Tri Cahyanto,Wahyu Widanarto', 'LPPM Universitas jenderal Soedir', '2018-07-13');
+INSERT INTO `iprs` (`id`, `user_id`, `title`, `category`, `request_year`, `request_number`, `inventor`, `patent_holder`, `publication_date`, `is_submitted`) VALUES
+(1, 0, 'METODE PEMBUATAN PENYERAP GELOMBANG MIKRO DARI BAHAN LANTANUM STRONSIUM FERIT', 'paten', '2017', 'P00201709354', 'Mukhtar Effendi,Wahyu Tri Cahyanto,Wahyu Widanarto', 'LPPM Universitas jenderal Soedir', '2018-07-13', 0);
 
 -- --------------------------------------------------------
 
@@ -181,11 +187,36 @@ INSERT INTO `reviewer_assignments` (`id`, `submission_id`, `user_id`, `reviewer_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `description` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `description`) VALUES
+(1, 'Administrator', 'Full Hak Akses'),
+(2, 'Rektor', 'Menyetujui Surat Permohonan'),
+(3, 'Ketua Lembaga LPPM', 'Menyetujui Surat Pernyataan'),
+(4, 'Dekan', 'Menyetujui Surat Pengantar'),
+(5, 'Reviewer', 'Menilai Kelayakan Ajuan Insentif'),
+(6, 'Dosen', 'Yang mengajukan insentif');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `scopus`
 --
 
 CREATE TABLE `scopus` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `title` varchar(512) NOT NULL,
   `publication_name` varchar(256) NOT NULL,
   `quartile` int NOT NULL,
@@ -200,15 +231,16 @@ CREATE TABLE `scopus` (
   `aggregation_type` varchar(64) NOT NULL,
   `url` varchar(1024) NOT NULL,
   `author` varchar(64) NOT NULL,
-  `file` varchar(128) NOT NULL
+  `file` varchar(128) NOT NULL,
+  `is_submitted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `scopus`
 --
 
-INSERT INTO `scopus` (`id`, `title`, `publication_name`, `quartile`, `issn`, `citeby_count`, `creator`, `page`, `volume`, `cover_date`, `cover_display_date`, `doi`, `aggregation_type`, `url`, `author`, `file`) VALUES
-(1, 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', 'AIP Conference Proceedings', 4, '0094243X', 0, 'Aliim M.S.', 0, 2482, '2023-02-21', '21 February 2023', '10.1063/5.0110764', 'Conference Proceedin', 'https://www.scopus.com/record/display.uri?eid=2-s2.0-85149920003&origin=resultslist&sort=plf-f', 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-');
+INSERT INTO `scopus` (`id`, `user_id`, `title`, `publication_name`, `quartile`, `issn`, `citeby_count`, `creator`, `page`, `volume`, `cover_date`, `cover_display_date`, `doi`, `aggregation_type`, `url`, `author`, `file`, `is_submitted`) VALUES
+(1, 0, 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', 'AIP Conference Proceedings', 4, '0094243X', 0, 'Aliim M.S.', 0, 2482, '2023-02-21', '21 February 2023', '10.1063/5.0110764', 'Conference Proceedin', 'https://www.scopus.com/record/display.uri?eid=2-s2.0-85149920003&origin=resultslist&sort=plf-f', 'MUHAMMAD SYAIFUL ALIIM, S.T, M.T', '-', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +261,8 @@ CREATE TABLE `submissions` (
 --
 
 INSERT INTO `submissions` (`id`, `user_id`, `portfolio_id`, `portfolio_database`, `submission_status`) VALUES
-(1, 1, 1, 'scopus', 1);
+(1, 1, 1, 'scopus', 1),
+(2, 1, 1, 'scopus', 1);
 
 -- --------------------------------------------------------
 
@@ -667,7 +700,6 @@ INSERT INTO `submission_type_details` (`id`, `submission_type_id`, `name`, `type
 
 CREATE TABLE `users` (
   `id` smallint NOT NULL,
-  `user_type_id` tinyint DEFAULT NULL,
   `faculty_id` tinyint DEFAULT NULL,
   `department_id` tinyint DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -680,114 +712,125 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_type_id`, `faculty_id`, `department_id`, `email`, `name`, `username`, `password`) VALUES
-(1, 3, 1, 1, 'muhammad.syaiful.aliim@unsoed.ac.id', 'Administrator', 'admin', '$2y$10$nJz6Qed8oKOKvvh996QuT.fp7QNkFpe1LGKc9tAYgYybKSLPfDXH.'),
-(5, 3, 1, 1, 'ririn.trisnawati@unsoed.ac.id', 'Ririn Kurnia Trisnawati, SS, MA', 'ririn.trisnawati@unsoed.ac.id', 'ririn.trisnawati@unsoed.ac.id'),
-(6, 3, 1, 1, 'endang.hilmi@unsoed.ac.id', 'Dr. Endang Hilmi, S.Hut., M.Si.', 'endang.hilmi@unsoed.ac.id', 'endang.hilmi@unsoed.ac.id'),
-(7, 3, 1, 1, 'susiana.candrawati@unsoed.ac.id', 'Dr. dr. Susiana Candrawati, Sp.K.O.', 'susiana.candrawati@unsoed.ac.id', 'susiana.candrawati@unsoed.ac.id'),
-(8, 3, 1, 1, 'abdul.ritonga@unsoed.ac.id', 'Abdul Mukhlis Ritonga, STP, M.Sc.', 'abdul.ritonga@unsoed.ac.id', 'abdul.ritonga@unsoed.ac.id'),
-(9, 3, 1, 1, 'ismoyowati@unsoed.ac.id', 'Prof. Dr. Ir. Ismoyowati, S.Pt., MP, IPU', 'ismoyowati@unsoed.ac.id', 'ismoyowati@unsoed.ac.id'),
-(10, 3, 1, 1, 'suroso.te@unsoed.ac.id', 'Prof. Dr.Eng. Suroso, S.T, M.Eng', 'suroso.te@unsoed.ac.id', 'suroso.te@unsoed.ac.id'),
-(11, 3, 1, 1, 'koernia.pratama@unsoed.ac.id', 'Koernia Nanda Pratama, M.Kep., Ns., Sp.Kep.Kom.', 'koernia.pratama@unsoed.ac.id', 'koernia.pratama@unsoed.ac.id'),
-(12, 3, 1, 1, 'sanidhyanika.purnomo@unsoed.ac.id', 'Sanidhya Nika Purnomo, ST, MT', 'sanidhyanika.purnomo@unsoed.ac.i', 'sanidhyanika.purnomo@unsoed.ac.id'),
-(13, 3, 1, 1, 'rifqi.festiawan@unsoed.ac.id', 'Rifqi Festiawan, S.Pd., M.Pd., AIFO', 'rifqi.festiawan@unsoed.ac.id', 'rifqi.festiawan@unsoed.ac.id'),
-(14, 3, 1, 1, 'aminfatoni@unsoed.ac.id', 'Amin Fatoni, S.Si., M.Si., Ph.D', 'aminfatoni@unsoed.ac.id', 'aminfatoni@unsoed.ac.id'),
-(15, 3, 1, 1, 'rahadi.bintoro@unsoed.ac.id', 'Dr. Rahadi Wasi Bintoro, S.H., M.H.', 'rahadi.bintoro@unsoed.ac.id', 'rahadi.bintoro@unsoed.ac.id'),
-(16, 3, 1, 1, 'akhyarul.anam@unsoed.ac.id', 'Akhyarul Anam, S.Kep.,Ns. M.Kep.', 'akhyarul.anam@unsoed.ac.id', 'akhyarul.anam@unsoed.ac.id'),
-(17, 3, 1, 1, 'arief.wardhana@unsoed.ac.id', 'Arief Wisnu Wardhana, B.Eng.(Hons)., M.Eng.', 'arief.wardhana@unsoed.ac.id', 'arief.wardhana@unsoed.ac.id'),
-(18, 3, 1, 1, 'amalia@unsoed.ac.id', 'dr. Amalia, M.Sc.', 'amalia@unsoed.ac.id', 'amalia@unsoed.ac.id'),
-(19, 3, 1, 1, 'ard@unsoed.ac.id', 'Dr. Ardiansyah, M.Si.', 'ard@unsoed.ac.id', 'ard@unsoed.ac.id'),
-(20, 3, 1, 1, 'aisyah.septiana@unsoed.ac.id', 'Dr. Ir. Aisyah Tri Septiana, MP', 'aisyah.septiana@unsoed.ac.id', 'aisyah.septiana@unsoed.ac.id'),
-(21, 3, 1, 1, 'nur.aini@unsoed.ac.id', 'Dr. Nur Aini, S.TP., MP', 'nur.aini@unsoed.ac.id', 'nur.aini@unsoed.ac.id'),
-(22, 3, 1, 1, 'pepita.haryanti@unsoed.ac.id', 'Dr. Pepita Haryanti, STP, .Sc.', 'pepita.haryanti@unsoed.ac.id', 'pepita.haryanti@unsoed.ac.id'),
-(23, 3, 1, 1, 'sorta.simanjuntak@unsoed.ac.id', 'Prof. Dr. Sorta Basar Ida Simanjuntak, M.Si.', 'sorta.simanjuntak@unsoed.ac.id', 'sorta.simanjuntak@unsoed.ac.id'),
-(24, 3, 1, 1, 'dian.bhagawati@unsoed.ac.id', 'Dr.Pi. Dra. Dian Bhagawati, M.Si.', 'dian.bhagawati@unsoed.ac.id', 'dian.bhagawati@unsoed.ac.id'),
-(25, 3, 1, 1, 'kiky.srirejeki@unsoed.ac.id', 'Kiky Srirejeki, M.Sc.', 'kiky.srirejeki@unsoed.ac.id', 'kiky.srirejeki@unsoed.ac.id'),
-(26, 3, 1, 1, 'slamet.rosyadi@unsoed.ac.id', 'Dr. Slamet Rosyadi, M.Si.', 'slamet.rosyadi@unsoed.ac.id', 'slamet.rosyadi@unsoed.ac.id'),
-(27, 3, 1, 1, 'poppy.arsil@unsoed.ac.id', 'Poppy Arsil, STP, MT., PhD', 'poppy.arsil@unsoed.ac.id', 'poppy.arsil@unsoed.ac.id'),
-(28, 3, 1, 1, 'sri.lestari2511@unsoed.ac.id', 'Dr. Sri Lestari, SE, M.Si.', 'sri.lestari2511@unsoed.ac.id', 'sri.lestari2511@unsoed.ac.id'),
-(29, 3, 1, 1, 'imam.widhiono@unsoed.ac.id', 'Prof. Dr.rer.nat. Imam Widhiono MZ, MS', 'imam.widhiono@unsoed.ac.id', 'imam.widhiono@unsoed.ac.id'),
-(30, 3, 1, 1, 'farida.rachmawati@unsoed.ac.id', 'Dr. Farida Nur Rachmawati, M.Si.', 'farida.rachmawati@unsoed.ac.id', 'farida.rachmawati@unsoed.ac.id'),
-(31, 3, 1, 1, 'untung.susilo@unsoed.ac.id', 'Dr. Untung Susilo, MS', 'untung.susilo@unsoed.ac.id', 'untung.susilo@unsoed.ac.id'),
-(32, 3, 1, 1, 'mulki_indanazulfa@unsoed.ac.id', 'Mulki Indana Zulfa, ST, MT', 'mulki_indanazulfa@unsoed.ac.id', 'mulki_indanazulfa@unsoed.ac.id'),
-(33, 3, 1, 1, 'murni.dwiati@unsoed.ac.id', 'Dr. Murni Dwiati, M.Si.', 'murni.dwiati@unsoed.ac.id', 'murni.dwiati@unsoed.ac.id'),
-(34, 3, 1, 1, 'susanto1408@unsoed.ac.id', 'Prof. Agus Hery Susanto, MS', 'susanto1408@unsoed.ac.id', 'susanto1408@unsoed.ac.id'),
-(35, 3, NULL, NULL, NULL, 'Ascaryan Rafinda, SE, M.Sc., Ak. CA', '', ''),
-(36, 3, 1, 1, 'hartoyo2910@unsoed.ac.id', 'Hartoyo, S.Pi., MT', 'hartoyo2910@unsoed.ac.id', 'hartoyo2910@unsoed.ac.id'),
-(37, 3, 1, 1, 'hening.pratiwi@unsoed.ac.id', 'Hening Pratiwi, M.Sc., APt', 'hening.pratiwi@unsoed.ac.id', 'hening.pratiwi@unsoed.ac.id'),
-(38, 3, 1, 1, 'asmoro.widagdo@unsoed.ac.id', 'Dr. Asmoro Widagdo, ST, MT', 'asmoro.widagdo@unsoed.ac.id', 'asmoro.widagdo@unsoed.ac.id'),
-(39, 3, 1, 1, 'jamrud.aminuddin@unsoed.ac.id', 'Jamrud Aminuddin, S.Si., M.Si., Ph.D', 'jamrud.aminuddin@unsoed.ac.id', 'jamrud.aminuddin@unsoed.ac.id'),
-(40, 3, 1, 1, 'tri.rachmanto@unsoed.ac.id', 'Tri Rachmanto Prihambodo, S.Pt., M.Si.', 'tri.rachmanto@unsoed.ac.id', 'tri.rachmanto@unsoed.ac.id'),
-(41, 3, 1, 1, 'efka.rimbawanto@unsoed.ac.id', 'Dr. Ir. Efka Aris Rimbawanto, MP', 'efka.rimbawanto@unsoed.ac.id', 'efka.rimbawanto@unsoed.ac.id'),
-(42, 3, 1, 1, 'mtkariadi_pbi@unsoed.ac.id', 'Mustasyfa Thabib Kariadi, S.Pd., M.Pd.', 'mtkariadi_pbi@unsoed.ac.id', 'mtkariadi_pbi@unsoed.ac.id'),
-(43, 3, 1, 1, 'wiwiek.adawiyah@unsoed.ac.id', 'Prof. Wiwiek Rabiatul Adawiyah, M.Sc., Ph.D', 'wiwiek.adawiyah@unsoed.ac.id', 'wiwiek.adawiyah@unsoed.ac.id'),
-(44, 3, 1, 1, 'ratna.dewi0509@unsoed.ac.id', 'Dr. Ratna Stia Dewi, S.Si., M.Si.', 'ratna.dewi0509@unsoed.ac.id', 'ratna.dewi0509@unsoed.ac.id'),
-(45, 3, 1, 1, 'adhi.sulaiman@unsoed.ac.id', 'Dr. Adhi Iman Sulaiman, S.IP, M.Si.', 'adhi.sulaiman@unsoed.ac.id', 'adhi.sulaiman@unsoed.ac.id'),
-(46, 3, 1, 1, 'purwanto0401@unsoed.ac.id', 'Dr. Purwanto, SP, M.Sc.', 'purwanto0401@unsoed.ac.id', 'purwanto0401@unsoed.ac.id'),
-(47, 3, 1, 1, 'indrawan.firdauzi@unsoed.ac.id', 'Indrawan Firdauzi, S.Pd., M.Sc.', 'indrawan.firdauzi@unsoed.ac.id', 'indrawan.firdauzi@unsoed.ac.id'),
-(48, 3, 1, 1, 'nuning.setyaningrum@unsoed.ac.id', 'Dra. Nuning Setyaningrum, M.Si.', 'nuning.setyaningrum@unsoed.ac.id', 'nuning.setyaningrum@unsoed.ac.id'),
-(49, 3, 1, 1, 'muhammad.taufiqurrohman@unsoed.ac.id', 'Muhammad Taufiqurrohman, SS, M.Hum.', 'muhammad.taufiqurrohman@unsoed.a', 'muhammad.taufiqurrohman@unsoed.ac.id'),
-(50, 3, 1, 1, 'nur.prihatiningsih@unsoed.ac.id', 'Dr. Ir. Nur Prihatiningsih, MS', 'nur.prihatiningsih@unsoed.ac.id', 'nur.prihatiningsih@unsoed.ac.id'),
-(51, 3, 1, 1, 'heru.djatmiko@unsoed.ac.id', 'Dr. Ir. Heru Adi Djatmiko, MP', 'heru.djatmiko@unsoed.ac.id', 'heru.djatmiko@unsoed.ac.id'),
-(52, 3, 1, 1, 'nana.sutikna@unsoed.ac.id', 'Dr. Nana Sutikna, M.Hum.', 'nana.sutikna@unsoed.ac.id', 'nana.sutikna@unsoed.ac.id'),
-(53, 3, 1, 1, 'nuryanti1510@unsoed.ac.id', 'Dr. Nuryanti, SIP, M.Sc.', 'nuryanti1510@unsoed.ac.id', 'nuryanti1510@unsoed.ac.id'),
-(54, 3, 1, 1, 'lutfatul.latifah@unsoed.ac.id', 'Ns. Lutfatul Latifah, S.Kep, M.Kep, Sp.Mat', 'lutfatul.latifah@unsoed.ac.id', 'lutfatul.latifah@unsoed.ac.id'),
-(55, 3, 1, 1, 'oktaviani@unsoed.ac.id', 'Eka Oktaviani, S.Si., M.Biotech.', 'oktaviani@unsoed.ac.id', 'oktaviani@unsoed.ac.id'),
-(56, 3, 1, 1, 'bilalodin@unsoed.ac.id', 'Dr. Bilalodin, M.Si.', 'bilalodin@unsoed.ac.id', 'bilalodin@unsoed.ac.id'),
-(57, 3, 1, 1, 'rachmad.setijadi@unsoed.ac.id', 'Dr. Rachmad Setijadi, S.Si., M.Si.', 'rachmad.setijadi@unsoed.ac.id', 'rachmad.setijadi@unsoed.ac.id'),
-(58, 3, 1, 1, 'tirta.wardana@unsoed.ac.id', 'Tirta Wardana, S.Si., M.Biotech.', 'tirta.wardana@unsoed.ac.id', 'tirta.wardana@unsoed.ac.id'),
-(59, 3, 1, 1, 'indah.puspitasari@unsoed.ac.id', 'Indah Puspitasari, S.S., M.Hum', 'indah.puspitasari@unsoed.ac.id', 'indah.puspitasari@unsoed.ac.id'),
-(60, 3, 1, 1, 'rani.hestiyanti@unsoed.ac.id', 'Rani Afifah Nur Hestiyani, S.Si., M.Biotech.', 'rani.hestiyanti@unsoed.ac.id', 'rani.hestiyanti@unsoed.ac.id'),
-(61, 3, 1, 1, 'muslihudin@unsoed.ac.id', 'Dr. Muslihudin, M.Si', 'muslihudin@unsoed.ac.id', 'muslihudin@unsoed.ac.id'),
-(62, 3, 1, 1, 'suprayogi@unsoed.ac.id', 'Ir. Suprayogi, M.Sc., Ph.D', 'suprayogi@unsoed.ac.id', 'suprayogi@unsoed.ac.id'),
-(63, 3, 1, 1, 'zulfaulinnuha@unsoed.ac.id', 'Zulfa Ulinnuha, SP, M.Si.', 'zulfaulinnuha@unsoed.ac.id', 'zulfaulinnuha@unsoed.ac.id'),
-(64, 3, 1, 1, 'agus.maryoto@unsoed.ac.id', 'Prof. Dr.Eng. Agus Maryoto, ST, MT', 'agus.maryoto@unsoed.ac.id', 'agus.maryoto@unsoed.ac.id'),
-(65, 3, 1, 1, 'ascaryan.rafinda@unsoed.ac.id', 'Ascaryan Rafinda, SE, M.Sc., Ak. CA, Ph.D', 'ascaryan.rafinda@unsoed.ac.id', 'ascaryan.rafinda@unsoed.ac.id'),
-(66, 3, 1, 1, 'wiman.rizkidarajat@unsoed.ac.id', 'Wiman Rizkidarajat, SH, MH', 'wiman.rizkidarajat@unsoed.ac.id', 'wiman.rizkidarajat@unsoed.ac.id'),
-(67, 3, 1, 1, 'elly.tugiyanti@unsoed.ac.id', 'Prof. Dr. Ir. Elly Tugiyanti, MP, IPU', 'elly.tugiyanti@unsoed.ac.id', 'elly.tugiyanti@unsoed.ac.id'),
-(68, 3, 1, 1, 'gito.sugiyanto@unsoed.ac.id', 'Dr. Ir. Gito Sugiyanto, ST, MT, IPM, ASEAN Eng.', 'gito.sugiyanto@unsoed.ac.id', 'gito.sugiyanto@unsoed.ac.id'),
-(69, 3, 1, 1, 'yanuar.haryanto@unsoed.ac.id', 'yanuar Haryanto, ST, M.Eng., Ph.D', 'yanuar.haryanto@unsoed.ac.id', 'yanuar.haryanto@unsoed.ac.id'),
-(70, 3, 1, 1, 'erwin.ardli@unsoed.ac.id', 'Dr.rer.nat. Erwin Riyanto Ardli, S.Si., M.Sc.', 'erwin.ardli@unsoed.ac.id', 'erwin.ardli@unsoed.ac.id'),
-(71, 3, 1, 1, 'erna.wati@unsoed.ac.id', 'Erna Kusuma Wati, SKM, M.Si.', 'erna.wati@unsoed.ac.id', 'erna.wati@unsoed.ac.id'),
-(72, 3, 1, 1, 'arif.kurniawan@unsoed.ac.id', 'Arif Kurniawan, SKM, M.Kes.', 'arif.kurniawan@unsoed.ac.id', 'arif.kurniawan@unsoed.ac.id'),
-(73, 3, 1, 1, 'fitranto.arjadi@unsoed.ac.id', 'Dr. dr. Fitranto Arjadi, M.Kes.', 'fitranto.arjadi@unsoed.ac.id', 'fitranto.arjadi@unsoed.ac.id'),
-(74, 3, 1, 1, 'sakhidin@unsoed.ac.id', 'Prof. Dr.Ir. Sakhidin, MP', 'sakhidin@unsoed.ac.id', 'sakhidin@unsoed.ac.id'),
-(75, 3, 1, 1, 'zusfahair@unsoed.ac.id', 'Zusfahair, S.Si., M.Si.', 'zusfahair@unsoed.ac.id', 'zusfahair@unsoed.ac.id'),
-(76, 3, 1, 1, 'mardiyah.kurniasih@unsoed.ac.id', 'Mardiyah Kurniasih, S.Si., M.Si.', 'mardiyah.kurniasih@unsoed.ac.id', 'mardiyah.kurniasih@unsoed.ac.id'),
-(77, 3, 1, 1, 'endang.setyowati@unsoed.ac.id', 'Dr. Endang Ariyani Setyowati, M.Si.', 'endang.setyowati@unsoed.ac.id', 'endang.setyowati@unsoed.ac.id'),
-(78, 3, 1, 1, 'mustika.palupi@unsoed.ac.id', 'Mustika Palupi, S.Pi., M.Si.', 'mustika.palupi@unsoed.ac.id', 'mustika.palupi@unsoed.ac.id'),
-(80, 3, 1, 1, 'rifda.naufalin@unsoed.ac.id', 'Prof. Dr. RIFDA NAUFALIN, S.P., M.Si.', 'rifda.naufalin@unsoed.ac.id', 'rifda.naufalin@unsoed.ac.id'),
-(81, 3, 1, 1, 'retno_supriyanti@unsoed.ac.id', 'Prof. Dr. Eng. Ir. RETNO SUPRIYANTI, ST.,MT.', 'retno_supriyanti@unsoed.ac.id', 'retno_supriyanti@unsoed.ac.id'),
-(82, 3, 1, 1, 'icuk.bawono@unsoed.ac.id', 'Dr. Icuk Rangga Bawono, S.H.,S.E.,M.Si.,M.H.Ak.', 'icuk.bawono@unsoed.ac.id', 'icuk.bawono@unsoed.ac.id'),
-(83, 3, 1, 1, 'sulaeman@unsoed.ac.id', 'Uyi Sulaeman, S.Si.,M.Si.,Ph.D.', 'sulaeman@unsoed.ac.id', 'sulaeman@unsoed.ac.id'),
-(84, 3, 1, 1, 'haryono1108@unsoed.ac.id', 'Dr. Haryono, S.S. M.Pd.', 'haryono1108@unsoed.ac.id', 'haryono1108@unsoed.ac.id'),
-(85, 3, 1, 1, 'sri.maryani@unsoed.ac.id', 'Sri Maryani, S.Si., M.Si., Ph.D.', 'sri.maryani@unsoed.ac.id', 'sri.maryani@unsoed.ac.id'),
-(86, 3, 1, 1, 'agung.prabowo@unsoed.ac.id', 'Agung Prabowo, S.Si., M.Si.', 'agung.prabowo@unsoed.ac.id', 'agung.prabowo@unsoed.ac.id'),
-(87, 3, 1, 1, 'hasby.pri@unsoed.ac.id', 'Hasby Pri Choiruna, S.Kep., Ns., M.Kep.', 'hasby.pri@unsoed.ac.id', 'hasby.pri@unsoed.ac.id'),
-(88, 3, 1, 1, 'saryono2016@unsoed.ac.id', 'Prof. Dr. Saryono, S.Kp., M.Kes.', 'saryono2016@unsoed.ac.id', 'saryono2016@unsoed.ac.id'),
-(89, 3, 1, 1, 'hendri.wasito@unsoed.ac.id', 'Dr.nat.techn. apt. Hendri Wasito, M.Sc.', 'hendri.wasito@unsoed.ac.id', 'hendri.wasito@unsoed.ac.id');
+INSERT INTO `users` (`id`, `faculty_id`, `department_id`, `email`, `name`, `username`, `password`) VALUES
+(1, 1, 1, 'muhammad.syaiful.aliim@unsoed.ac.id', 'Administrator', 'admin', '$2y$10$nJz6Qed8oKOKvvh996QuT.fp7QNkFpe1LGKc9tAYgYybKSLPfDXH.'),
+(5, 1, 1, 'ririn.trisnawati@unsoed.ac.id', 'Ririn Kurnia Trisnawati, SS, MA', 'ririn.trisnawati@unsoed.ac.id', 'ririn.trisnawati@unsoed.ac.id'),
+(6, 1, 1, 'endang.hilmi@unsoed.ac.id', 'Dr. Endang Hilmi, S.Hut., M.Si.', 'endang.hilmi@unsoed.ac.id', 'endang.hilmi@unsoed.ac.id'),
+(7, 1, 1, 'susiana.candrawati@unsoed.ac.id', 'Dr. dr. Susiana Candrawati, Sp.K.O.', 'susiana.candrawati@unsoed.ac.id', 'susiana.candrawati@unsoed.ac.id'),
+(8, 1, 1, 'abdul.ritonga@unsoed.ac.id', 'Abdul Mukhlis Ritonga, STP, M.Sc.', 'abdul.ritonga@unsoed.ac.id', 'abdul.ritonga@unsoed.ac.id'),
+(9, 1, 1, 'ismoyowati@unsoed.ac.id', 'Prof. Dr. Ir. Ismoyowati, S.Pt., MP, IPU', 'ismoyowati@unsoed.ac.id', 'ismoyowati@unsoed.ac.id'),
+(10, 1, 1, 'suroso.te@unsoed.ac.id', 'Prof. Dr.Eng. Suroso, S.T, M.Eng', 'suroso.te@unsoed.ac.id', 'suroso.te@unsoed.ac.id'),
+(11, 1, 1, 'koernia.pratama@unsoed.ac.id', 'Koernia Nanda Pratama, M.Kep., Ns., Sp.Kep.Kom.', 'koernia.pratama@unsoed.ac.id', 'koernia.pratama@unsoed.ac.id'),
+(12, 1, 1, 'sanidhyanika.purnomo@unsoed.ac.id', 'Sanidhya Nika Purnomo, ST, MT', 'sanidhyanika.purnomo@unsoed.ac.i', 'sanidhyanika.purnomo@unsoed.ac.id'),
+(13, 1, 1, 'rifqi.festiawan@unsoed.ac.id', 'Rifqi Festiawan, S.Pd., M.Pd., AIFO', 'rifqi.festiawan@unsoed.ac.id', 'rifqi.festiawan@unsoed.ac.id'),
+(14, 1, 1, 'aminfatoni@unsoed.ac.id', 'Amin Fatoni, S.Si., M.Si., Ph.D', 'aminfatoni@unsoed.ac.id', 'aminfatoni@unsoed.ac.id'),
+(15, 1, 1, 'rahadi.bintoro@unsoed.ac.id', 'Dr. Rahadi Wasi Bintoro, S.H., M.H.', 'rahadi.bintoro@unsoed.ac.id', 'rahadi.bintoro@unsoed.ac.id'),
+(16, 1, 1, 'akhyarul.anam@unsoed.ac.id', 'Akhyarul Anam, S.Kep.,Ns. M.Kep.', 'akhyarul.anam@unsoed.ac.id', 'akhyarul.anam@unsoed.ac.id'),
+(17, 1, 1, 'arief.wardhana@unsoed.ac.id', 'Arief Wisnu Wardhana, B.Eng.(Hons)., M.Eng.', 'arief.wardhana@unsoed.ac.id', 'arief.wardhana@unsoed.ac.id'),
+(18, 1, 1, 'amalia@unsoed.ac.id', 'dr. Amalia, M.Sc.', 'amalia@unsoed.ac.id', 'amalia@unsoed.ac.id'),
+(19, 1, 1, 'ard@unsoed.ac.id', 'Dr. Ardiansyah, M.Si.', 'ard@unsoed.ac.id', 'ard@unsoed.ac.id'),
+(20, 1, 1, 'aisyah.septiana@unsoed.ac.id', 'Dr. Ir. Aisyah Tri Septiana, MP', 'aisyah.septiana@unsoed.ac.id', 'aisyah.septiana@unsoed.ac.id'),
+(21, 1, 1, 'nur.aini@unsoed.ac.id', 'Dr. Nur Aini, S.TP., MP', 'nur.aini@unsoed.ac.id', 'nur.aini@unsoed.ac.id'),
+(22, 1, 1, 'pepita.haryanti@unsoed.ac.id', 'Dr. Pepita Haryanti, STP, .Sc.', 'pepita.haryanti@unsoed.ac.id', 'pepita.haryanti@unsoed.ac.id'),
+(23, 1, 1, 'sorta.simanjuntak@unsoed.ac.id', 'Prof. Dr. Sorta Basar Ida Simanjuntak, M.Si.', 'sorta.simanjuntak@unsoed.ac.id', 'sorta.simanjuntak@unsoed.ac.id'),
+(24, 1, 1, 'dian.bhagawati@unsoed.ac.id', 'Dr.Pi. Dra. Dian Bhagawati, M.Si.', 'dian.bhagawati@unsoed.ac.id', 'dian.bhagawati@unsoed.ac.id'),
+(25, 1, 1, 'kiky.srirejeki@unsoed.ac.id', 'Kiky Srirejeki, M.Sc.', 'kiky.srirejeki@unsoed.ac.id', 'kiky.srirejeki@unsoed.ac.id'),
+(26, 1, 1, 'slamet.rosyadi@unsoed.ac.id', 'Dr. Slamet Rosyadi, M.Si.', 'slamet.rosyadi@unsoed.ac.id', 'slamet.rosyadi@unsoed.ac.id'),
+(27, 1, 1, 'poppy.arsil@unsoed.ac.id', 'Poppy Arsil, STP, MT., PhD', 'poppy.arsil@unsoed.ac.id', 'poppy.arsil@unsoed.ac.id'),
+(28, 1, 1, 'sri.lestari2511@unsoed.ac.id', 'Dr. Sri Lestari, SE, M.Si.', 'sri.lestari2511@unsoed.ac.id', 'sri.lestari2511@unsoed.ac.id'),
+(29, 1, 1, 'imam.widhiono@unsoed.ac.id', 'Prof. Dr.rer.nat. Imam Widhiono MZ, MS', 'imam.widhiono@unsoed.ac.id', 'imam.widhiono@unsoed.ac.id'),
+(30, 1, 1, 'farida.rachmawati@unsoed.ac.id', 'Dr. Farida Nur Rachmawati, M.Si.', 'farida.rachmawati@unsoed.ac.id', 'farida.rachmawati@unsoed.ac.id'),
+(31, 1, 1, 'untung.susilo@unsoed.ac.id', 'Dr. Untung Susilo, MS', 'untung.susilo@unsoed.ac.id', 'untung.susilo@unsoed.ac.id'),
+(32, 1, 1, 'mulki_indanazulfa@unsoed.ac.id', 'Mulki Indana Zulfa, ST, MT', 'mulki_indanazulfa@unsoed.ac.id', 'mulki_indanazulfa@unsoed.ac.id'),
+(33, 1, 1, 'murni.dwiati@unsoed.ac.id', 'Dr. Murni Dwiati, M.Si.', 'murni.dwiati@unsoed.ac.id', 'murni.dwiati@unsoed.ac.id'),
+(34, 1, 1, 'susanto1408@unsoed.ac.id', 'Prof. Agus Hery Susanto, MS', 'susanto1408@unsoed.ac.id', 'susanto1408@unsoed.ac.id'),
+(35, NULL, NULL, NULL, 'Ascaryan Rafinda, SE, M.Sc., Ak. CA', '', ''),
+(36, 1, 1, 'hartoyo2910@unsoed.ac.id', 'Hartoyo, S.Pi., MT', 'hartoyo2910@unsoed.ac.id', 'hartoyo2910@unsoed.ac.id'),
+(37, 1, 1, 'hening.pratiwi@unsoed.ac.id', 'Hening Pratiwi, M.Sc., APt', 'hening.pratiwi@unsoed.ac.id', 'hening.pratiwi@unsoed.ac.id'),
+(38, 1, 1, 'asmoro.widagdo@unsoed.ac.id', 'Dr. Asmoro Widagdo, ST, MT', 'asmoro.widagdo@unsoed.ac.id', 'asmoro.widagdo@unsoed.ac.id'),
+(39, 1, 1, 'jamrud.aminuddin@unsoed.ac.id', 'Jamrud Aminuddin, S.Si., M.Si., Ph.D', 'jamrud.aminuddin@unsoed.ac.id', 'jamrud.aminuddin@unsoed.ac.id'),
+(40, 1, 1, 'tri.rachmanto@unsoed.ac.id', 'Tri Rachmanto Prihambodo, S.Pt., M.Si.', 'tri.rachmanto@unsoed.ac.id', 'tri.rachmanto@unsoed.ac.id'),
+(41, 1, 1, 'efka.rimbawanto@unsoed.ac.id', 'Dr. Ir. Efka Aris Rimbawanto, MP', 'efka.rimbawanto@unsoed.ac.id', 'efka.rimbawanto@unsoed.ac.id'),
+(42, 1, 1, 'mtkariadi_pbi@unsoed.ac.id', 'Mustasyfa Thabib Kariadi, S.Pd., M.Pd.', 'mtkariadi_pbi@unsoed.ac.id', 'mtkariadi_pbi@unsoed.ac.id'),
+(43, 1, 1, 'wiwiek.adawiyah@unsoed.ac.id', 'Prof. Wiwiek Rabiatul Adawiyah, M.Sc., Ph.D', 'wiwiek.adawiyah@unsoed.ac.id', 'wiwiek.adawiyah@unsoed.ac.id'),
+(44, 1, 1, 'ratna.dewi0509@unsoed.ac.id', 'Dr. Ratna Stia Dewi, S.Si., M.Si.', 'ratna.dewi0509@unsoed.ac.id', 'ratna.dewi0509@unsoed.ac.id'),
+(45, 1, 1, 'adhi.sulaiman@unsoed.ac.id', 'Dr. Adhi Iman Sulaiman, S.IP, M.Si.', 'adhi.sulaiman@unsoed.ac.id', 'adhi.sulaiman@unsoed.ac.id'),
+(46, 1, 1, 'purwanto0401@unsoed.ac.id', 'Dr. Purwanto, SP, M.Sc.', 'purwanto0401@unsoed.ac.id', 'purwanto0401@unsoed.ac.id'),
+(47, 1, 1, 'indrawan.firdauzi@unsoed.ac.id', 'Indrawan Firdauzi, S.Pd., M.Sc.', 'indrawan.firdauzi@unsoed.ac.id', 'indrawan.firdauzi@unsoed.ac.id'),
+(48, 1, 1, 'nuning.setyaningrum@unsoed.ac.id', 'Dra. Nuning Setyaningrum, M.Si.', 'nuning.setyaningrum@unsoed.ac.id', 'nuning.setyaningrum@unsoed.ac.id'),
+(49, 1, 1, 'muhammad.taufiqurrohman@unsoed.ac.id', 'Muhammad Taufiqurrohman, SS, M.Hum.', 'muhammad.taufiqurrohman@unsoed.a', 'muhammad.taufiqurrohman@unsoed.ac.id'),
+(50, 1, 1, 'nur.prihatiningsih@unsoed.ac.id', 'Dr. Ir. Nur Prihatiningsih, MS', 'nur.prihatiningsih@unsoed.ac.id', 'nur.prihatiningsih@unsoed.ac.id'),
+(51, 1, 1, 'heru.djatmiko@unsoed.ac.id', 'Dr. Ir. Heru Adi Djatmiko, MP', 'heru.djatmiko@unsoed.ac.id', 'heru.djatmiko@unsoed.ac.id'),
+(52, 1, 1, 'nana.sutikna@unsoed.ac.id', 'Dr. Nana Sutikna, M.Hum.', 'nana.sutikna@unsoed.ac.id', 'nana.sutikna@unsoed.ac.id'),
+(53, 1, 1, 'nuryanti1510@unsoed.ac.id', 'Dr. Nuryanti, SIP, M.Sc.', 'nuryanti1510@unsoed.ac.id', 'nuryanti1510@unsoed.ac.id'),
+(54, 1, 1, 'lutfatul.latifah@unsoed.ac.id', 'Ns. Lutfatul Latifah, S.Kep, M.Kep, Sp.Mat', 'lutfatul.latifah@unsoed.ac.id', 'lutfatul.latifah@unsoed.ac.id'),
+(55, 1, 1, 'oktaviani@unsoed.ac.id', 'Eka Oktaviani, S.Si., M.Biotech.', 'oktaviani@unsoed.ac.id', 'oktaviani@unsoed.ac.id'),
+(56, 1, 1, 'bilalodin@unsoed.ac.id', 'Dr. Bilalodin, M.Si.', 'bilalodin@unsoed.ac.id', 'bilalodin@unsoed.ac.id'),
+(57, 1, 1, 'rachmad.setijadi@unsoed.ac.id', 'Dr. Rachmad Setijadi, S.Si., M.Si.', 'rachmad.setijadi@unsoed.ac.id', 'rachmad.setijadi@unsoed.ac.id'),
+(58, 1, 1, 'tirta.wardana@unsoed.ac.id', 'Tirta Wardana, S.Si., M.Biotech.', 'tirta.wardana@unsoed.ac.id', 'tirta.wardana@unsoed.ac.id'),
+(59, 1, 1, 'indah.puspitasari@unsoed.ac.id', 'Indah Puspitasari, S.S., M.Hum', 'indah.puspitasari@unsoed.ac.id', 'indah.puspitasari@unsoed.ac.id'),
+(60, 1, 1, 'rani.hestiyanti@unsoed.ac.id', 'Rani Afifah Nur Hestiyani, S.Si., M.Biotech.', 'rani.hestiyanti@unsoed.ac.id', 'rani.hestiyanti@unsoed.ac.id'),
+(61, 1, 1, 'muslihudin@unsoed.ac.id', 'Dr. Muslihudin, M.Si', 'muslihudin@unsoed.ac.id', 'muslihudin@unsoed.ac.id'),
+(62, 1, 1, 'suprayogi@unsoed.ac.id', 'Ir. Suprayogi, M.Sc., Ph.D', 'suprayogi@unsoed.ac.id', 'suprayogi@unsoed.ac.id'),
+(63, 1, 1, 'zulfaulinnuha@unsoed.ac.id', 'Zulfa Ulinnuha, SP, M.Si.', 'zulfaulinnuha@unsoed.ac.id', 'zulfaulinnuha@unsoed.ac.id'),
+(64, 1, 1, 'agus.maryoto@unsoed.ac.id', 'Prof. Dr.Eng. Agus Maryoto, ST, MT', 'agus.maryoto@unsoed.ac.id', 'agus.maryoto@unsoed.ac.id'),
+(65, 1, 1, 'ascaryan.rafinda@unsoed.ac.id', 'Ascaryan Rafinda, SE, M.Sc., Ak. CA, Ph.D', 'ascaryan.rafinda@unsoed.ac.id', 'ascaryan.rafinda@unsoed.ac.id'),
+(66, 1, 1, 'wiman.rizkidarajat@unsoed.ac.id', 'Wiman Rizkidarajat, SH, MH', 'wiman.rizkidarajat@unsoed.ac.id', 'wiman.rizkidarajat@unsoed.ac.id'),
+(67, 1, 1, 'elly.tugiyanti@unsoed.ac.id', 'Prof. Dr. Ir. Elly Tugiyanti, MP, IPU', 'elly.tugiyanti@unsoed.ac.id', 'elly.tugiyanti@unsoed.ac.id'),
+(68, 1, 1, 'gito.sugiyanto@unsoed.ac.id', 'Dr. Ir. Gito Sugiyanto, ST, MT, IPM, ASEAN Eng.', 'gito.sugiyanto@unsoed.ac.id', 'gito.sugiyanto@unsoed.ac.id'),
+(69, 1, 1, 'yanuar.haryanto@unsoed.ac.id', 'yanuar Haryanto, ST, M.Eng., Ph.D', 'yanuar.haryanto@unsoed.ac.id', 'yanuar.haryanto@unsoed.ac.id'),
+(70, 1, 1, 'erwin.ardli@unsoed.ac.id', 'Dr.rer.nat. Erwin Riyanto Ardli, S.Si., M.Sc.', 'erwin.ardli@unsoed.ac.id', 'erwin.ardli@unsoed.ac.id'),
+(71, 1, 1, 'erna.wati@unsoed.ac.id', 'Erna Kusuma Wati, SKM, M.Si.', 'erna.wati@unsoed.ac.id', 'erna.wati@unsoed.ac.id'),
+(72, 1, 1, 'arif.kurniawan@unsoed.ac.id', 'Arif Kurniawan, SKM, M.Kes.', 'arif.kurniawan@unsoed.ac.id', 'arif.kurniawan@unsoed.ac.id'),
+(73, 1, 1, 'fitranto.arjadi@unsoed.ac.id', 'Dr. dr. Fitranto Arjadi, M.Kes.', 'fitranto.arjadi@unsoed.ac.id', 'fitranto.arjadi@unsoed.ac.id'),
+(74, 1, 1, 'sakhidin@unsoed.ac.id', 'Prof. Dr.Ir. Sakhidin, MP', 'sakhidin@unsoed.ac.id', 'sakhidin@unsoed.ac.id'),
+(75, 1, 1, 'zusfahair@unsoed.ac.id', 'Zusfahair, S.Si., M.Si.', 'zusfahair@unsoed.ac.id', 'zusfahair@unsoed.ac.id'),
+(76, 1, 1, 'mardiyah.kurniasih@unsoed.ac.id', 'Mardiyah Kurniasih, S.Si., M.Si.', 'mardiyah.kurniasih@unsoed.ac.id', 'mardiyah.kurniasih@unsoed.ac.id'),
+(77, 1, 1, 'endang.setyowati@unsoed.ac.id', 'Dr. Endang Ariyani Setyowati, M.Si.', 'endang.setyowati@unsoed.ac.id', 'endang.setyowati@unsoed.ac.id'),
+(78, 1, 1, 'mustika.palupi@unsoed.ac.id', 'Mustika Palupi, S.Pi., M.Si.', 'mustika.palupi@unsoed.ac.id', 'mustika.palupi@unsoed.ac.id'),
+(80, 1, 1, 'rifda.naufalin@unsoed.ac.id', 'Prof. Dr. RIFDA NAUFALIN, S.P., M.Si.', 'rifda.naufalin@unsoed.ac.id', 'rifda.naufalin@unsoed.ac.id'),
+(81, 1, 1, 'retno_supriyanti@unsoed.ac.id', 'Prof. Dr. Eng. Ir. RETNO SUPRIYANTI, ST.,MT.', 'retno_supriyanti@unsoed.ac.id', 'retno_supriyanti@unsoed.ac.id'),
+(82, 1, 1, 'icuk.bawono@unsoed.ac.id', 'Dr. Icuk Rangga Bawono, S.H.,S.E.,M.Si.,M.H.Ak.', 'icuk.bawono@unsoed.ac.id', 'icuk.bawono@unsoed.ac.id'),
+(83, 1, 1, 'sulaeman@unsoed.ac.id', 'Uyi Sulaeman, S.Si.,M.Si.,Ph.D.', 'sulaeman@unsoed.ac.id', 'sulaeman@unsoed.ac.id'),
+(84, 1, 1, 'haryono1108@unsoed.ac.id', 'Dr. Haryono, S.S. M.Pd.', 'haryono1108@unsoed.ac.id', 'haryono1108@unsoed.ac.id'),
+(85, 1, 1, 'sri.maryani@unsoed.ac.id', 'Sri Maryani, S.Si., M.Si., Ph.D.', 'sri.maryani@unsoed.ac.id', 'sri.maryani@unsoed.ac.id'),
+(86, 1, 1, 'agung.prabowo@unsoed.ac.id', 'Agung Prabowo, S.Si., M.Si.', 'agung.prabowo@unsoed.ac.id', 'agung.prabowo@unsoed.ac.id'),
+(87, 1, 1, 'hasby.pri@unsoed.ac.id', 'Hasby Pri Choiruna, S.Kep., Ns., M.Kep.', 'hasby.pri@unsoed.ac.id', 'hasby.pri@unsoed.ac.id'),
+(88, 1, 1, 'saryono2016@unsoed.ac.id', 'Prof. Dr. Saryono, S.Kp., M.Kes.', 'saryono2016@unsoed.ac.id', 'saryono2016@unsoed.ac.id'),
+(89, 1, 1, 'hendri.wasito@unsoed.ac.id', 'Dr.nat.techn. apt. Hendri Wasito, M.Sc.', 'hendri.wasito@unsoed.ac.id', 'hendri.wasito@unsoed.ac.id');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_types`
+-- Table structure for table `user_detail`
 --
 
-CREATE TABLE `user_types` (
-  `id` tinyint NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(1024) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `user_detail` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `employee_id` int NOT NULL,
+  `dtype` int NOT NULL,
+  `nidn` int NOT NULL,
+  `nip` int NOT NULL,
+  `name` int NOT NULL,
+  `prefix_degree` int NOT NULL,
+  `suffix_degree` int NOT NULL,
+  `sex` int NOT NULL,
+  `birthplace` int NOT NULL,
+  `birthdate` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `user_types`
+-- Table structure for table `user_role`
 --
 
-INSERT INTO `user_types` (`id`, `name`, `description`) VALUES
-(1, 'admin', 'superadmin who has access all sistem'),
-(2, 'reviewer', 'has access assign reviewers '),
-(3, 'normal', 'normal user'),
-(4, 'dean', 'dekan');
+CREATE TABLE `user_role` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `role_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -797,6 +840,7 @@ INSERT INTO `user_types` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `wos` (
   `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `publon_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `wos_id` varchar(16) NOT NULL,
   `doi` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -816,15 +860,16 @@ CREATE TABLE `wos` (
   `eissn` varchar(16) NOT NULL,
   `url` varchar(1024) NOT NULL,
   `author` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `file` varchar(128) NOT NULL
+  `file` varchar(128) NOT NULL,
+  `is_submitted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `wos`
 --
 
-INSERT INTO `wos` (`id`, `publon_id`, `wos_id`, `doi`, `title`, `first_author`, `last_author`, `authors`, `publish_date`, `journal_name`, `citation`, `abstract`, `publish_type`, `publish_year`, `page_begin`, `page_end`, `issn`, `eissn`, `url`, `author`, `file`) VALUES
-(1, '', '', '', 'A GasFET for chlorine detection', 'Sulima, T; Knittel, T; Freitag, G;', 'Eisele, I', 'Sulima, T; Knittel, T; Freitag, G; Widanarto, W; Eisele, I;', '2005', '2005 IEEE SENSORS, VOLS 1 AND 2', 1, 'The work function potential shift due to the chemical reaction of gold in a chlorine gas ambient is electrically measured. The sensor principle is based on a hybrid suspended gate field effect transistor. Gas measurements show that at 190 degrees C a reversible chlorine detection without any cross sensitivities to other gas species is possible.', 'Books in series', '2005', 113, 115, '1930-0395', '-', 'https://www.webofscience.com/wos/woscc/full-record/WOS:000237003500028', 'Dr R WAHYU WIDANARTO, S.Si, M.Si', '-');
+INSERT INTO `wos` (`id`, `user_id`, `publon_id`, `wos_id`, `doi`, `title`, `first_author`, `last_author`, `authors`, `publish_date`, `journal_name`, `citation`, `abstract`, `publish_type`, `publish_year`, `page_begin`, `page_end`, `issn`, `eissn`, `url`, `author`, `file`, `is_submitted`) VALUES
+(1, 0, '', '', '', 'A GasFET for chlorine detection', 'Sulima, T; Knittel, T; Freitag, G;', 'Eisele, I', 'Sulima, T; Knittel, T; Freitag, G; Widanarto, W; Eisele, I;', '2005', '2005 IEEE SENSORS, VOLS 1 AND 2', 1, 'The work function potential shift due to the chemical reaction of gold in a chlorine gas ambient is electrically measured. The sensor principle is based on a hybrid suspended gate field effect transistor. Gas measurements show that at 190 degrees C a reversible chlorine detection without any cross sensitivities to other gas species is possible.', 'Books in series', '2005', 113, 115, '1930-0395', '-', 'https://www.webofscience.com/wos/woscc/full-record/WOS:000237003500028', 'Dr R WAHYU WIDANARTO, S.Si, M.Si', '-', 0);
 
 --
 -- Indexes for dumped tables
@@ -870,6 +915,12 @@ ALTER TABLE `menus`
 -- Indexes for table `reviewer_assignments`
 --
 ALTER TABLE `reviewer_assignments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -928,9 +979,9 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_types`
+-- Indexes for table `user_role`
 --
-ALTER TABLE `user_types`
+ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -986,6 +1037,12 @@ ALTER TABLE `reviewer_assignments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `scopus`
 --
 ALTER TABLE `scopus`
@@ -995,7 +1052,7 @@ ALTER TABLE `scopus`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `submissions.backup`
@@ -1040,10 +1097,10 @@ ALTER TABLE `users`
   MODIFY `id` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- AUTO_INCREMENT for table `user_types`
+-- AUTO_INCREMENT for table `user_role`
 --
-ALTER TABLE `user_types`
-  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `user_role`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wos`
