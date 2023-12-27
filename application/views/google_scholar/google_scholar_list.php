@@ -46,17 +46,17 @@
                             foreach ($google_scholar_data as $value) : ?>
                                 <tr>
                                     <td class="text-center"><?= $no++ ?></td>
+                                    <td class="text-center">
+                                        <a href="<?= site_url('google_scholar/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                        <a href="<?= site_url('google_scholar/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= site_url('google_scholar/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
+                                        <a href="<?= site_url('google_scholar/submit/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+                                    </td>
                                     <td><?= $value->title ?></td>
                                     <td><?= $value->author ?></td>
                                     <td><?= $value->journal_name ?></td>
                                     <td><?= $value->publish_year ?></td>
                                     <td><?= $value->citation ?></td>
-                                    <td class="text-center">
-                                        <a href="<?= site_url('google_scholar/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
-                                        <a href="<?= site_url('google_scholar/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= site_url('google_scholar/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
-                                        <a href="<?= site_url('submissions/') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
-                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>

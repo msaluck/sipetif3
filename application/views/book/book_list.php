@@ -59,7 +59,7 @@
                                         <a href="<?= site_url('book/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         <a href="<?= site_url('book/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <a href="<?= site_url('book/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
-                                        <a href="<?= site_url('submissions/') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+                                        <a href="<?= site_url('book/submit/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

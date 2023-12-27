@@ -47,7 +47,7 @@ class Scopus_model extends CI_Model
         $this->db->or_like('url', $q);
         $this->db->or_like('author', $q);
         $this->db->or_like('file', $q);
-        $this->db->or_like('is_submitted', $q);
+        $this->db->or_like('is_submitted', 0);
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -73,7 +73,7 @@ class Scopus_model extends CI_Model
         $this->db->or_like('url', $q);
         $this->db->or_like('author', $q);
         $this->db->or_like('file', $q);
-        $this->db->or_like('is_submitted', $q);
+        $this->db->or_like('is_submitted', 0);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

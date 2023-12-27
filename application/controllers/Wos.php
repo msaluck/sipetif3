@@ -1,51 +1,52 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Wos extends CI_Controller
 {
-    function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Wos_model');
-        $this->load->library('form_validation');
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Wos_model');
+		$this->load->model('Submissions_model');
+		$this->load->library('form_validation');
+	}
 
-    public function index()
-    {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = site_url() . 'wos/?q=' . urlencode($q);
-            $config['first_url'] = site_url() . 'wos/?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = site_url() . 'wos';
-            $config['first_url'] = site_url() . 'wos';
-        }
+	public function index()
+	{
+		$q = urldecode($this->input->get('q', TRUE));
+		$start = intval($this->input->get('start'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Wos_model->total_rows($q);
-        $wos = $this->Wos_model->get_limit_data($config['per_page'], $start, $q);
+		if ($q <> '') {
+			$config['base_url'] = site_url() . 'wos/?q=' . urlencode($q);
+			$config['first_url'] = site_url() . 'wos/?q=' . urlencode($q);
+		} else {
+			$config['base_url'] = site_url() . 'wos';
+			$config['first_url'] = site_url() . 'wos';
+		}
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+		$config['per_page'] = 10;
+		$config['page_query_string'] = TRUE;
+		$config['total_rows'] = $this->Wos_model->total_rows($q);
+		$wos = $this->Wos_model->get_limit_data($config['per_page'], $start, $q);
 
-        $data = array(
-            'wos_data' => $wos,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
-        );
-        $this->template->load('layout/master','wos/wos_list', $data);
-    }
+		$this->load->library('pagination');
+		$this->pagination->initialize($config);
 
-    public function read($id) 
-    {
-        $row = $this->Wos_model->get_by_id($id);
-        if ($row) {
-            $data = array(
+		$data = array(
+			'wos_data' => $wos,
+			'q' => $q,
+			'pagination' => $this->pagination->create_links(),
+			'total_rows' => $config['total_rows'],
+			'start' => $start,
+		);
+		$this->template->load('layout/master', 'wos/wos_list', $data);
+	}
+
+	public function read($id)
+	{
+		$row = $this->Wos_model->get_by_id($id);
+		if ($row) {
+			$data = array(
 				'id' => $row->id,
 				'title' => $row->title,
 				'first_author' => $row->first_author,
@@ -65,18 +66,18 @@ class Wos extends CI_Controller
 				'author' => $row->author,
 				'file' => $row->file,
 			);
-            $this->template->load('layout/master','wos/wos_read', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos'));
-        }
-    }
+			$this->template->load('layout/master', 'wos/wos_read', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos'));
+		}
+	}
 
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Tambah',
-            'action' => site_url('wos/create_action'),
+	public function create()
+	{
+		$data = array(
+			'button' => 'Tambah',
+			'action' => site_url('wos/create_action'),
 			'id' => set_value('id'),
 			'title' => set_value('title'),
 			'first_author' => set_value('first_author'),
@@ -96,50 +97,50 @@ class Wos extends CI_Controller
 			'author' => set_value('author'),
 			'file' => set_value('file'),
 		);
-        $this->template->load('layout/master','wos/wos_form', $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
+		$this->template->load('layout/master', 'wos/wos_form', $data);
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-				'title' => $this->input->post('title',TRUE),
-				'first_author' => $this->input->post('first_author',TRUE),
-				'last_author' => $this->input->post('last_author',TRUE),
-				'authors' => $this->input->post('authors',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'journal_name' => $this->input->post('journal_name',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publish_type' => $this->input->post('publish_type',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'page_begin' => $this->input->post('page_begin',TRUE),
-				'page_end' => $this->input->post('page_end',TRUE),
-				'issn' => $this->input->post('issn',TRUE),
-				'eissn' => $this->input->post('eissn',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'author' => $this->input->post('author',TRUE),
-				'file' => $this->input->post('file',TRUE),
+	public function create_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->create();
+		} else {
+			$data = array(
+				'title' => $this->input->post('title', TRUE),
+				'first_author' => $this->input->post('first_author', TRUE),
+				'last_author' => $this->input->post('last_author', TRUE),
+				'authors' => $this->input->post('authors', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'journal_name' => $this->input->post('journal_name', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publish_type' => $this->input->post('publish_type', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'page_begin' => $this->input->post('page_begin', TRUE),
+				'page_end' => $this->input->post('page_end', TRUE),
+				'issn' => $this->input->post('issn', TRUE),
+				'eissn' => $this->input->post('eissn', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'author' => $this->input->post('author', TRUE),
+				'file' => $this->input->post('file', TRUE),
 			);
 
-            $this->Wos_model->insert($data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
-            redirect(site_url('wos'));
-        }
-    }
-    
-    public function update($id) 
-    {
-        $row = $this->Wos_model->get_by_id($id);
+			$this->Wos_model->insert($data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
+			redirect(site_url('wos'));
+		}
+	}
 
-        if ($row) {
-            $data = array(
-                'button' => 'Ubah',
-                'action' => site_url('wos/update_action'),
+	public function update($id)
+	{
+		$row = $this->Wos_model->get_by_id($id);
+
+		if ($row) {
+			$data = array(
+				'button' => 'Ubah',
+				'action' => site_url('wos/update_action'),
 				'id' => set_value('id', $row->id),
 				'title' => set_value('title', $row->title),
 				'first_author' => set_value('first_author', $row->first_author),
@@ -159,62 +160,62 @@ class Wos extends CI_Controller
 				'author' => set_value('author', $row->author),
 				'file' => set_value('file', $row->file),
 			);
-            $this->template->load('layout/master','wos/wos_form', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos'));
-        }
-    }
-    
-    public function update_action() 
-    {
-        $this->_rules();
+			$this->template->load('layout/master', 'wos/wos_form', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos'));
+		}
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id', TRUE));
-        } else {
-            $data = array(
-				'title' => $this->input->post('title',TRUE),
-				'first_author' => $this->input->post('first_author',TRUE),
-				'last_author' => $this->input->post('last_author',TRUE),
-				'authors' => $this->input->post('authors',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'journal_name' => $this->input->post('journal_name',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publish_type' => $this->input->post('publish_type',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'page_begin' => $this->input->post('page_begin',TRUE),
-				'page_end' => $this->input->post('page_end',TRUE),
-				'issn' => $this->input->post('issn',TRUE),
-				'eissn' => $this->input->post('eissn',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'author' => $this->input->post('author',TRUE),
-				'file' => $this->input->post('file',TRUE),
+	public function update_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->update($this->input->post('id', TRUE));
+		} else {
+			$data = array(
+				'title' => $this->input->post('title', TRUE),
+				'first_author' => $this->input->post('first_author', TRUE),
+				'last_author' => $this->input->post('last_author', TRUE),
+				'authors' => $this->input->post('authors', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'journal_name' => $this->input->post('journal_name', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publish_type' => $this->input->post('publish_type', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'page_begin' => $this->input->post('page_begin', TRUE),
+				'page_end' => $this->input->post('page_end', TRUE),
+				'issn' => $this->input->post('issn', TRUE),
+				'eissn' => $this->input->post('eissn', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'author' => $this->input->post('author', TRUE),
+				'file' => $this->input->post('file', TRUE),
 			);
 
-            $this->Wos_model->update($this->input->post('id', TRUE), $data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
-            redirect(site_url('wos'));
-        }
-    }
-    
-    public function delete($id) 
-    {
-        $row = $this->Wos_model->get_by_id($id);
+			$this->Wos_model->update($this->input->post('id', TRUE), $data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
+			redirect(site_url('wos'));
+		}
+	}
 
-        if ($row) {
-            $this->Wos_model->delete($id);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
-            redirect(site_url('wos'));
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos'));
-        }
-    }
+	public function delete($id)
+	{
+		$row = $this->Wos_model->get_by_id($id);
 
-    public function _rules() 
-    {
+		if ($row) {
+			$this->Wos_model->delete($id);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
+			redirect(site_url('wos'));
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos'));
+		}
+	}
+
+	public function _rules()
+	{
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('first_author', 'first author', 'trim|required');
 		$this->form_validation->set_rules('last_author', 'last author', 'trim|required');
@@ -235,8 +236,26 @@ class Wos extends CI_Controller
 
 		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
+	}
 
+	public function submit($id)
+	{
+		$wos = array(
+			'is_submitted' => 1
+		);
+
+		$this->Wos_model->update($id, $wos);
+
+		$submissions = array(
+			'portfolio_database' => 'wos',
+			'portfolio_id' => $id,
+			'submission_status' => 1,
+			'user_id' => $this->session->id_user,
+		);
+		$this->Submissions_model->insert($submissions);
+		$this->session->set_flashdata('toastr-success', 'Portofolio Berhasil diajukan');
+		redirect(site_url('submissions'));
+	}
 }
 
 /* End of file Wos.php */

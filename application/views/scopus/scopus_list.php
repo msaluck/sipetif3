@@ -39,7 +39,6 @@
                                 <th>Quartile</th>
                                 <th>ISSN</th>
                                 <th>Citeby Count</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +57,6 @@
                                     <td><?= $value->quartile ?></td>
                                     <td><?= $value->issn ?></td>
                                     <td><?= $value->citeby_count ?></td>
-
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
