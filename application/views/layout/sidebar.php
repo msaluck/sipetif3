@@ -119,7 +119,12 @@
                         <p>Pengajuan</p>
                     </a>
                 </li> -->
-                <li class="nav-item">
+                <li class="nav-item <?= $this->uri->segment(1) == 'submission_types' ||
+                                        $this->uri->segment(1) == 'submission_type_details' ||
+                                        $this->uri->segment(1) == 'submission_statuses' ||
+                                        $this->uri->segment(1) == 'faculties' ||
+                                        $this->uri->segment(1) == 'users' ||
+                                        $this->uri->segment(1) == 'role' ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Master Data
@@ -155,6 +160,12 @@
                             <a href="<?= site_url('users') ?>" class="nav-link <?= $this->uri->segment(1) == 'users' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('role') ?>" class="nav-link <?= $this->uri->segment(1) == 'role' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Role</p>
                             </a>
                         </li>
                     </ul>

@@ -28,7 +28,6 @@ class Users extends CI_Controller
         if ($row) {
             $data = array(
                 'id' => $row->id,
-                'user_type_id' => $row->user_type_id,
                 'faculty_id' => $row->faculty_id,
                 'department_id' => $row->department_id,
                 'email' => $row->email,
@@ -49,7 +48,6 @@ class Users extends CI_Controller
             'button' => 'Tambah',
             'action' => site_url('users/create_action'),
             'id' => set_value('id'),
-            'user_type_id' => set_value('user_type_id'),
             'faculty_id' => set_value('faculty_id'),
             'department_id' => set_value('department_id'),
             'email' => set_value('email'),
@@ -68,7 +66,6 @@ class Users extends CI_Controller
             $this->create();
         } else {
             $data = array(
-                'user_type_id' => $this->input->post('user_type_id', TRUE),
                 'faculty_id' => $this->input->post('faculty_id', TRUE),
                 'department_id' => $this->input->post('department_id', TRUE),
                 'email' => $this->input->post('email', TRUE),
@@ -92,7 +89,6 @@ class Users extends CI_Controller
                 'button' => 'Ubah',
                 'action' => site_url('users/update_action'),
                 'id' => set_value('id', $row->id),
-                'user_type_id' => set_value('user_type_id', $row->user_type_id),
                 'faculty_id' => set_value('faculty_id', $row->faculty_id),
                 'department_id' => set_value('department_id', $row->department_id),
                 'email' => set_value('email', $row->email),
@@ -115,7 +111,6 @@ class Users extends CI_Controller
             $this->update($this->input->post('id', TRUE));
         } else {
             $data = array(
-                'user_type_id' => $this->input->post('user_type_id', TRUE),
                 'faculty_id' => $this->input->post('faculty_id', TRUE),
                 'department_id' => $this->input->post('department_id', TRUE),
                 'email' => $this->input->post('email', TRUE),
@@ -146,7 +141,6 @@ class Users extends CI_Controller
 
     public function _rules()
     {
-        $this->form_validation->set_rules('user_type_id', 'user type id', 'trim|required');
         $this->form_validation->set_rules('faculty_id', 'faculty id', 'trim|required');
         $this->form_validation->set_rules('department_id', 'department id', 'trim|required');
         $this->form_validation->set_rules('email', 'email', 'trim|required');

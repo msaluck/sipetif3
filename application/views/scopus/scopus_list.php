@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary" hidden><i class="fa fa-plus"></i> Tambah Data</a>
                 <div class="table-responsive mt-3">
                     <table class="table table-bordered table-hover text-nowrap" id="mytable" width="100%">
                         <thead class="bg-info">
