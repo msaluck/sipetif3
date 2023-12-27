@@ -49,6 +49,16 @@ function get_tahun_ajar()
 	return $data;
 }
 
+function akses_role($nama_role)
+{
+	$CI = &get_instance();
+	$get_id_user = $CI->db->get_where('role');
+	$id_user = $CI->session->id_user;
+	$data = $CI->db->query("select a.*,b.name from user_role a,role b where a.role_id = b.id and a.user_id ='$id_user' and b.name ='$nama_role'")->num_rows();
+
+	return $data;
+}
+
 function insert_bobot_komponen_penilaian_subcpmk($idcpmk, $idjenis_komponen, $kode_mata_kuliah, $kodetahunakadkul, $bobot_komponen_penilaian_subcpmk)
 {
 	$CI = &get_instance();
