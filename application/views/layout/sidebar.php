@@ -22,10 +22,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= site_url('biodata') ?>" class="nav-link <?= $this->uri->segment(1) == 'biodata' || empty($this->uri->segment(1)) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Biodata</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
-                        <p>Portofolio
-                            <i class="right fas fa-angle-left"></i>
+                        <p>Portofolio<i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -117,6 +122,46 @@
                     <a href="<?= site_url('submission') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Pengajuan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Surat
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Surat Pengantar Dekan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Surat Pernyataan diketahui LPPM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Surat Permohonan ke Rektor</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= site_url() ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Review</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= site_url() ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Review Saya</p>
                     </a>
                 </li>
                 <li class="nav-item">
