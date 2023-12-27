@@ -30,7 +30,7 @@
                 </div>
                 <div class="table-responsive p-0">
                     <table class="table table-bordered table-hover text-nowrap" id="mytable">
-                        <thead>
+                        <thead class="bg-info">
                             <tr>
                                 <th class="text-center" width="5%">No</th>
                                 <th class="text-center" width="15%">Aksi</th>

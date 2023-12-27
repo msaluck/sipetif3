@@ -61,7 +61,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item  <?= $this->uri->segment(1) == 'scopus' || $this->uri->segment(1) == 'wos' || $this->uri->segment(1) == 'google_scholar' || $this->uri->segment(1) == 'iprs' || $this->uri->segment(1) == 'book' ? 'menu-open' : '' ?>">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Portofolio Saya
@@ -71,31 +71,31 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= site_url('scopus') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-circle"></i>
                                 <p>Scopus</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= site_url('wos') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-circle"></i>
                                 <p>Web of Science</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= site_url('google_scholar') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_scholar' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-circle"></i>
                                 <p>Google Scholar</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= site_url('iprs') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-circle"></i>
                                 <p>IPRs</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= site_url('book') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-circle"></i>
                                 <p>Book</p>
                             </a>
                         </li>
@@ -103,22 +103,22 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= site_url('submissions_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions_all' ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-box"></i>
+                        <i class="nav-icon fas fa-list"></i>
                         <p>Semua Pengajuan</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(2) == 'by_users' ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-box"></i>
+                        <i class="nav-icon fas fa-upload"></i>
                         <p>Pengajuan Saya</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="<?= site_url('submission') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Pengajuan</p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>

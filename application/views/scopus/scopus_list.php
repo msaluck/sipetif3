@@ -13,7 +13,7 @@
 				<a href="<?= site_url('scopus/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
 				<div class="table-responsive mt-3">
 					<table class="table table-bordered table-hover text-nowrap" id="mytable" width="100%">
-						<thead>
+						<thead class="bg-info">
 							<tr>
 								<th class="text-center" width="5%">No</th>
 								<th class="text-center" width="15%">Aksi</th>
