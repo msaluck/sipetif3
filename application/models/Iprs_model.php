@@ -13,6 +13,18 @@ class Iprs_model extends CI_Model
         parent::__construct();
     }
 
+    // datatables
+    function json() {
+        $this->datatables->select('id,user_id,title,category,request_year,request_number,inventor,patent_holder,publication_date,is_submitted');
+        $this->datatables->from('iprs');
+        //add this line for join
+        //$this->datatables->join('table2', 'iprs.field = table2.field');
+        $this->datatables->add_column('action', anchor(site_url('iprs/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data'))." 
+            ".anchor(site_url('iprs/update/$1'),'<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data'))." 
+                ".anchor(site_url('iprs/delete/$1'),'<i class="fa fa-trash" aria-hidden="true"></i>','class="btn btn-danger hapus" title="Hapus Data"'), 'id');
+        return $this->datatables->generate();
+    }
+
     // get all
     function get_all()
     {
@@ -30,6 +42,7 @@ class Iprs_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id', $q);
+		$this->db->or_like('user_id', $q);
 		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('request_year', $q);
@@ -37,6 +50,7 @@ class Iprs_model extends CI_Model
 		$this->db->or_like('inventor', $q);
 		$this->db->or_like('patent_holder', $q);
 		$this->db->or_like('publication_date', $q);
+		$this->db->or_like('is_submitted', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -45,6 +59,7 @@ class Iprs_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id', $q);
+		$this->db->or_like('user_id', $q);
 		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('request_year', $q);
@@ -52,6 +67,7 @@ class Iprs_model extends CI_Model
 		$this->db->or_like('inventor', $q);
 		$this->db->or_like('patent_holder', $q);
 		$this->db->or_like('publication_date', $q);
+		$this->db->or_like('is_submitted', $q);
 		$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -80,5 +96,5 @@ class Iprs_model extends CI_Model
 
 /* End of file Iprs_model.php */
 /* Location: ./application/models/Iprs_model.php */
-/* Created at 2023-12-25 12:01:08 */
+/* Created at 2023-12-27 08:04:40 */
 /* Please DO NOT modify this information : */

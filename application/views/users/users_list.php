@@ -1,4 +1,4 @@
-<div class="row"> 
+<div class="row">
     <div class="col-md-12">
         <div class="card card-success">
             <div class="card-header">
@@ -16,22 +16,20 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-								<th>User Type Id</th>
-								<th>Faculty Id</th>
-								<th>Department Id</th>
-								<th>Email</th>
-								<th>Name</th>
-								<th>Username</th>
-								<th>Password</th>
-								<th class="text-center" width="15%">Aksi</th>
+                                <th>Faculty Id</th>
+                                <th>Department Id</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th class="text-center" width="15%">Aksi</th>
                             </tr>
-                        </thead>    
+                        </thead>
                     </table>
 
                     <script type="text/javascript">
                         $(document).ready(function() {
-                            $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
-                            {
+                            $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings) {
                                 return {
                                     "iStart": oSettings._iDisplayStart,
                                     "iEnd": oSettings.fnDisplayEnd(),
@@ -44,44 +42,47 @@
                             };
 
                             var t = $("#mytable").dataTable({
-                                "processing"  : true,
-                                "serverSide"  : true,
-                                "oLanguage"   : { sProcessing : "Loading. . ." },
-                                "ajax"        : { "url" : "<?= site_url('users/json') ?>", "type": "POST"},
-                                "columns"     : [
-                                    {
+                                "processing": true,
+                                "serverSide": true,
+                                "oLanguage": {
+                                    sProcessing: "Loading. . ."
+                                },
+                                "ajax": {
+                                    "url": "<?= site_url('users/json') ?>",
+                                    "type": "POST"
+                                },
+                                "columns": [{
                                         "data": "id",
                                         "orderable": false,
-                                        "className" : "text-center"
+                                        "className": "text-center"
                                     },
-									{
-										"data": "user_type_id"
-									},
-									{
-										"data": "faculty_id"
-									},
-									{
-										"data": "department_id"
-									},
-									{
-										"data": "email"
-									},
-									{
-										"data": "name"
-									},
-									{
-										"data": "username"
-									},
-									{
-										"data": "password"
-									},
                                     {
-                                        "data" : "action",
+                                        "data": "faculty_id"
+                                    },
+                                    {
+                                        "data": "department_id"
+                                    },
+                                    {
+                                        "data": "email"
+                                    },
+                                    {
+                                        "data": "name"
+                                    },
+                                    {
+                                        "data": "username"
+                                    },
+                                    {
+                                        "data": "password"
+                                    },
+                                    {
+                                        "data": "action",
                                         "orderable": false,
-                                        "className" : "text-center"
+                                        "className": "text-center"
                                     }
                                 ],
-                                order: [[0, 'desc']],
+                                order: [
+                                    [0, 'desc']
+                                ],
                                 rowCallback: function(row, data, iDisplayIndex) {
                                     var info = this.fnPagingInfo();
                                     var page = info.iPage;
@@ -97,4 +98,4 @@
         </div>
     </div>
 </div>
-<?= swal_delete("#mytable",".hapus") ?>
+<?= swal_delete("#mytable", ".hapus") ?>

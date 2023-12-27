@@ -12,8 +12,31 @@ class Book extends CI_Controller
 
     public function index()
     {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = site_url() . 'book/?q=' . urlencode($q);
+            $config['first_url'] = site_url() . 'book/?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = site_url() . 'book';
+            $config['first_url'] = site_url() . 'book';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Book_model->total_rows($q);
+        $book = $this->Book_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
         $data = array(
-            'book_data' => $this->Book_model->get_all(),
+            'book_data' => $book,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
         );
         $this->template->load('layout/master','book/book_list', $data);
     }
@@ -24,7 +47,6 @@ class Book extends CI_Controller
         if ($row) {
             $data = array(
 				'id' => $row->id,
-				'user_id' => $row->user_id,
 				'title' => $row->title,
 				'category' => $row->category,
 				'isbn' => $row->isbn,
@@ -32,7 +54,6 @@ class Book extends CI_Controller
 				'place' => $row->place,
 				'publisher' => $row->publisher,
 				'year' => $row->year,
-				'is_submitted' => $row->is_submitted,
 			);
             $this->template->load('layout/master','book/book_read', $data);
         } else {
@@ -47,7 +68,6 @@ class Book extends CI_Controller
             'button' => 'Tambah',
             'action' => site_url('book/create_action'),
 			'id' => set_value('id'),
-			'user_id' => set_value('user_id'),
 			'title' => set_value('title'),
 			'category' => set_value('category'),
 			'isbn' => set_value('isbn'),
@@ -55,7 +75,6 @@ class Book extends CI_Controller
 			'place' => set_value('place'),
 			'publisher' => set_value('publisher'),
 			'year' => set_value('year'),
-			'is_submitted' => set_value('is_submitted'),
 		);
         $this->template->load('layout/master','book/book_form', $data);
     }
@@ -68,7 +87,6 @@ class Book extends CI_Controller
             $this->create();
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'isbn' => $this->input->post('isbn',TRUE),
@@ -76,7 +94,6 @@ class Book extends CI_Controller
 				'place' => $this->input->post('place',TRUE),
 				'publisher' => $this->input->post('publisher',TRUE),
 				'year' => $this->input->post('year',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Book_model->insert($data);
@@ -94,7 +111,6 @@ class Book extends CI_Controller
                 'button' => 'Ubah',
                 'action' => site_url('book/update_action'),
 				'id' => set_value('id', $row->id),
-				'user_id' => set_value('user_id', $row->user_id),
 				'title' => set_value('title', $row->title),
 				'category' => set_value('category', $row->category),
 				'isbn' => set_value('isbn', $row->isbn),
@@ -102,7 +118,6 @@ class Book extends CI_Controller
 				'place' => set_value('place', $row->place),
 				'publisher' => set_value('publisher', $row->publisher),
 				'year' => set_value('year', $row->year),
-				'is_submitted' => set_value('is_submitted', $row->is_submitted),
 			);
             $this->template->load('layout/master','book/book_form', $data);
         } else {
@@ -119,7 +134,6 @@ class Book extends CI_Controller
             $this->update($this->input->post('id', TRUE));
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'isbn' => $this->input->post('isbn',TRUE),
@@ -127,7 +141,6 @@ class Book extends CI_Controller
 				'place' => $this->input->post('place',TRUE),
 				'publisher' => $this->input->post('publisher',TRUE),
 				'year' => $this->input->post('year',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Book_model->update($this->input->post('id', TRUE), $data);
@@ -152,7 +165,6 @@ class Book extends CI_Controller
 
     public function _rules() 
     {
-		$this->form_validation->set_rules('user_id', 'user id', 'trim|required');
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('category', 'category', 'trim|required');
 		$this->form_validation->set_rules('isbn', 'isbn', 'trim|required');
@@ -160,7 +172,6 @@ class Book extends CI_Controller
 		$this->form_validation->set_rules('place', 'place', 'trim|required');
 		$this->form_validation->set_rules('publisher', 'publisher', 'trim|required');
 		$this->form_validation->set_rules('year', 'year', 'trim|required');
-		$this->form_validation->set_rules('is_submitted', 'is submitted', 'trim|required');
 
 		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -170,5 +181,5 @@ class Book extends CI_Controller
 
 /* End of file Book.php */
 /* Location: ./application/controllers/Book.php */
-/* Created at 2023-12-27 08:16:35 */
+/* Created at 2023-12-25 05:14:47 */
 /* Please DO NOT modify this information : */

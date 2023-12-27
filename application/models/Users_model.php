@@ -17,7 +17,7 @@ class Users_model extends CI_Model
 	// datatables
 	function json()
 	{
-		$this->datatables->select('id,user_type_id,faculty_id,department_id,email,name,username,password');
+		$this->datatables->select('id,faculty_id,department_id,email,name,username,password');
 		$this->datatables->from('users');
 		//add this line for join
 		//$this->datatables->join('table2', 'users.field = table2.field');
@@ -51,7 +51,6 @@ class Users_model extends CI_Model
 	function total_rows($q = NULL)
 	{
 		$this->db->like('id', $q);
-		$this->db->or_like('user_type_id', $q);
 		$this->db->or_like('faculty_id', $q);
 		$this->db->or_like('department_id', $q);
 		$this->db->or_like('email', $q);
@@ -67,7 +66,6 @@ class Users_model extends CI_Model
 	{
 		$this->db->order_by($this->id, $this->order);
 		$this->db->like('id', $q);
-		$this->db->or_like('user_type_id', $q);
 		$this->db->or_like('faculty_id', $q);
 		$this->db->or_like('department_id', $q);
 		$this->db->or_like('email', $q);
