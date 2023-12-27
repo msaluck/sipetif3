@@ -18,10 +18,10 @@
                     <div class="col-4">
                         <form action="<?= site_url('scopus/index'); ?>" class="form-inline float-right" method="get">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="q" value="<?= $q; ?>" placeholder="Cari Data">
+                                <input autocomplete="off" type="text" class="form-control" name="q" value="<?= $q; ?>" placeholder="Cari Data">
                                 <div class="input-group-append">
                                     <?php if ($q <> '') { ?>
-                                        <a href="<?= site_url('buku'); ?>" class="btn btn-danger">Reset</a>
+                                        <a href="<?= site_url('scopus'); ?>" class="btn btn-danger">Reset</a>
                                     <?php } ?>
                                     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Cari</button>
                                 </div>
@@ -33,12 +33,13 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
+                                <th class="text-center" width="15%">Aksi</th>
                                 <th>Title</th>
                                 <th>Publication Name</th>
                                 <th>Quartile</th>
                                 <th>ISSN</th>
                                 <th>Citeby Count</th>
-                                <th class="text-center" width="15%">Aksi</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -46,17 +47,18 @@
                             foreach ($scopus_data as $value) : ?>
                                 <tr>
                                     <td class="text-center"><?= $no++ ?></td>
-                                    <td><?= $value->title ?></td>
-                                    <td><?= $value->publication_name ?></td>
-                                    <td><?= $value->quartile ?></td>
-                                    <td><?= $value->issn ?></td>
-                                    <td><?= $value->citeby_count ?></td>
                                     <td class="text-center">
                                         <a href="<?= site_url('scopus/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                         <a href="<?= site_url('scopus/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <a href="<?= site_url('scopus/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         <a href="<?= site_url('submissions/submit_scopus/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
                                     </td>
+                                    <td><?= $value->title ?></td>
+                                    <td><?= $value->publication_name ?></td>
+                                    <td><?= $value->quartile ?></td>
+                                    <td><?= $value->issn ?></td>
+                                    <td><?= $value->citeby_count ?></td>
+
                                 </tr>
                             <?php endforeach ?>
                         </tbody>

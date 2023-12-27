@@ -41,6 +41,14 @@ class Submissions extends CI_Controller
         $this->template->load('layout/master', 'submissions/submissions_list', $data);
     }
 
+    public function by_users()
+    {
+
+        $get_sub_user = $this->db->get_where('submissions', ['user_id' => $this->session->id_user])->result();
+        $data = ['submissions_data' => $get_sub_user];
+        $this->template->load('layout/master', 'submissions/submissions_by_user', $data);
+    }
+
     public function read($id)
     {
         $row = $this->Submissions_model->get_by_id($id);
@@ -75,36 +83,45 @@ class Submissions extends CI_Controller
 
     public function create_action()
     {
-        $this->_rules();
+        // $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-                'portfolio_database' => $this->input->post('portfolio_database', TRUE),
-                'portfolio_id' => $this->input->post('portfolio_id', TRUE),
-                'submission_status' => $this->input->post('submission_status', TRUE),
-                'user_id' => $this->input->post('user_id', TRUE),
-            );
+        // if ($this->form_validation->run() == FALSE) {
+        //     $this->create();
+        // } else {
+        //     $data = array(
+        //         'portfolio_database' => $this->input->post('portfolio_database', TRUE),
+        //         'portfolio_id' => $this->input->post('portfolio_id', TRUE),
+        //         'submission_status' => $this->input->post('submission_status', TRUE),
+        //         'user_id' => $this->input->post('user_id', TRUE),
+        //     );
 
-            $this->Submissions_model->insert($data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
-            redirect(site_url('submissions'));
-        }
+        //     $this->Submissions_model->insert($data);
+        //     $this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
+        //     redirect(site_url('submissions'));
+        //  }
     }
 
     public function submit_scopus($id)
     {
+        $cek_data = $this->db->get_where(
+            'submissions',
+            [
+                'portfolio_id' => $id,
+                'user_id' => $this->session->id_user
+            ]
+        )->num_rows();
+        if ($cek_data == 0) {
+            $data = array(
+                'portfolio_database' => 'scopus',
+                'portfolio_id' => $id,
+                'submission_status' => 1,
+                'user_id' => $this->session->id_user,
+            );
+            $this->Submissions_model->insert($data);
+        }
 
-        $data = array(
-            'portfolio_database' => 'scopus',
-            'portfolio_id' => $id,
-            'submission_status' => 1,
-            'user_id' => $this->session->id_user,
-        );
-        $this->Submissions_model->insert($data);
         $this->session->set_flashdata('toastr-success', 'Portofolio Berhasil diajukan');
-        redirect(site_url('submissions'));
+        redirect(site_url('submissions/by_users'));
     }
 
     public function update($id)

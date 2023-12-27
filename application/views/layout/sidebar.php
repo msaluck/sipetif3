@@ -103,9 +103,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url('submissions') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
+                    <a href="<?= site_url('submissions_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions_all' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-box"></i>
-                        <p>Pengajuan</p>
+                        <p>Semua Pengajuan</p>
                     </a>
                 </li>
                 <li class="nav-item">
