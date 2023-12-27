@@ -108,7 +108,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(2) == 'by_users' ? 'active' : '' ?>">
+                    <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-upload"></i>
                         <p>Pengajuan Saya</p>
                     </a>
