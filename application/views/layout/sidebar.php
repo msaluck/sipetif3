@@ -21,12 +21,10 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
-                        <p>Portofolio
-                            <i class="right fas fa-angle-left"></i>
+                        <p>Portofolio<i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -120,49 +118,46 @@
                         <p>Pengajuan</p>
                     </a>
                 </li>
-                <?php if ($this->session->akses == 'admin') {
-                ?>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-box"></i>
-                            <p>Master Data
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= site_url('submission_types') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_types' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Submission Types</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url('submission_type_details') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_type_details' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Submission Type Details</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url('submission_statuses') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_statuses' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Submission Statuses</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url('faculties') ?>" class="nav-link <?= $this->uri->segment(1) == 'faculties' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Fakultas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url('users') ?>" class="nav-link <?= $this->uri->segment(1) == 'users' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Users</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Master Data
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= site_url('submission_types') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_types' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Submission Types</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('submission_type_details') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_type_details' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Submission Type Details</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('submission_statuses') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_statuses' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Submission Statuses</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('faculties') ?>" class="nav-link <?= $this->uri->segment(1) == 'faculties' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Fakultas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('users') ?>" class="nav-link <?= $this->uri->segment(1) == 'users' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Users</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>

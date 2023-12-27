@@ -7,6 +7,7 @@ class Scopus extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Scopus_model');
+        $this->load->model('Submissions_model');
         $this->load->library('form_validation');
     }
 
@@ -223,6 +224,25 @@ class Scopus extends CI_Controller
 
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function submit($id)
+    {
+        $scopus = array(
+            'is_submitted' => 1
+        );
+
+        $this->Scopus_model->update($id, $scopus);
+
+        $submissions = array(
+            'portfolio_database' => 'scopus',
+            'portfolio_id' => $id,
+            'submission_status' => 1,
+            'user_id' => $this->session->id_user,
+        );
+        $this->Submissions_model->insert($submissions);
+        $this->session->set_flashdata('toastr-success', 'Portofolio Berhasil diajukan');
+        redirect(site_url('submissions'));
     }
 }
 
