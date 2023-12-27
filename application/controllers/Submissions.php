@@ -93,20 +93,6 @@ class Submissions extends CI_Controller
         }
     }
 
-    public function submit_scopus($id)
-    {
-
-        $data = array(
-            'portfolio_database' => 'scopus',
-            'portfolio_id' => $id,
-            'submission_status' => 1,
-            'user_id' => $this->session->id_user,
-        );
-        $this->Submissions_model->insert($data);
-        $this->session->set_flashdata('toastr-success', 'Portofolio Berhasil diajukan');
-        redirect(site_url('submissions'));
-    }
-
     public function update($id)
     {
         $row = $this->Submissions_model->get_by_id($id);

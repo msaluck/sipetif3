@@ -31,6 +31,7 @@ class Scopus_model extends CI_Model
     function total_rows($q = NULL)
     {
         $this->db->like('id', $q);
+        $this->db->or_like('user_id', $q);
         $this->db->or_like('title', $q);
         $this->db->or_like('publication_name', $q);
         $this->db->or_like('quartile', $q);
@@ -46,6 +47,7 @@ class Scopus_model extends CI_Model
         $this->db->or_like('url', $q);
         $this->db->or_like('author', $q);
         $this->db->or_like('file', $q);
+        $this->db->or_like('is_submitted', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -55,6 +57,7 @@ class Scopus_model extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id', $q);
+        $this->db->or_like('user_id', $q);
         $this->db->or_like('title', $q);
         $this->db->or_like('publication_name', $q);
         $this->db->or_like('quartile', $q);
@@ -70,6 +73,7 @@ class Scopus_model extends CI_Model
         $this->db->or_like('url', $q);
         $this->db->or_like('author', $q);
         $this->db->or_like('file', $q);
+        $this->db->or_like('is_submitted', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
