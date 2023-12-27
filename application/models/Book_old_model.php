@@ -13,18 +13,6 @@ class Book_model extends CI_Model
         parent::__construct();
     }
 
-    // datatables
-    function json() {
-        $this->datatables->select('id,user_id,title,category,isbn,authors,place,publisher,year,is_submitted');
-        $this->datatables->from('book');
-        //add this line for join
-        //$this->datatables->join('table2', 'book.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('book/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data'))." 
-            ".anchor(site_url('book/update/$1'),'<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data'))." 
-                ".anchor(site_url('book/delete/$1'),'<i class="fa fa-trash" aria-hidden="true"></i>','class="btn btn-danger hapus" title="Hapus Data"'), 'id');
-        return $this->datatables->generate();
-    }
-
     // get all
     function get_all()
     {
@@ -42,7 +30,6 @@ class Book_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id', $q);
-		$this->db->or_like('user_id', $q);
 		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('isbn', $q);
@@ -50,7 +37,6 @@ class Book_model extends CI_Model
 		$this->db->or_like('place', $q);
 		$this->db->or_like('publisher', $q);
 		$this->db->or_like('year', $q);
-		$this->db->or_like('is_submitted', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -59,7 +45,6 @@ class Book_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id', $q);
-		$this->db->or_like('user_id', $q);
 		$this->db->or_like('title', $q);
 		$this->db->or_like('category', $q);
 		$this->db->or_like('isbn', $q);
@@ -67,7 +52,6 @@ class Book_model extends CI_Model
 		$this->db->or_like('place', $q);
 		$this->db->or_like('publisher', $q);
 		$this->db->or_like('year', $q);
-		$this->db->or_like('is_submitted', $q);
 		$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -96,5 +80,5 @@ class Book_model extends CI_Model
 
 /* End of file Book_model.php */
 /* Location: ./application/models/Book_model.php */
-/* Created at 2023-12-27 08:16:35 */
+/* Created at 2023-12-25 05:14:47 */
 /* Please DO NOT modify this information : */

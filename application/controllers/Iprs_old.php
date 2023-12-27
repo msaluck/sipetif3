@@ -12,8 +12,31 @@ class Iprs extends CI_Controller
 
     public function index()
     {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = site_url() . 'iprs/?q=' . urlencode($q);
+            $config['first_url'] = site_url() . 'iprs/?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = site_url() . 'iprs';
+            $config['first_url'] = site_url() . 'iprs';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Iprs_model->total_rows($q);
+        $iprs = $this->Iprs_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
         $data = array(
-            'iprs_data' => $this->Iprs_model->get_all(),
+            'iprs_data' => $iprs,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
         );
         $this->template->load('layout/master','iprs/iprs_list', $data);
     }
@@ -24,7 +47,6 @@ class Iprs extends CI_Controller
         if ($row) {
             $data = array(
 				'id' => $row->id,
-				'user_id' => $row->user_id,
 				'title' => $row->title,
 				'category' => $row->category,
 				'request_year' => $row->request_year,
@@ -32,7 +54,6 @@ class Iprs extends CI_Controller
 				'inventor' => $row->inventor,
 				'patent_holder' => $row->patent_holder,
 				'publication_date' => $row->publication_date,
-				'is_submitted' => $row->is_submitted,
 			);
             $this->template->load('layout/master','iprs/iprs_read', $data);
         } else {
@@ -47,7 +68,6 @@ class Iprs extends CI_Controller
             'button' => 'Tambah',
             'action' => site_url('iprs/create_action'),
 			'id' => set_value('id'),
-			'user_id' => set_value('user_id'),
 			'title' => set_value('title'),
 			'category' => set_value('category'),
 			'request_year' => set_value('request_year'),
@@ -55,7 +75,6 @@ class Iprs extends CI_Controller
 			'inventor' => set_value('inventor'),
 			'patent_holder' => set_value('patent_holder'),
 			'publication_date' => set_value('publication_date'),
-			'is_submitted' => set_value('is_submitted'),
 		);
         $this->template->load('layout/master','iprs/iprs_form', $data);
     }
@@ -68,7 +87,6 @@ class Iprs extends CI_Controller
             $this->create();
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'request_year' => $this->input->post('request_year',TRUE),
@@ -76,7 +94,6 @@ class Iprs extends CI_Controller
 				'inventor' => $this->input->post('inventor',TRUE),
 				'patent_holder' => $this->input->post('patent_holder',TRUE),
 				'publication_date' => $this->input->post('publication_date',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Iprs_model->insert($data);
@@ -94,7 +111,6 @@ class Iprs extends CI_Controller
                 'button' => 'Ubah',
                 'action' => site_url('iprs/update_action'),
 				'id' => set_value('id', $row->id),
-				'user_id' => set_value('user_id', $row->user_id),
 				'title' => set_value('title', $row->title),
 				'category' => set_value('category', $row->category),
 				'request_year' => set_value('request_year', $row->request_year),
@@ -102,7 +118,6 @@ class Iprs extends CI_Controller
 				'inventor' => set_value('inventor', $row->inventor),
 				'patent_holder' => set_value('patent_holder', $row->patent_holder),
 				'publication_date' => set_value('publication_date', $row->publication_date),
-				'is_submitted' => set_value('is_submitted', $row->is_submitted),
 			);
             $this->template->load('layout/master','iprs/iprs_form', $data);
         } else {
@@ -119,7 +134,6 @@ class Iprs extends CI_Controller
             $this->update($this->input->post('id', TRUE));
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'category' => $this->input->post('category',TRUE),
 				'request_year' => $this->input->post('request_year',TRUE),
@@ -127,7 +141,6 @@ class Iprs extends CI_Controller
 				'inventor' => $this->input->post('inventor',TRUE),
 				'patent_holder' => $this->input->post('patent_holder',TRUE),
 				'publication_date' => $this->input->post('publication_date',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Iprs_model->update($this->input->post('id', TRUE), $data);
@@ -152,7 +165,6 @@ class Iprs extends CI_Controller
 
     public function _rules() 
     {
-		$this->form_validation->set_rules('user_id', 'user id', 'trim|required');
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('category', 'category', 'trim|required');
 		$this->form_validation->set_rules('request_year', 'request year', 'trim|required');
@@ -160,7 +172,6 @@ class Iprs extends CI_Controller
 		$this->form_validation->set_rules('inventor', 'inventor', 'trim|required');
 		$this->form_validation->set_rules('patent_holder', 'patent holder', 'trim|required');
 		$this->form_validation->set_rules('publication_date', 'publication date', 'trim|required');
-		$this->form_validation->set_rules('is_submitted', 'is submitted', 'trim|required');
 
 		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -170,5 +181,5 @@ class Iprs extends CI_Controller
 
 /* End of file Iprs.php */
 /* Location: ./application/controllers/Iprs.php */
-/* Created at 2023-12-27 08:04:40 */
+/* Created at 2023-12-25 12:01:08 */
 /* Please DO NOT modify this information : */

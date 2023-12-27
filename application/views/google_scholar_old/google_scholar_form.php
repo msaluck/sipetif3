@@ -13,15 +13,6 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">User Id</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="user_id" id="user_id" placeholder="User Id" value="<?= $user_id; ?>" />
-                                <?= form_error('user_id') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
                             <label class="col-md-2" for="varchar">Title</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?= $title; ?>" />
@@ -107,15 +98,6 @@
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="url" id="url" placeholder="Url" value="<?= $url; ?>" />
                                 <?= form_error('url') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="tinyint">Is Submitted</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="is_submitted" id="is_submitted" placeholder="Is Submitted" value="<?= $is_submitted; ?>" />
-                                <?= form_error('is_submitted') ?>
                             </div>
                         </div>
                     </div>

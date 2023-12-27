@@ -12,8 +12,31 @@ class Google_scholar extends CI_Controller
 
     public function index()
     {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = site_url() . 'google_scholar/?q=' . urlencode($q);
+            $config['first_url'] = site_url() . 'google_scholar/?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = site_url() . 'google_scholar';
+            $config['first_url'] = site_url() . 'google_scholar';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Google_scholar_model->total_rows($q);
+        $google_scholar = $this->Google_scholar_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
         $data = array(
-            'google_scholar_data' => $this->Google_scholar_model->get_all(),
+            'google_scholar_data' => $google_scholar,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
         );
         $this->template->load('layout/master','google_scholar/google_scholar_list', $data);
     }
@@ -24,7 +47,6 @@ class Google_scholar extends CI_Controller
         if ($row) {
             $data = array(
 				'id' => $row->id,
-				'user_id' => $row->user_id,
 				'title' => $row->title,
 				'abstract' => $row->abstract,
 				'authors' => $row->authors,
@@ -35,7 +57,6 @@ class Google_scholar extends CI_Controller
 				'file' => $row->file,
 				'issn' => $row->issn,
 				'url' => $row->url,
-				'is_submitted' => $row->is_submitted,
 			);
             $this->template->load('layout/master','google_scholar/google_scholar_read', $data);
         } else {
@@ -50,7 +71,6 @@ class Google_scholar extends CI_Controller
             'button' => 'Tambah',
             'action' => site_url('google_scholar/create_action'),
 			'id' => set_value('id'),
-			'user_id' => set_value('user_id'),
 			'title' => set_value('title'),
 			'abstract' => set_value('abstract'),
 			'authors' => set_value('authors'),
@@ -61,7 +81,6 @@ class Google_scholar extends CI_Controller
 			'file' => set_value('file'),
 			'issn' => set_value('issn'),
 			'url' => set_value('url'),
-			'is_submitted' => set_value('is_submitted'),
 		);
         $this->template->load('layout/master','google_scholar/google_scholar_form', $data);
     }
@@ -74,7 +93,6 @@ class Google_scholar extends CI_Controller
             $this->create();
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'abstract' => $this->input->post('abstract',TRUE),
 				'authors' => $this->input->post('authors',TRUE),
@@ -85,7 +103,6 @@ class Google_scholar extends CI_Controller
 				'file' => $this->input->post('file',TRUE),
 				'issn' => $this->input->post('issn',TRUE),
 				'url' => $this->input->post('url',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Google_scholar_model->insert($data);
@@ -103,7 +120,6 @@ class Google_scholar extends CI_Controller
                 'button' => 'Ubah',
                 'action' => site_url('google_scholar/update_action'),
 				'id' => set_value('id', $row->id),
-				'user_id' => set_value('user_id', $row->user_id),
 				'title' => set_value('title', $row->title),
 				'abstract' => set_value('abstract', $row->abstract),
 				'authors' => set_value('authors', $row->authors),
@@ -114,7 +130,6 @@ class Google_scholar extends CI_Controller
 				'file' => set_value('file', $row->file),
 				'issn' => set_value('issn', $row->issn),
 				'url' => set_value('url', $row->url),
-				'is_submitted' => set_value('is_submitted', $row->is_submitted),
 			);
             $this->template->load('layout/master','google_scholar/google_scholar_form', $data);
         } else {
@@ -131,7 +146,6 @@ class Google_scholar extends CI_Controller
             $this->update($this->input->post('id', TRUE));
         } else {
             $data = array(
-				'user_id' => $this->input->post('user_id',TRUE),
 				'title' => $this->input->post('title',TRUE),
 				'abstract' => $this->input->post('abstract',TRUE),
 				'authors' => $this->input->post('authors',TRUE),
@@ -142,7 +156,6 @@ class Google_scholar extends CI_Controller
 				'file' => $this->input->post('file',TRUE),
 				'issn' => $this->input->post('issn',TRUE),
 				'url' => $this->input->post('url',TRUE),
-				'is_submitted' => $this->input->post('is_submitted',TRUE),
 			);
 
             $this->Google_scholar_model->update($this->input->post('id', TRUE), $data);
@@ -167,7 +180,6 @@ class Google_scholar extends CI_Controller
 
     public function _rules() 
     {
-		$this->form_validation->set_rules('user_id', 'user id', 'trim|required');
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('abstract', 'abstract', 'trim|required');
 		$this->form_validation->set_rules('authors', 'authors', 'trim|required');
@@ -178,7 +190,6 @@ class Google_scholar extends CI_Controller
 		$this->form_validation->set_rules('file', 'file', 'trim|required');
 		$this->form_validation->set_rules('issn', 'issn', 'trim|required');
 		$this->form_validation->set_rules('url', 'url', 'trim|required');
-		$this->form_validation->set_rules('is_submitted', 'is submitted', 'trim|required');
 
 		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -188,5 +199,5 @@ class Google_scholar extends CI_Controller
 
 /* End of file Google_scholar.php */
 /* Location: ./application/controllers/Google_scholar.php */
-/* Created at 2023-12-27 08:00:10 */
+/* Created at 2023-12-25 05:14:31 */
 /* Please DO NOT modify this information : */

@@ -13,6 +13,10 @@
 				<div style="padding: 15px;">
 					<table class="table table-striped">
 						<tr>
+							<td width="20%"><b>User Id</b></td>
+							<td><?= $user_id; ?></td>
+						</tr>
+						<tr>
 							<td width="20%"><b>Title</b></td>
 							<td><?= $title; ?></td>
 						</tr>
@@ -39,6 +43,10 @@
 						<tr>
 							<td width="20%"><b>Year</b></td>
 							<td><?= $year; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Is Submitted</b></td>
+							<td><?= $is_submitted; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('book') ?>" class="btn btn-danger float-right">

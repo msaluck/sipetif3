@@ -13,10 +13,6 @@
 				<div style="padding: 15px;">
 					<table class="table table-striped">
 						<tr>
-							<td width="20%"><b>User Id</b></td>
-							<td><?= $user_id; ?></td>
-						</tr>
-						<tr>
 							<td width="20%"><b>Title</b></td>
 							<td><?= $title; ?></td>
 						</tr>
@@ -43,10 +39,6 @@
 						<tr>
 							<td width="20%"><b>Publication Date</b></td>
 							<td><?= $publication_date; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Is Submitted</b></td>
-							<td><?= $is_submitted; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('iprs') ?>" class="btn btn-danger float-right">
