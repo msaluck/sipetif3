@@ -49,6 +49,11 @@ class Submissions extends CI_Controller
         $this->template->load('layout/master', 'submissions/submissions_by_user', $data);
     }
 
+    public function by_all()
+    {
+        $this->index();
+    }
+
     public function read($id)
     {
         // $row = $this->Submissions_model->get_by_id($id);

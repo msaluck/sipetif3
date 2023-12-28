@@ -102,7 +102,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url('submissions_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions_all' ? 'active' : '' ?>">
+                    <a href="<?= site_url('submissions/by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions_all' ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-list"></i>
                         <p>Semua Pengajuan</p>
                     </a>
@@ -125,7 +125,8 @@
                                         $this->uri->segment(1) == 'submission_statuses' ||
                                         $this->uri->segment(1) == 'faculties' ||
                                         $this->uri->segment(1) == 'users' ||
-                                        $this->uri->segment(1) == 'role' ? 'menu-open' : '' ?>">
+                                        $this->uri->segment(1) == 'role' ||
+                                        $this->uri->segment(1) == 'user_role' ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Master Data
