@@ -125,7 +125,34 @@
                         <p>Pengajuan</p>
                     </a>
                 </li> -->
-                <li class="nav-item"></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-box"></i>
+                        <p>Persuratan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= site_url('surat_pengantar_dekan') ?>" class="nav-link <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Validasi Dekan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Validasi LPPM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Validasi Rektor</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item <?= $this->uri->segment(1) == 'submission_types' ||
                                         $this->uri->segment(1) == 'submission_type_details' ||
                                         $this->uri->segment(1) == 'submission_statuses' ||
