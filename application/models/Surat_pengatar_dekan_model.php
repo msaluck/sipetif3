@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Surat_pengatar_dekan_model extends CI_Model
 {
 
-    public $table = 'surat_pengatar_dekan';
+    public $table = 'surat_pengantar_dekan';
     public $id = 'id';
     public $order = 'DESC';
 

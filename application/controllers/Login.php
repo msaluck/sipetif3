@@ -193,15 +193,15 @@ class Login extends CI_Controller
 				// die();
 				$cek_email_unsoed = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->num_rows();
 				if ($cek_email_unsoed == 0) {
-
 					$data2 = array(
 						'username' => $row_api->email_unsoed,
 						'password' => md5($row_api->nidn),
 						'name' => $row_api->nama_dosen,
 						'email'    => $row_api->email_unsoed,
+						'nip'		=> $row_api->nip,
 					);
-					$this->db->insert('users', $data2);
 
+					$this->db->insert('users', $data2);
 					$get_user = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->row();
 
 					$respon = array("status" => "berhasil", "data_pegawai" => $get_user);

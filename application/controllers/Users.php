@@ -42,6 +42,65 @@ class Users extends CI_Controller
         }
     }
 
+    public function biodata()
+    {
+        $id = $this->session->id_user;
+        $row = $this->Users_model->get_by_id($id);
+        if ($row) {
+            if ($row->faculty_id != null) {
+                $faculty_name = $this->db->get_where('faculties', ['id' => $row->faculty_id])->row()->name;
+            } else {
+                $faculty_name = '';
+            }
+            if ($row->department_id != null) {
+                $department_name = $this->db->get_where('departments', ['id' => $row->department_id])->row()->name;
+            } else {
+                $department_name = '';
+            }
+            $data = array(
+                'id' => $row->id,
+                'faculty_name' => $faculty_name,
+                'department_name' => $department_name,
+                'email' => $row->email,
+                'name' => $row->name,
+                'username' => $row->username,
+            );
+            $this->template->load('layout/master', 'users/users_biodata', $data);
+        } else {
+            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+            redirect(site_url('users'));
+        }
+    }
+
+    public function biodata_update()
+    {
+        $id = $this->session->id_user;
+        $row = $this->Users_model->get_by_id($id);
+        if ($row) {
+            if ($row->faculty_id != null) {
+                $faculty_name = $this->db->get_where('faculties', ['id' => $row->faculty_id])->row()->name;
+            } else {
+                $faculty_name = '';
+            }
+            if ($row->department_id != null) {
+                $department_name = $this->db->get_where('departments', ['id' => $row->department_id])->row()->name;
+            } else {
+                $department_name = '';
+            }
+            $data = array(
+                'id' => $row->id,
+                'faculty_name' => $faculty_name,
+                'department_name' => $department_name,
+                'department_id' => $row->department_id,
+                'department_data' => $this->db->get('departments')->result(),
+            );
+            $this->template->load('layout/master', 'users/users_biodata_edit', $data);
+        } else {
+            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+            redirect(site_url('users'));
+        }
+    }
+
     public function create()
     {
         $data = array(
@@ -123,6 +182,20 @@ class Users extends CI_Controller
             $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
             redirect(site_url('users'));
         }
+    }
+
+
+    public function biodata_update_action()
+    {
+        $faculty_id = $this->db->get_where('departments', ['id' => $this->input->post('department_id', TRUE)])->row()->faculty_id;
+        $data = array(
+            'faculty_id' => $faculty_id,
+            'department_id' => $this->input->post('department_id', TRUE),
+        );
+
+        $this->Users_model->update($this->session->id_user, $data);
+        $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
+        redirect(site_url('users/biodata'));
     }
 
     public function delete($id)

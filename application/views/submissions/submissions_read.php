@@ -28,6 +28,29 @@
 							<td width="20%"><b>E-mail</b></td>
 							<td><?= $user_id; ?></td>
 						</tr>
+						<tr>
+							<td width="20%"><b>Surat Pengantar Dekan</b></td>
+							
+							<td><?= $status_dekan ?> <a href="<?= site_url('submissions/surat_pengantar_dekan/' . $id) ?>" class="btn btn-info">
+									<i class="fa fa-envelope"></i> Surat Pengantar Dekan
+								</a></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Surat Pengantar LPPM</b></td>
+							<td>Belum
+								<a href="<?= site_url('submissions/surat_pengantar_lppm') ?>" class="btn btn-success">
+									<i class="fa fa-envelope"></i> Surat Pengantar LPPM
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Surat Pengantar Rektor</b></td>
+							<td>Belum
+								<a href="<?= site_url('submissions/surat_pengantar_rektor') ?>" class="btn btn-primary">
+									<i class="fa fa-envelope"></i> Surat Pengantar Rektor
+								</a>
+							</td>
+						</tr>
 					</table>
 					<a href="<?= site_url('submissions/by_users') ?>" class="btn btn-danger float-right">
 						<i class="fa fa-sign-out"></i> Kembali
