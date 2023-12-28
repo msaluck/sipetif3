@@ -41,6 +41,88 @@ class Submissions extends CI_Controller
         $this->template->load('layout/master', 'submissions/submissions_list', $data);
     }
 
+    function surat_pengantar_dekan($id)
+    {
+        $id_user = $this->session->id_user;
+        $cek_profile = $this->db->get_where("users", ['id' => $id_user])->row();
+        if ($cek_profile) {
+            $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+            if ($row) {
+                if ($cek_profile->faculty_id == null || $cek_profile->department_id == null) {
+                    $this->session->set_flashdata('swal-error', 'Lengkapi Biodata Anda');
+                    redirect(site_url('submissions/read/' . $id));
+                } else {
+                    $cek_data = $this->db->get_where('surat_pengantar_dekan', ['submission_id' => $id])->row();
+                    $row_submission = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+                    $namatabel = $row_submission->portfolio_database;
+                    $get_title = $this->db->query("select title from $namatabel where id ='$row_submission->portfolio_id'")->row();
+                    if ($get_title) {
+                        $title = $get_title->title;
+                    } else {
+                        $title = '';
+                    }
+                    if ($cek_data) {
+                        $data_surat = array(
+                            'id' => $cek_data->id,
+                            'submission_id' => $cek_data->submission_id,
+                            'nomor_surat' => $cek_data->nomor_surat,
+                            'hal' => $cek_data->hal,
+                            'nama_jurnal' => $cek_data->nama_jurnal,
+                            'tanggal_surat' => $cek_data->tanggal_surat,
+                            'createdate' => $cek_data->createdate,
+                            'acc_dekan' => $cek_data->acc_dekan,
+                        );
+                        $this->template->load('layout/master', 'surat_pengatar_dekan/surat_pengatar_dekan_read', $data_surat);
+                    } else {
+                        $data_surat = array(
+                            'button' => 'Tambah',
+                            'action' => site_url('surat_pengatar_dekan/create_action'),
+                            'id' => set_value('id'),
+                            'submission_id' => $id,
+                            'nomor_surat' => set_value('nomor_surat'),
+                            'hal' => 'Surat Pengantar Permohonan Pengajuan Insentif Karya Ilmiah ' . str_replace('_', ' ', $namatabel),
+                            'nama_jurnal' => $title,
+                            'tanggal_surat' => date('Y-m-d'),
+                        );
+                        $this->template->load('layout/master', 'surat_pengatar_dekan/surat_pengatar_dekan_form', $data_surat);
+                    }
+                }
+            }
+        }
+    }
+
+    function surat_pengantar_lppm($id)
+    {
+        $id_user = $this->session->id_user;
+        $cek_profile = $this->db->get_where("users", ['id' => $id_user])->row();
+        if ($cek_profile) {
+            $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+            if ($row) {
+                if ($cek_profile->faculty_id == null || $cek_profile->department_id == null) {
+                    $this->session->set_flashdata('swal-error', 'Lengkapi Biodata Anda');
+                    redirect(site_url('submissions/read/' . $id));
+                } else {
+                }
+            }
+        }
+    }
+
+    function surat_pengantar_rektor($id)
+    {
+        $id_user = $this->session->id_user;
+        $cek_profile = $this->db->get_where("users", ['id' => $id_user])->row();
+        if ($cek_profile) {
+            $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+            if ($row) {
+                if ($cek_profile->faculty_id == null || $cek_profile->department_id == null) {
+                    $this->session->set_flashdata('swal-error', 'Lengkapi Biodata Anda');
+                    redirect(site_url('submissions/read/' . $id));
+                } else {
+                }
+            }
+        }
+    }
+
     public function by_users()
     {
         $id_user = $this->session->id_user;
@@ -66,12 +148,23 @@ class Submissions extends CI_Controller
             } else {
                 $title = '';
             }
+            $cek_status_dekan = $this->db->query("select id,acc_dekan from surat_pengantar_dekan where submission_id='$id'")->row();
+            if ($cek_status_dekan) {
+                if ($cek_status_dekan->acc_dekan != null) {
+                    $status_dekan = 'SELESAI';
+                } else {
+                    $status_dekan = 'PROSES';
+                }
+            } else {
+                $status_dekan = 'BELUM';
+            }
             $data = array(
                 'id' => $row->id,
                 'portfolio_database' => $row->portfolio_database,
                 'portfolio_id' => $title,
                 'submission_status' => $row->status_name,
                 'user_id' => $row->email,
+                'status_dekan'  => $status_dekan
             );
             $this->template->load('layout/master', 'submissions/submissions_read', $data);
         } else {

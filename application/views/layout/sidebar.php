@@ -23,6 +23,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= site_url('users/biodata') ?>" class="nav-link <?= $this->uri->segment(2) == 'biodata' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Biodata</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Portofolio<i class="right fas fa-angle-left"></i>
