@@ -145,7 +145,7 @@ $db['sinelitabmas'] = array(
 	'password' => 'cBaDSn3Veoz2YJp',
 	'database' => 'sinelitabmas_migrasi',
 	'port'     => 25437,
-	'dbdriver' => 'pgsql',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
