@@ -7,13 +7,16 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+		$this->db2 = $this->load->database('sinelitabmas', TRUE);
 		verify_session();
 	}
 
 	public function index()
 	{
 		$data = array();
+		//$coba = $this->db2->query("select * from sinta.authors limit 10")->result();
+		//print_r($coba);
+		//die();
 		$this->template->load('layout/master', 'dashboard/dashboard', $data);
 	}
 

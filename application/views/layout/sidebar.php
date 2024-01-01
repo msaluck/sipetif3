@@ -209,6 +209,12 @@
                                 <p>User Role</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('authors') ?>" class="nav-link" <?= $this->uri->segment(1) == 'authors' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Authors</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
