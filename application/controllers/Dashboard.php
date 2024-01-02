@@ -7,7 +7,6 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->db2 = $this->load->database('sinelitabmas', TRUE);
 		verify_session();
 	}
 
@@ -17,6 +16,29 @@ class Dashboard extends CI_Controller
 		//$coba = $this->db2->query("select * from sinta.authors limit 10")->result();
 		//print_r($coba);
 		//die();
+		$id_user = $this->session->id_user;
+		$cek_users = $this->db->get_where("users", ['id' => $id_user])->row();
+		if ($cek_users) {
+			if ($cek_users->iddosen == null) {
+				$email = $this->session->email;
+				$this->db_sinelitabmas = $this->load->database('sinelitabmas', TRUE);
+				$row_api = $this->db_sinelitabmas->query("select * from dosen where emailunsoed='$email'")->row();
+				$cek_authors = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nidn])->row();
+				if ($cek_authors) {
+					$idauthors = $cek_authors->id;
+				} else {
+					$cek_authors_lagi = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nip])->row();
+					if ($cek_authors_lagi) {
+						$idauthors = $cek_authors_lagi->id;
+					} else {
+						$idauthors = null;
+					}
+				}
+				$iddosen = $row_api->id;
+				$nip = $row_api->nip;
+				$update = $this->db->query("update users set iddosen='$iddosen',nip='$nip',idauthors='$idauthors' where email='$email'");
+			}
+		}
 		$this->template->load('layout/master', 'dashboard/dashboard', $data);
 	}
 

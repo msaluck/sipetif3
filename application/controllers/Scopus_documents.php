@@ -13,10 +13,25 @@ class Scopus_documents extends CI_Controller
 
 	public function index()
 	{
+		$this->sync_scopus();
 		$data = array(
 			'scopus_documents_data' => $this->Scopus_documents_model->get_all(),
 		);
 		$this->template->load('layout/master', 'scopus_documents/scopus_documents_list', $data);
+	}
+
+
+	private function sync_scopus()
+	{
+		$id_user = $this->session->id_user;
+		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
+		$cek_data = $this->db2->get_where('sinta.scopus_documents', ['authors_id' => $get_user->idauthors])->result();
+		foreach ($cek_data as $value) {
+			$jml_data = $this->db->query("select id from scopus_documents where id='$value->id'")->num_rows();
+			if ($jml_data == 0) {
+				$insert = $this->db->insert('scopus_documents', $value);
+			}
+		}
 	}
 
 	public function read($id)
