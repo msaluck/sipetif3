@@ -104,7 +104,7 @@ class Login extends CI_Controller
 					// $id_user = $row['id_user'];
 					// $row2 = $this->Dosen_model->get_by_id_user($id_user);
 					$data = array(
-						'id'       => $row['id'],
+						'id_user'       => $row['id'],
 						'name'          => $row['name'],
 						'email'         => $row['email'],
 						'username' 		=> $row['username'],

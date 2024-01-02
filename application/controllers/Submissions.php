@@ -207,7 +207,7 @@ class Submissions extends CI_Controller
         //  }
     }
 
-    public function submit($id)
+    public function submit($id, $table)
     {
         $cek_data = $this->db->get_where(
             'submissions',
@@ -218,7 +218,7 @@ class Submissions extends CI_Controller
         )->num_rows();
         if ($cek_data == 0) {
             $data = array(
-                'portfolio_database' => 'scopus',
+                'portfolio_database' => $table,
                 'portfolio_id' => $id,
                 'submission_status' => 1,
                 'user_id' => $this->session->id_user,

@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item  <?= $this->uri->segment(1) == 'scopus' || $this->uri->segment(1) == 'wos' || $this->uri->segment(1) == 'google_scholar' || $this->uri->segment(1) == 'iprs' || $this->uri->segment(1) == 'book' ? 'menu-open' : '' ?>">
+                <li class="nav-item  <?= $this->uri->segment(1) == 'scopus_documents' || $this->uri->segment(1) == 'wos_documents' || $this->uri->segment(1) == 'google_documents' || $this->uri->segment(1) == 'iprs_documents' || $this->uri->segment(1) == 'book_documents' ? 'menu-open' : '' ?>">
                     <a href="<?= site_url('portofolio') ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Portofolio Saya
@@ -76,7 +76,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= site_url('scopus') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
+                            <a href="<?= site_url('scopus_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus_documents' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-circle"></i>
                                 <p>Scopus</p>
                             </a>
@@ -161,8 +161,7 @@
                                         $this->uri->segment(1) == 'role' ||
                                         $this->uri->segment(1) == 'user_role' ||
                                         $this->uri->segment(1) == 'authors' ||
-                                        $this->uri->segment(1) == 'scopus' ||
-                                        $this->uri->segment(1) == 'scopus_documents' ? 'menu-open' : '' ?>">
+                                        $this->uri->segment(1) == 'scopus' ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Master Data

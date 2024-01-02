@@ -10,14 +10,14 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<a href="<?= site_url('scopus_documents/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
-				<a href="<?= site_url('scopus_documents/synchronize') ?>" class="btn btn-secondary"><i class="fa fa-sync"></i> Sinkronisasi Data</a>
+				<!-- <a href="<?= site_url('scopus_documents/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> -->
+				<!-- <a href="<?= site_url('scopus_documents/synchronize') ?>" class="btn btn-secondary"><i class="fa fa-sync"></i> Sinkronisasi Data</a> -->
 				<div class="table-responsive mt-3">
 					<table class="table table-bordered table-striped table-hover text-nowrap" width="100%" id="mytable">
 						<thead>
 							<tr>
 								<th class="text-center" width="5%">No</th>
-								<th>Id</th>
+								<th class="text-center" width="15%">Aksi</th>
 								<th>Quartile</th>
 								<th>Title</th>
 								<th>Publication Name</th>
@@ -31,8 +31,8 @@
 								<th>Citedby Count</th>
 								<th>Aggregation Type</th>
 								<th>Url</th>
-								<th>Authors Id</th>
-								<th class="text-center" width="15%">Aksi</th>
+								<!-- <th>Authors Id</th> -->
+
 							</tr>
 						</thead>
 						<tbody>
@@ -41,12 +41,15 @@
 							foreach ($scopus_documents_data as $value) { ?>
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
-									<td><?= $value->id ?></td>
+									<td class="text-center">
+										<a href="<?= site_url('submissions/submit/' . $value->id.'/scopus_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+									</td>
+									<!-- <td><?= $value->id ?></td> -->
 									<td><?= $value->quartile ?></td>
 									<td><?= $value->title ?></td>
 									<td><?= $value->publication_name ?></td>
 									<td><?= $value->creator ?></td>
-									<td><?= $value->PAGE ?></td>
+									<td><?= $value->page ?></td>
 									<td><?= $value->issn ?></td>
 									<td><?= $value->volume ?></td>
 									<td><?= $value->cover_date ?></td>
@@ -55,12 +58,8 @@
 									<td><?= $value->citedby_count ?></td>
 									<td><?= $value->aggregation_type ?></td>
 									<td><?= $value->url ?></td>
-									<td><?= $value->authors_id ?></td>
-									<td class="text-center">
-										<a href="<?= site_url('scopus_documents/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
-										<a href="<?= site_url('scopus_documents/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-										<a href="<?= site_url('scopus_documents/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
-									</td>
+									<!-- <td><?= $value->authors_id ?></td> -->
+
 								</tr>
 							<?php } ?>
 						</tbody>
