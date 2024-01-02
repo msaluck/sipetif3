@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 27, 2023 at 06:02 AM
--- Server version: 8.0.30
--- PHP Version: 7.2.24
+-- Host: localhost
+-- Generation Time: Jan 02, 2024 at 09:51 AM
+-- Server version: 8.0.33
+-- PHP Version: 8.0.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,9 +56,16 @@ INSERT INTO `book` (`id`, `user_id`, `title`, `category`, `isbn`, `authors`, `pl
 CREATE TABLE `departments` (
   `id` tinyint NOT NULL,
   `faculty_id` tinyint NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(1024) COLLATE utf8mb4_general_ci NOT NULL
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `faculty_id`, `name`, `description`) VALUES
+(1, 4, 'Elektro', 'Teknik Elektro');
 
 -- --------------------------------------------------------
 
@@ -68,8 +75,8 @@ CREATE TABLE `departments` (
 
 CREATE TABLE `faculties` (
   `id` tinyint NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(1024) COLLATE utf8mb4_general_ci NOT NULL
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -79,7 +86,8 @@ CREATE TABLE `faculties` (
 INSERT INTO `faculties` (`id`, `name`, `description`) VALUES
 (1, 'Pertanian', 'Fakutas Pertanian'),
 (2, 'Biologi', 'Fakultas Biologi'),
-(3, 'Saryono', 'Ilmu-ilmu Kesehatan');
+(3, 'Saryono', 'Ilmu-ilmu Kesehatan'),
+(4, 'Teknik', 'Fakultas Teknik');
 
 -- --------------------------------------------------------
 
@@ -245,24 +253,49 @@ INSERT INTO `scopus` (`id`, `user_id`, `title`, `publication_name`, `quartile`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `scopus_documents`
+--
+
+CREATE TABLE `scopus_documents` (
+  `id` bigint NOT NULL,
+  `quartile` varchar(50) DEFAULT NULL,
+  `title` text,
+  `publication_name` text,
+  `creator` text,
+  `page` varchar(255) DEFAULT NULL,
+  `issn` text,
+  `volume` varchar(255) DEFAULT NULL,
+  `cover_date` date DEFAULT NULL,
+  `cover_display_date` varchar(255) DEFAULT NULL,
+  `doi` varchar(255) DEFAULT NULL,
+  `citedby_count` int DEFAULT NULL,
+  `aggregation_type` varchar(255) DEFAULT NULL,
+  `url` text,
+  `authors_id` bigint DEFAULT NULL,
+  `idsubmission` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `scopus_documents`
+--
+
+INSERT INTO `scopus_documents` (`id`, `quartile`, `title`, `publication_name`, `creator`, `page`, `issn`, `volume`, `cover_date`, `cover_display_date`, `doi`, `citedby_count`, `aggregation_type`, `url`, `authors_id`, `idsubmission`) VALUES
+(85149920003, '4', 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', 'AIP Conference Proceedings', 'Aliim M.S.', '', '0094243X', '2482', '2023-02-21', '21 February 2023', '10.1063/5.0110764', NULL, 'Conference Proceedin', 'https://www.scopus.com/record/display.uri?eid=2-s2.0-85149920003&origin=resultslist&sort=plf-f', 6696255, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `submissions`
 --
 
 CREATE TABLE `submissions` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `portfolio_id` int NOT NULL,
+  `portfolio_id` bigint NOT NULL,
   `portfolio_database` varchar(16) NOT NULL,
-  `submission_status` int NOT NULL
+  `submission_status` int NOT NULL,
+  `created_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `submissions`
---
-
-INSERT INTO `submissions` (`id`, `user_id`, `portfolio_id`, `portfolio_database`, `submission_status`) VALUES
-(1, 1, 1, 'scopus', 1),
-(2, 1, 1, 'scopus', 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +442,7 @@ CREATE TABLE `submission_details` (
   `id` int NOT NULL,
   `submission_id` int NOT NULL,
   `submission_type_detail_id` int NOT NULL,
-  `value` varchar(2048) COLLATE utf8mb4_general_ci NOT NULL
+  `value` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -552,13 +585,13 @@ CREATE TABLE `submission_documents` (
   `id` int NOT NULL,
   `submission_id` int NOT NULL,
   `submission_type_detail_id` int NOT NULL,
-  `file_name` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
-  `original_name` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
-  `file_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `original_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `file_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `file_size` int NOT NULL,
   `uploaded_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `file_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` enum('active','deleted') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
+  `file_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('active','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -581,8 +614,8 @@ INSERT INTO `submission_documents` (`id`, `submission_id`, `submission_type_deta
 
 CREATE TABLE `submission_statuses` (
   `id` tinyint NOT NULL,
-  `name` char(32) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(512) COLLATE utf8mb4_general_ci NOT NULL
+  `name` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -606,8 +639,8 @@ INSERT INTO `submission_statuses` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `submission_types` (
   `id` tinyint NOT NULL,
-  `name` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(512) COLLATE utf8mb4_general_ci NOT NULL
+  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -630,9 +663,9 @@ INSERT INTO `submission_types` (`id`, `name`, `description`) VALUES
 CREATE TABLE `submission_type_details` (
   `id` smallint NOT NULL,
   `submission_type_id` int NOT NULL,
-  `name` char(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `type` char(32) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(512) COLLATE utf8mb4_general_ci NOT NULL
+  `name` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `type` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -695,109 +728,54 @@ INSERT INTO `submission_type_details` (`id`, `submission_type_id`, `name`, `type
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `surat_pengantar_dekan`
+--
+
+CREATE TABLE `surat_pengantar_dekan` (
+  `id` int NOT NULL,
+  `submission_id` int NOT NULL,
+  `nomor_surat` varchar(100) DEFAULT NULL,
+  `hal` varchar(100) NOT NULL,
+  `nama_jurnal` varchar(200) NOT NULL,
+  `tanggal_surat` date NOT NULL,
+  `acc_dekan` timestamp NULL DEFAULT NULL,
+  `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `surat_pengantar_dekan`
+--
+
+INSERT INTO `surat_pengantar_dekan` (`id`, `submission_id`, `nomor_surat`, `hal`, `nama_jurnal`, `tanggal_surat`, `acc_dekan`, `createdate`) VALUES
+(1, 3, '-', 'Surat Pengantar Permohonan Pengajuan Insentif Karya Ilmiah scopus', 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', '2023-12-28', NULL, '2023-12-28 08:41:36'),
+(2, 6, '-', 'Surat Pengantar Permohonan Pengajuan Insentif Karya Ilmiah scopus documents', 'Design a simple Covid-19 detection using corodet: A deep learning-based classification', '2024-01-02', NULL, '2024-01-02 07:26:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` smallint NOT NULL,
-  `faculty_id` tinyint DEFAULT NULL,
-  `department_id` tinyint DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `name` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(256) COLLATE utf8mb4_general_ci NOT NULL
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nip` varchar(17) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `iddosen` bigint DEFAULT NULL,
+  `faculty_id` int DEFAULT NULL,
+  `department_id` int DEFAULT NULL,
+  `idauthors` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `faculty_id`, `department_id`, `email`, `name`, `username`, `password`) VALUES
-(1, 1, 1, 'muhammad.syaiful.aliim@unsoed.ac.id', 'Administrator', 'admin', '$2y$10$nJz6Qed8oKOKvvh996QuT.fp7QNkFpe1LGKc9tAYgYybKSLPfDXH.'),
-(5, 1, 1, 'ririn.trisnawati@unsoed.ac.id', 'Ririn Kurnia Trisnawati, SS, MA', 'ririn.trisnawati@unsoed.ac.id', 'ririn.trisnawati@unsoed.ac.id'),
-(6, 1, 1, 'endang.hilmi@unsoed.ac.id', 'Dr. Endang Hilmi, S.Hut., M.Si.', 'endang.hilmi@unsoed.ac.id', 'endang.hilmi@unsoed.ac.id'),
-(7, 1, 1, 'susiana.candrawati@unsoed.ac.id', 'Dr. dr. Susiana Candrawati, Sp.K.O.', 'susiana.candrawati@unsoed.ac.id', 'susiana.candrawati@unsoed.ac.id'),
-(8, 1, 1, 'abdul.ritonga@unsoed.ac.id', 'Abdul Mukhlis Ritonga, STP, M.Sc.', 'abdul.ritonga@unsoed.ac.id', 'abdul.ritonga@unsoed.ac.id'),
-(9, 1, 1, 'ismoyowati@unsoed.ac.id', 'Prof. Dr. Ir. Ismoyowati, S.Pt., MP, IPU', 'ismoyowati@unsoed.ac.id', 'ismoyowati@unsoed.ac.id'),
-(10, 1, 1, 'suroso.te@unsoed.ac.id', 'Prof. Dr.Eng. Suroso, S.T, M.Eng', 'suroso.te@unsoed.ac.id', 'suroso.te@unsoed.ac.id'),
-(11, 1, 1, 'koernia.pratama@unsoed.ac.id', 'Koernia Nanda Pratama, M.Kep., Ns., Sp.Kep.Kom.', 'koernia.pratama@unsoed.ac.id', 'koernia.pratama@unsoed.ac.id'),
-(12, 1, 1, 'sanidhyanika.purnomo@unsoed.ac.id', 'Sanidhya Nika Purnomo, ST, MT', 'sanidhyanika.purnomo@unsoed.ac.i', 'sanidhyanika.purnomo@unsoed.ac.id'),
-(13, 1, 1, 'rifqi.festiawan@unsoed.ac.id', 'Rifqi Festiawan, S.Pd., M.Pd., AIFO', 'rifqi.festiawan@unsoed.ac.id', 'rifqi.festiawan@unsoed.ac.id'),
-(14, 1, 1, 'aminfatoni@unsoed.ac.id', 'Amin Fatoni, S.Si., M.Si., Ph.D', 'aminfatoni@unsoed.ac.id', 'aminfatoni@unsoed.ac.id'),
-(15, 1, 1, 'rahadi.bintoro@unsoed.ac.id', 'Dr. Rahadi Wasi Bintoro, S.H., M.H.', 'rahadi.bintoro@unsoed.ac.id', 'rahadi.bintoro@unsoed.ac.id'),
-(16, 1, 1, 'akhyarul.anam@unsoed.ac.id', 'Akhyarul Anam, S.Kep.,Ns. M.Kep.', 'akhyarul.anam@unsoed.ac.id', 'akhyarul.anam@unsoed.ac.id'),
-(17, 1, 1, 'arief.wardhana@unsoed.ac.id', 'Arief Wisnu Wardhana, B.Eng.(Hons)., M.Eng.', 'arief.wardhana@unsoed.ac.id', 'arief.wardhana@unsoed.ac.id'),
-(18, 1, 1, 'amalia@unsoed.ac.id', 'dr. Amalia, M.Sc.', 'amalia@unsoed.ac.id', 'amalia@unsoed.ac.id'),
-(19, 1, 1, 'ard@unsoed.ac.id', 'Dr. Ardiansyah, M.Si.', 'ard@unsoed.ac.id', 'ard@unsoed.ac.id'),
-(20, 1, 1, 'aisyah.septiana@unsoed.ac.id', 'Dr. Ir. Aisyah Tri Septiana, MP', 'aisyah.septiana@unsoed.ac.id', 'aisyah.septiana@unsoed.ac.id'),
-(21, 1, 1, 'nur.aini@unsoed.ac.id', 'Dr. Nur Aini, S.TP., MP', 'nur.aini@unsoed.ac.id', 'nur.aini@unsoed.ac.id'),
-(22, 1, 1, 'pepita.haryanti@unsoed.ac.id', 'Dr. Pepita Haryanti, STP, .Sc.', 'pepita.haryanti@unsoed.ac.id', 'pepita.haryanti@unsoed.ac.id'),
-(23, 1, 1, 'sorta.simanjuntak@unsoed.ac.id', 'Prof. Dr. Sorta Basar Ida Simanjuntak, M.Si.', 'sorta.simanjuntak@unsoed.ac.id', 'sorta.simanjuntak@unsoed.ac.id'),
-(24, 1, 1, 'dian.bhagawati@unsoed.ac.id', 'Dr.Pi. Dra. Dian Bhagawati, M.Si.', 'dian.bhagawati@unsoed.ac.id', 'dian.bhagawati@unsoed.ac.id'),
-(25, 1, 1, 'kiky.srirejeki@unsoed.ac.id', 'Kiky Srirejeki, M.Sc.', 'kiky.srirejeki@unsoed.ac.id', 'kiky.srirejeki@unsoed.ac.id'),
-(26, 1, 1, 'slamet.rosyadi@unsoed.ac.id', 'Dr. Slamet Rosyadi, M.Si.', 'slamet.rosyadi@unsoed.ac.id', 'slamet.rosyadi@unsoed.ac.id'),
-(27, 1, 1, 'poppy.arsil@unsoed.ac.id', 'Poppy Arsil, STP, MT., PhD', 'poppy.arsil@unsoed.ac.id', 'poppy.arsil@unsoed.ac.id'),
-(28, 1, 1, 'sri.lestari2511@unsoed.ac.id', 'Dr. Sri Lestari, SE, M.Si.', 'sri.lestari2511@unsoed.ac.id', 'sri.lestari2511@unsoed.ac.id'),
-(29, 1, 1, 'imam.widhiono@unsoed.ac.id', 'Prof. Dr.rer.nat. Imam Widhiono MZ, MS', 'imam.widhiono@unsoed.ac.id', 'imam.widhiono@unsoed.ac.id'),
-(30, 1, 1, 'farida.rachmawati@unsoed.ac.id', 'Dr. Farida Nur Rachmawati, M.Si.', 'farida.rachmawati@unsoed.ac.id', 'farida.rachmawati@unsoed.ac.id'),
-(31, 1, 1, 'untung.susilo@unsoed.ac.id', 'Dr. Untung Susilo, MS', 'untung.susilo@unsoed.ac.id', 'untung.susilo@unsoed.ac.id'),
-(32, 1, 1, 'mulki_indanazulfa@unsoed.ac.id', 'Mulki Indana Zulfa, ST, MT', 'mulki_indanazulfa@unsoed.ac.id', 'mulki_indanazulfa@unsoed.ac.id'),
-(33, 1, 1, 'murni.dwiati@unsoed.ac.id', 'Dr. Murni Dwiati, M.Si.', 'murni.dwiati@unsoed.ac.id', 'murni.dwiati@unsoed.ac.id'),
-(34, 1, 1, 'susanto1408@unsoed.ac.id', 'Prof. Agus Hery Susanto, MS', 'susanto1408@unsoed.ac.id', 'susanto1408@unsoed.ac.id'),
-(35, NULL, NULL, NULL, 'Ascaryan Rafinda, SE, M.Sc., Ak. CA', '', ''),
-(36, 1, 1, 'hartoyo2910@unsoed.ac.id', 'Hartoyo, S.Pi., MT', 'hartoyo2910@unsoed.ac.id', 'hartoyo2910@unsoed.ac.id'),
-(37, 1, 1, 'hening.pratiwi@unsoed.ac.id', 'Hening Pratiwi, M.Sc., APt', 'hening.pratiwi@unsoed.ac.id', 'hening.pratiwi@unsoed.ac.id'),
-(38, 1, 1, 'asmoro.widagdo@unsoed.ac.id', 'Dr. Asmoro Widagdo, ST, MT', 'asmoro.widagdo@unsoed.ac.id', 'asmoro.widagdo@unsoed.ac.id'),
-(39, 1, 1, 'jamrud.aminuddin@unsoed.ac.id', 'Jamrud Aminuddin, S.Si., M.Si., Ph.D', 'jamrud.aminuddin@unsoed.ac.id', 'jamrud.aminuddin@unsoed.ac.id'),
-(40, 1, 1, 'tri.rachmanto@unsoed.ac.id', 'Tri Rachmanto Prihambodo, S.Pt., M.Si.', 'tri.rachmanto@unsoed.ac.id', 'tri.rachmanto@unsoed.ac.id'),
-(41, 1, 1, 'efka.rimbawanto@unsoed.ac.id', 'Dr. Ir. Efka Aris Rimbawanto, MP', 'efka.rimbawanto@unsoed.ac.id', 'efka.rimbawanto@unsoed.ac.id'),
-(42, 1, 1, 'mtkariadi_pbi@unsoed.ac.id', 'Mustasyfa Thabib Kariadi, S.Pd., M.Pd.', 'mtkariadi_pbi@unsoed.ac.id', 'mtkariadi_pbi@unsoed.ac.id'),
-(43, 1, 1, 'wiwiek.adawiyah@unsoed.ac.id', 'Prof. Wiwiek Rabiatul Adawiyah, M.Sc., Ph.D', 'wiwiek.adawiyah@unsoed.ac.id', 'wiwiek.adawiyah@unsoed.ac.id'),
-(44, 1, 1, 'ratna.dewi0509@unsoed.ac.id', 'Dr. Ratna Stia Dewi, S.Si., M.Si.', 'ratna.dewi0509@unsoed.ac.id', 'ratna.dewi0509@unsoed.ac.id'),
-(45, 1, 1, 'adhi.sulaiman@unsoed.ac.id', 'Dr. Adhi Iman Sulaiman, S.IP, M.Si.', 'adhi.sulaiman@unsoed.ac.id', 'adhi.sulaiman@unsoed.ac.id'),
-(46, 1, 1, 'purwanto0401@unsoed.ac.id', 'Dr. Purwanto, SP, M.Sc.', 'purwanto0401@unsoed.ac.id', 'purwanto0401@unsoed.ac.id'),
-(47, 1, 1, 'indrawan.firdauzi@unsoed.ac.id', 'Indrawan Firdauzi, S.Pd., M.Sc.', 'indrawan.firdauzi@unsoed.ac.id', 'indrawan.firdauzi@unsoed.ac.id'),
-(48, 1, 1, 'nuning.setyaningrum@unsoed.ac.id', 'Dra. Nuning Setyaningrum, M.Si.', 'nuning.setyaningrum@unsoed.ac.id', 'nuning.setyaningrum@unsoed.ac.id'),
-(49, 1, 1, 'muhammad.taufiqurrohman@unsoed.ac.id', 'Muhammad Taufiqurrohman, SS, M.Hum.', 'muhammad.taufiqurrohman@unsoed.a', 'muhammad.taufiqurrohman@unsoed.ac.id'),
-(50, 1, 1, 'nur.prihatiningsih@unsoed.ac.id', 'Dr. Ir. Nur Prihatiningsih, MS', 'nur.prihatiningsih@unsoed.ac.id', 'nur.prihatiningsih@unsoed.ac.id'),
-(51, 1, 1, 'heru.djatmiko@unsoed.ac.id', 'Dr. Ir. Heru Adi Djatmiko, MP', 'heru.djatmiko@unsoed.ac.id', 'heru.djatmiko@unsoed.ac.id'),
-(52, 1, 1, 'nana.sutikna@unsoed.ac.id', 'Dr. Nana Sutikna, M.Hum.', 'nana.sutikna@unsoed.ac.id', 'nana.sutikna@unsoed.ac.id'),
-(53, 1, 1, 'nuryanti1510@unsoed.ac.id', 'Dr. Nuryanti, SIP, M.Sc.', 'nuryanti1510@unsoed.ac.id', 'nuryanti1510@unsoed.ac.id'),
-(54, 1, 1, 'lutfatul.latifah@unsoed.ac.id', 'Ns. Lutfatul Latifah, S.Kep, M.Kep, Sp.Mat', 'lutfatul.latifah@unsoed.ac.id', 'lutfatul.latifah@unsoed.ac.id'),
-(55, 1, 1, 'oktaviani@unsoed.ac.id', 'Eka Oktaviani, S.Si., M.Biotech.', 'oktaviani@unsoed.ac.id', 'oktaviani@unsoed.ac.id'),
-(56, 1, 1, 'bilalodin@unsoed.ac.id', 'Dr. Bilalodin, M.Si.', 'bilalodin@unsoed.ac.id', 'bilalodin@unsoed.ac.id'),
-(57, 1, 1, 'rachmad.setijadi@unsoed.ac.id', 'Dr. Rachmad Setijadi, S.Si., M.Si.', 'rachmad.setijadi@unsoed.ac.id', 'rachmad.setijadi@unsoed.ac.id'),
-(58, 1, 1, 'tirta.wardana@unsoed.ac.id', 'Tirta Wardana, S.Si., M.Biotech.', 'tirta.wardana@unsoed.ac.id', 'tirta.wardana@unsoed.ac.id'),
-(59, 1, 1, 'indah.puspitasari@unsoed.ac.id', 'Indah Puspitasari, S.S., M.Hum', 'indah.puspitasari@unsoed.ac.id', 'indah.puspitasari@unsoed.ac.id'),
-(60, 1, 1, 'rani.hestiyanti@unsoed.ac.id', 'Rani Afifah Nur Hestiyani, S.Si., M.Biotech.', 'rani.hestiyanti@unsoed.ac.id', 'rani.hestiyanti@unsoed.ac.id'),
-(61, 1, 1, 'muslihudin@unsoed.ac.id', 'Dr. Muslihudin, M.Si', 'muslihudin@unsoed.ac.id', 'muslihudin@unsoed.ac.id'),
-(62, 1, 1, 'suprayogi@unsoed.ac.id', 'Ir. Suprayogi, M.Sc., Ph.D', 'suprayogi@unsoed.ac.id', 'suprayogi@unsoed.ac.id'),
-(63, 1, 1, 'zulfaulinnuha@unsoed.ac.id', 'Zulfa Ulinnuha, SP, M.Si.', 'zulfaulinnuha@unsoed.ac.id', 'zulfaulinnuha@unsoed.ac.id'),
-(64, 1, 1, 'agus.maryoto@unsoed.ac.id', 'Prof. Dr.Eng. Agus Maryoto, ST, MT', 'agus.maryoto@unsoed.ac.id', 'agus.maryoto@unsoed.ac.id'),
-(65, 1, 1, 'ascaryan.rafinda@unsoed.ac.id', 'Ascaryan Rafinda, SE, M.Sc., Ak. CA, Ph.D', 'ascaryan.rafinda@unsoed.ac.id', 'ascaryan.rafinda@unsoed.ac.id'),
-(66, 1, 1, 'wiman.rizkidarajat@unsoed.ac.id', 'Wiman Rizkidarajat, SH, MH', 'wiman.rizkidarajat@unsoed.ac.id', 'wiman.rizkidarajat@unsoed.ac.id'),
-(67, 1, 1, 'elly.tugiyanti@unsoed.ac.id', 'Prof. Dr. Ir. Elly Tugiyanti, MP, IPU', 'elly.tugiyanti@unsoed.ac.id', 'elly.tugiyanti@unsoed.ac.id'),
-(68, 1, 1, 'gito.sugiyanto@unsoed.ac.id', 'Dr. Ir. Gito Sugiyanto, ST, MT, IPM, ASEAN Eng.', 'gito.sugiyanto@unsoed.ac.id', 'gito.sugiyanto@unsoed.ac.id'),
-(69, 1, 1, 'yanuar.haryanto@unsoed.ac.id', 'yanuar Haryanto, ST, M.Eng., Ph.D', 'yanuar.haryanto@unsoed.ac.id', 'yanuar.haryanto@unsoed.ac.id'),
-(70, 1, 1, 'erwin.ardli@unsoed.ac.id', 'Dr.rer.nat. Erwin Riyanto Ardli, S.Si., M.Sc.', 'erwin.ardli@unsoed.ac.id', 'erwin.ardli@unsoed.ac.id'),
-(71, 1, 1, 'erna.wati@unsoed.ac.id', 'Erna Kusuma Wati, SKM, M.Si.', 'erna.wati@unsoed.ac.id', 'erna.wati@unsoed.ac.id'),
-(72, 1, 1, 'arif.kurniawan@unsoed.ac.id', 'Arif Kurniawan, SKM, M.Kes.', 'arif.kurniawan@unsoed.ac.id', 'arif.kurniawan@unsoed.ac.id'),
-(73, 1, 1, 'fitranto.arjadi@unsoed.ac.id', 'Dr. dr. Fitranto Arjadi, M.Kes.', 'fitranto.arjadi@unsoed.ac.id', 'fitranto.arjadi@unsoed.ac.id'),
-(74, 1, 1, 'sakhidin@unsoed.ac.id', 'Prof. Dr.Ir. Sakhidin, MP', 'sakhidin@unsoed.ac.id', 'sakhidin@unsoed.ac.id'),
-(75, 1, 1, 'zusfahair@unsoed.ac.id', 'Zusfahair, S.Si., M.Si.', 'zusfahair@unsoed.ac.id', 'zusfahair@unsoed.ac.id'),
-(76, 1, 1, 'mardiyah.kurniasih@unsoed.ac.id', 'Mardiyah Kurniasih, S.Si., M.Si.', 'mardiyah.kurniasih@unsoed.ac.id', 'mardiyah.kurniasih@unsoed.ac.id'),
-(77, 1, 1, 'endang.setyowati@unsoed.ac.id', 'Dr. Endang Ariyani Setyowati, M.Si.', 'endang.setyowati@unsoed.ac.id', 'endang.setyowati@unsoed.ac.id'),
-(78, 1, 1, 'mustika.palupi@unsoed.ac.id', 'Mustika Palupi, S.Pi., M.Si.', 'mustika.palupi@unsoed.ac.id', 'mustika.palupi@unsoed.ac.id'),
-(80, 1, 1, 'rifda.naufalin@unsoed.ac.id', 'Prof. Dr. RIFDA NAUFALIN, S.P., M.Si.', 'rifda.naufalin@unsoed.ac.id', 'rifda.naufalin@unsoed.ac.id'),
-(81, 1, 1, 'retno_supriyanti@unsoed.ac.id', 'Prof. Dr. Eng. Ir. RETNO SUPRIYANTI, ST.,MT.', 'retno_supriyanti@unsoed.ac.id', 'retno_supriyanti@unsoed.ac.id'),
-(82, 1, 1, 'icuk.bawono@unsoed.ac.id', 'Dr. Icuk Rangga Bawono, S.H.,S.E.,M.Si.,M.H.Ak.', 'icuk.bawono@unsoed.ac.id', 'icuk.bawono@unsoed.ac.id'),
-(83, 1, 1, 'sulaeman@unsoed.ac.id', 'Uyi Sulaeman, S.Si.,M.Si.,Ph.D.', 'sulaeman@unsoed.ac.id', 'sulaeman@unsoed.ac.id'),
-(84, 1, 1, 'haryono1108@unsoed.ac.id', 'Dr. Haryono, S.S. M.Pd.', 'haryono1108@unsoed.ac.id', 'haryono1108@unsoed.ac.id'),
-(85, 1, 1, 'sri.maryani@unsoed.ac.id', 'Sri Maryani, S.Si., M.Si., Ph.D.', 'sri.maryani@unsoed.ac.id', 'sri.maryani@unsoed.ac.id'),
-(86, 1, 1, 'agung.prabowo@unsoed.ac.id', 'Agung Prabowo, S.Si., M.Si.', 'agung.prabowo@unsoed.ac.id', 'agung.prabowo@unsoed.ac.id'),
-(87, 1, 1, 'hasby.pri@unsoed.ac.id', 'Hasby Pri Choiruna, S.Kep., Ns., M.Kep.', 'hasby.pri@unsoed.ac.id', 'hasby.pri@unsoed.ac.id'),
-(88, 1, 1, 'saryono2016@unsoed.ac.id', 'Prof. Dr. Saryono, S.Kp., M.Kes.', 'saryono2016@unsoed.ac.id', 'saryono2016@unsoed.ac.id'),
-(89, 1, 1, 'hendri.wasito@unsoed.ac.id', 'Dr.nat.techn. apt. Hendri Wasito, M.Sc.', 'hendri.wasito@unsoed.ac.id', 'hendri.wasito@unsoed.ac.id');
+INSERT INTO `users` (`id`, `email`, `name`, `username`, `password`, `nip`, `iddosen`, `faculty_id`, `department_id`, `idauthors`) VALUES
+(1, 'muhammad.syaiful.aliim@unsoed.ac.id', 'Administrator', 'admin', '$2y$10$nJz6Qed8oKOKvvh996QuT.fp7QNkFpe1LGKc9tAYgYybKSLPfDXH.', '19900905201903102', 338, 4, 1, 6696255),
+(94, 'mohammad.irham@unsoed.ac.id', 'MOHAMMAD IRHAM AKBAR', 'mohammad.irham@unsoed.ac.id', 'ce40235163e622c565a5bd9a54be2fa9', '19940810202203101', 621038231, NULL, NULL, 6816293);
 
 -- --------------------------------------------------------
 
@@ -831,6 +809,15 @@ CREATE TABLE `user_role` (
   `user_id` int NOT NULL,
   `role_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUES
+(24, 94, 1),
+(26, 1, 1),
+(27, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -930,6 +917,12 @@ ALTER TABLE `scopus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `scopus_documents`
+--
+ALTER TABLE `scopus_documents`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `submissions`
 --
 ALTER TABLE `submissions`
@@ -973,6 +966,12 @@ ALTER TABLE `submission_type_details`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `surat_pengantar_dekan`
+--
+ALTER TABLE `surat_pengantar_dekan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1004,13 +1003,13 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `faculties`
 --
 ALTER TABLE `faculties`
-  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `google_scholar`
@@ -1052,7 +1051,7 @@ ALTER TABLE `scopus`
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `submissions.backup`
@@ -1091,16 +1090,22 @@ ALTER TABLE `submission_type_details`
   MODIFY `id` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
+-- AUTO_INCREMENT for table `surat_pengantar_dekan`
+--
+ALTER TABLE `surat_pengantar_dekan`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `wos`
