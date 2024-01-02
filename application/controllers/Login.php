@@ -157,52 +157,86 @@ class Login extends CI_Controller
 		redirect(site_url('login'));
 	}
 
+	// private function sync_pegawai_by_email($email)
+	// {
+
+	// 	$row = $this->db->get_where("users", ['email' => $email])->num_rows();
+
+	// 	if ($row == 0) {
+	// 		// URL API yang ingin dikirimkan data
+	// 		$url = 'http://103.226.138.252/api/index.php/unsoed/get_pegawai';
+	// 		// Data yang ingin dikirimkan
+	// 		$data = array(
+	// 			'kunci'      => 'jsd',
+	// 			'email' => $email,
+	// 		);
+
+	// 		// Konfigurasi CURL
+	// 		$ch = curl_init();
+	// 		curl_setopt($ch, CURLOPT_URL, $url);
+	// 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// 		curl_setopt($ch, CURLOPT_POST, true);
+	// 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+	// 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+	// 			'Content-Type: application/x-www-form-urlencoded'
+	// 		));
+
+	// 		// Eksekusi CURL dan simpan responnya
+	// 		$response = curl_exec($ch);
+	// 		curl_close($ch);
+
+	// 		// Tampilkan respon dari API
+	// 		$row_api = json_decode($response);
+
+	// 		if ($row_api) {
+	// 			// print_r($row_api);
+	// 			// die();
+	// 			$cek_email_unsoed = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->num_rows();
+	// 			if ($cek_email_unsoed == 0) {
+	// 				$data2 = array(
+	// 					'username' => $row_api->email_unsoed,
+	// 					'password' => md5($row_api->nidn),
+	// 					'name' => $row_api->nama_dosen,
+	// 					'email'    => $row_api->email_unsoed,
+	// 					'nip'		=> $row_api->nip,
+	// 				);
+
+	// 				$this->db->insert('users', $data2);
+	// 				$get_user = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->row();
+
+	// 				$respon = array("status" => "berhasil", "data_pegawai" => $get_user);
+	// 			}
+	// 		}
+	// 	} else {
+	// 		$get_pegawai = $this->db->get_where("users", ['email_unsoed' => $email])->row();
+	// 		$respon = array("status" => "berhasil", "data_pegawai" => $get_pegawai);
+	// 	}
+	// 	//echo json_encode($respon);
+	// 	return $respon;
+	// }
+
 	private function sync_pegawai_by_email($email)
 	{
 
 		$row = $this->db->get_where("users", ['email' => $email])->num_rows();
 
 		if ($row == 0) {
-			// URL API yang ingin dikirimkan data
-			$url = 'http://103.226.138.252/api/index.php/unsoed/get_pegawai';
-			// Data yang ingin dikirimkan
-			$data = array(
-				'kunci'      => 'jsd',
-				'email' => $email,
-			);
-
-			// Konfigurasi CURL
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/x-www-form-urlencoded'
-			));
-
-			// Eksekusi CURL dan simpan responnya
-			$response = curl_exec($ch);
-			curl_close($ch);
-
-			// Tampilkan respon dari API
-			$row_api = json_decode($response);
-
+			$this->db_sinelitabmas = $this->load->database('sinelitabmas', TRUE);
+			$row_api = $this->db_sinelitabmas->query("select * from dosen where emailunsoed='$email'")->row();
 			if ($row_api) {
-				// print_r($row_api);
-				// die();
-				$cek_email_unsoed = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->num_rows();
+				$cek_email_unsoed = $this->db->get_where("users", ['email' => $row_api->emailunsoed])->num_rows();
 				if ($cek_email_unsoed == 0) {
 					$data2 = array(
-						'username' => $row_api->email_unsoed,
+						'username' => $row_api->emailunsoed,
 						'password' => md5($row_api->nidn),
-						'name' => $row_api->nama_dosen,
-						'email'    => $row_api->email_unsoed,
+						'name' => $row_api->nama,
+						'email'    => $row_api->emailunsoed,
 						'nip'		=> $row_api->nip,
+						'iddosen'	=> $row_api->id,
 					);
 
 					$this->db->insert('users', $data2);
-					$get_user = $this->db->get_where("users", ['email' => $row_api->email_unsoed])->row();
+					$get_user = $this->db->get_where("users", ['email' => $row_api->emailunsoed])->row();
 
 					$respon = array("status" => "berhasil", "data_pegawai" => $get_user);
 				}
