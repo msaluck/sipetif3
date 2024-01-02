@@ -162,7 +162,9 @@
                                         $this->uri->segment(1) == 'user_role' ||
                                         $this->uri->segment(1) == 'authors' ||
                                         $this->uri->segment(1) == 'scopus' ||
-                                        $this->uri->segment(1) == 'scopus_documents' ? 'menu-open' : '' ?>">
+                                        $this->uri->segment(1) == 'scopus_documents' ||
+                                        $this->uri->segment(1) == 'wos' ||
+                                        $this->uri->segment(1) == 'wos_documents' ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Master Data
@@ -240,6 +242,18 @@
                             <a href="<?= site_url('wos_documents') ?>" class="nav-link" <?= $this->uri->segment(1) == 'wos_documents' ? 'active' : '' ?>>
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>Web of Science Documents</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('google') ?>" class="nav-link" <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Google Scholar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('google_documents') ?>" class="nav-link" <?= $this->uri->segment(1) == 'google_documents' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Google Scholar Documents</p>
                             </a>
                         </li>
                     </ul>
