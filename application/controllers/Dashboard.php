@@ -23,9 +23,20 @@ class Dashboard extends CI_Controller
 				$email = $this->session->email;
 				$this->db_sinelitabmas = $this->load->database('sinelitabmas', TRUE);
 				$row_api = $this->db_sinelitabmas->query("select * from dosen where emailunsoed='$email'")->row();
+				$cek_authors = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nidn])->row();
+				if ($cek_authors) {
+					$idauthors = $cek_authors->id;
+				} else {
+					$cek_authors_lagi = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nip])->row();
+					if ($cek_authors_lagi) {
+						$idauthors = $cek_authors_lagi->id;
+					} else {
+						$idauthors = null;
+					}
+				}
 				$iddosen = $row_api->id;
 				$nip = $row_api->nip;
-				$update = $this->db->query("update users set iddosen='$iddosen',nip='$nip' where email='$email'");
+				$update = $this->db->query("update users set iddosen='$iddosen',nip='$nip',idauthors='$idauthors' where email='$email'");
 			}
 		}
 		$this->template->load('layout/master', 'dashboard/dashboard', $data);

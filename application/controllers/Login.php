@@ -226,6 +226,17 @@ class Login extends CI_Controller
 			if ($row_api) {
 				$cek_email_unsoed = $this->db->get_where("users", ['email' => $row_api->emailunsoed])->num_rows();
 				if ($cek_email_unsoed == 0) {
+					$cek_authors = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nidn])->row();
+					if ($cek_authors) {
+						$idauthors = $cek_authors->id;
+					} else {
+						$cek_authors_lagi = $this->db_sinelitabmas->get_where('sinta.authors', ['NIDN' => $row_api->nip])->row();
+						if ($cek_authors_lagi) {
+							$idauthors = $cek_authors_lagi->id;
+						} else {
+							$idauthors = null;
+						}
+					}
 					$data2 = array(
 						'username' => $row_api->emailunsoed,
 						'password' => md5($row_api->nidn),
@@ -233,6 +244,7 @@ class Login extends CI_Controller
 						'email'    => $row_api->emailunsoed,
 						'nip'		=> $row_api->nip,
 						'iddosen'	=> $row_api->id,
+						'idauthors' => $idauthors
 					);
 
 					$this->db->insert('users', $data2);
