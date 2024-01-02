@@ -3,7 +3,7 @@
         <div class="card card-success">
             <div class="card-header">
                 <div class="card-title">
-                    <i class="fa fa-tasks"></i> <?= $button ?> Data Wos
+                    <i class="fa fa-tasks"></i> <?= $button ?> Data Wos documents
                 </div>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
@@ -11,6 +11,42 @@
             </div>
             <div class="card-body">
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="bigint">Id</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="id" id="id" placeholder="Id" value="<?= $id; ?>" />
+                                <?= form_error('id') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="bigint">Publons Id</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="publons_id" id="publons_id" placeholder="Publons Id" value="<?= $publons_id; ?>" />
+                                <?= form_error('publons_id') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Wos Id</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="wos_id" id="wos_id" placeholder="Wos Id" value="<?= $wos_id; ?>" />
+                                <?= form_error('wos_id') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="varchar">Doi</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="doi" id="doi" placeholder="Doi" value="<?= $doi; ?>" />
+                                <?= form_error('doi') ?>
+                            </div>
+                        </div>
+                    </div>
 					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Title</label>
@@ -67,7 +103,7 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Citation</label>
+                            <label class="col-md-2" for="varchar">Citation</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="citation" id="citation" placeholder="Citation" value="<?= $citation; ?>" />
                                 <?= form_error('citation') ?>
@@ -76,10 +112,10 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Abstract</label>
+                            <label class="col-md-2" for="abstract">Abstract</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="abstract" id="abstract" placeholder="Abstract" value="<?= $abstract; ?>" />
-                                <?= form_error('abstract') ?>
+                                <textarea class="form-control" rows="3" name="abstract" id="abstract" placeholder="Abstract"><?= $abstract; ?></textarea>
+                                <? form_error('abstract')?>
                             </div>
                         </div>
                     </div>
@@ -148,28 +184,19 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Author</label>
+                            <label class="col-md-2" for="int">Authors Id</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="author" id="author" placeholder="Author" value="<?= $author; ?>" />
-                                <?= form_error('author') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">File</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="file" id="file" placeholder="File" value="<?= $file; ?>" />
-                                <?= form_error('file') ?>
+                                <input type="text" class="form-control" name="authors_id" id="authors_id" placeholder="Authors Id" value="<?= $authors_id; ?>" />
+                                <?= form_error('authors_id') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
                             <div class="col-md-6 offset-md-2">
-                                <input type="hidden" name="id" value="<?= $id; ?>" />
+                                <input type="hidden" name="" value="<?= $; ?>" />
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= $button ?></button>
-                                <a href="<?= site_url('wos') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
+                                <a href="<?= site_url('wos_documents') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                             </div>
                         </div>
                     </div>

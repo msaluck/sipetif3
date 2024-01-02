@@ -13,161 +13,89 @@
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">User Id</label>
+                            <label class="col-md-2" for="bigint">Authors Id</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="user_id" id="user_id" placeholder="User Id" value="<?= $user_id; ?>" />
-                                <?= form_error('user_id') ?>
+                                <input type="text" class="form-control" name="authors_id" id="authors_id" placeholder="Authors Id" value="<?= $authors_id; ?>" />
+                                <?= form_error('authors_id') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Title</label>
+                            <label class="col-md-2" for="int">Total Document</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?= $title; ?>" />
-                                <?= form_error('title') ?>
+                                <input type="text" class="form-control" name="total_document" id="total_document" placeholder="Total Document" value="<?= $total_document; ?>" />
+                                <?= form_error('total_document') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Publication Name</label>
+                            <label class="col-md-2" for="int">Total Citation</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="publication_name" id="publication_name" placeholder="Publication Name" value="<?= $publication_name; ?>" />
-                                <?= form_error('publication_name') ?>
+                                <input type="text" class="form-control" name="total_citation" id="total_citation" placeholder="Total Citation" value="<?= $total_citation; ?>" />
+                                <?= form_error('total_citation') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Quartile</label>
+                            <label class="col-md-2" for="int">Total Cited Doc</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="quartile" id="quartile" placeholder="Quartile" value="<?= $quartile; ?>" />
-                                <?= form_error('quartile') ?>
+                                <input type="text" class="form-control" name="total_cited_doc" id="total_cited_doc" placeholder="Total Cited Doc" value="<?= $total_cited_doc; ?>" />
+                                <?= form_error('total_cited_doc') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Issn</label>
+                            <label class="col-md-2" for="int">H Index</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="issn" id="issn" placeholder="Issn" value="<?= $issn; ?>" />
-                                <?= form_error('issn') ?>
+                                <input type="text" class="form-control" name="h_index" id="h_index" placeholder="H Index" value="<?= $h_index; ?>" />
+                                <?= form_error('h_index') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Citeby Count</label>
+                            <label class="col-md-2" for="int">I10 Index</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="citeby_count" id="citeby_count" placeholder="Citeby Count" value="<?= $citeby_count; ?>" />
-                                <?= form_error('citeby_count') ?>
+                                <input type="text" class="form-control" name="i10_index" id="i10_index" placeholder="I10 Index" value="<?= $i10_index; ?>" />
+                                <?= form_error('i10_index') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Creator</label>
+                            <label class="col-md-2" for="int">G Index</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="creator" id="creator" placeholder="Creator" value="<?= $creator; ?>" />
-                                <?= form_error('creator') ?>
+                                <input type="text" class="form-control" name="g_index" id="g_index" placeholder="G Index" value="<?= $g_index; ?>" />
+                                <?= form_error('g_index') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Page</label>
+                            <label class="col-md-2" for="int">G Index 3year</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="page" id="page" placeholder="Page" value="<?= $page; ?>" />
-                                <?= form_error('page') ?>
+                                <input type="text" class="form-control" name="g_index_3year" id="g_index_3year" placeholder="G Index 3year" value="<?= $g_index_3year; ?>" />
+                                <?= form_error('g_index_3year') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Volume</label>
+                            <label class="col-md-2" for="timestamp">Waktu Update</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="volume" id="volume" placeholder="Volume" value="<?= $volume; ?>" />
-                                <?= form_error('volume') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Cover Date</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cover_date" id="cover_date" placeholder="Cover Date" value="<?= $cover_date; ?>" />
-                                <?= form_error('cover_date') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Cover Display Date</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="cover_display_date" id="cover_display_date" placeholder="Cover Display Date" value="<?= $cover_display_date; ?>" />
-                                <?= form_error('cover_display_date') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Doi</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="doi" id="doi" placeholder="Doi" value="<?= $doi; ?>" />
-                                <?= form_error('doi') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Aggregation Type</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="aggregation_type" id="aggregation_type" placeholder="Aggregation Type" value="<?= $aggregation_type; ?>" />
-                                <?= form_error('aggregation_type') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Url</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="url" id="url" placeholder="Url" value="<?= $url; ?>" />
-                                <?= form_error('url') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">Author</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="author" id="author" placeholder="Author" value="<?= $author; ?>" />
-                                <?= form_error('author') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="varchar">File</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="file" id="file" placeholder="File" value="<?= $file; ?>" />
-                                <?= form_error('file') ?>
-                            </div>
-                        </div>
-                    </div>
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="tinyint">Is Submitted</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="is_submitted" id="is_submitted" placeholder="Is Submitted" value="<?= $is_submitted; ?>" />
-                                <?= form_error('is_submitted') ?>
+                                <input type="text" class="form-control" name="waktu_update" id="waktu_update" placeholder="Waktu Update" value="<?= $waktu_update; ?>" />
+                                <?= form_error('waktu_update') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
                             <div class="col-md-6 offset-md-2">
-                                <input type="hidden" name="id" value="<?= $id; ?>" />
+                                <input type="hidden" name="" value="<?= $; ?>" />
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= $button ?></button>
                                 <a href="<?= site_url('scopus') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                             </div>

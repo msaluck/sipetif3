@@ -10,38 +10,47 @@
                 </div>
             </div>
             <div class="card-body">
-                <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary" hidden><i class="fa fa-plus"></i> Tambah Data</a>
+                <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                <a href="<?= site_url('scopus/synchronize') ?>" class="btn btn-secondary"><i class="fa fa-sync"></i> Sinkronisasi Data</a>
                 <div class="table-responsive mt-3">
-                    <table class="table table-bordered table-hover text-nowrap" id="mytable" width="100%">
-                        <thead class="bg-info">
+                    <table class="table table-bordered table-striped table-hover text-nowrap" width="100%" id="mytable">
+                        <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
+                                <th>Authors Id</th>
+                                <th>Total Document</th>
+                                <th>Total Citation</th>
+                                <th>Total Cited Doc</th>
+                                <th>H Index</th>
+                                <th>I10 Index</th>
+                                <th>G Index</th>
+                                <th>G Index 3year</th>
+                                <th>Waktu Update</th>
                                 <th class="text-center" width="15%">Aksi</th>
-                                <th>Title</th>
-                                <th>Publication Name</th>
-                                <th>Quartile</th>
-                                <th>ISSN</th>
-                                <th>Citeby Count</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 1;
-                            foreach ($scopus_data as $value) : ?>
+                            <?php
+                            $no = 1;
+                            foreach ($scopus_data as $value) { ?>
                                 <tr>
-                                    <td class="text-center"><?= $no++ ?></td>
+                                    <td class="text-center"><?= $no++; ?></td>
+                                    <td><?= $value->authors_id ?></td>
+                                    <td><?= $value->total_document ?></td>
+                                    <td><?= $value->total_citation ?></td>
+                                    <td><?= $value->total_cited_doc ?></td>
+                                    <td><?= $value->h_index ?></td>
+                                    <td><?= $value->i10_index ?></td>
+                                    <td><?= $value->g_index ?></td>
+                                    <td><?= $value->g_index_3year ?></td>
+                                    <td><?= $value->waktu_update ?></td>
                                     <td class="text-center">
-                                        <a href="<?= site_url('scopus/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
-                                        <a href="<?= site_url('scopus/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= site_url('scopus/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a href="<?= site_url('submissions/submit/' . $value->id) ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+                                        <a href="<?= site_url('scopus/read/' . $value->authors_id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                        <a href="<?= site_url('scopus/update/' . $value->authors_id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= site_url('scopus/delete/' . $value->authors_id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
                                     </td>
-                                    <td><?= $value->title ?></td>
-                                    <td><?= $value->publication_name ?></td>
-                                    <td><?= $value->quartile ?></td>
-                                    <td><?= $value->issn ?></td>
-                                    <td><?= $value->citeby_count ?></td>
                                 </tr>
-                            <?php endforeach ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

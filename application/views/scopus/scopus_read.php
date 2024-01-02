@@ -13,72 +13,40 @@
 				<div style="padding: 15px;">
 					<table class="table table-striped">
 						<tr>
-							<td width="20%"><b>User Id</b></td>
-							<td><?= $user_id; ?></td>
+							<td width="20%"><b>Authors Id</b></td>
+							<td><?= $authors_id; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Title</b></td>
-							<td><?= $title; ?></td>
+							<td width="20%"><b>Total Document</b></td>
+							<td><?= $total_document; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Publication Name</b></td>
-							<td><?= $publication_name; ?></td>
+							<td width="20%"><b>Total Citation</b></td>
+							<td><?= $total_citation; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Quartile</b></td>
-							<td><?= $quartile; ?></td>
+							<td width="20%"><b>Total Cited Doc</b></td>
+							<td><?= $total_cited_doc; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Issn</b></td>
-							<td><?= $issn; ?></td>
+							<td width="20%"><b>H Index</b></td>
+							<td><?= $h_index; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Citeby Count</b></td>
-							<td><?= $citeby_count; ?></td>
+							<td width="20%"><b>I10 Index</b></td>
+							<td><?= $i10_index; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Creator</b></td>
-							<td><?= $creator; ?></td>
+							<td width="20%"><b>G Index</b></td>
+							<td><?= $g_index; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Page</b></td>
-							<td><?= $page; ?></td>
+							<td width="20%"><b>G Index 3year</b></td>
+							<td><?= $g_index_3year; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Volume</b></td>
-							<td><?= $volume; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Cover Date</b></td>
-							<td><?= $cover_date; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Cover Display Date</b></td>
-							<td><?= $cover_display_date; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Doi</b></td>
-							<td><?= $doi; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Aggregation Type</b></td>
-							<td><?= $aggregation_type; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Url</b></td>
-							<td><?= $url; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Author</b></td>
-							<td><?= $author; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>File</b></td>
-							<td><?= $file; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Is Submitted</b></td>
-							<td><?= $is_submitted; ?></td>
+							<td width="20%"><b>Waktu Update</b></td>
+							<td><?= $waktu_update; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('scopus') ?>" class="btn btn-danger float-right">

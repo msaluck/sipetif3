@@ -2,34 +2,17 @@
     <div class="col-md-12">
         <div class="card card-success">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-file"></i> Data Scopus</h3>
+                <div class="card-title">
+                    <i class="fa fa-list-alt"></i> Data Scopus
+                </div>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-4">
-                        <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
-                    </div>
-                    <div class="col-4">
-                        <?= $pagination ?>
-                    </div>
-                    <div class="col-4">
-                        <form action="<?= site_url('scopus/index'); ?>" class="form-inline float-right" method="get">
-                            <div class="input-group mb-3">
-                                <input autocomplete="off" type="text" class="form-control" name="q" value="<?= $q; ?>" placeholder="Cari Data">
-                                <div class="input-group-append">
-                                    <?php if ($q <> '') { ?>
-                                        <a href="<?= site_url('scopus'); ?>" class="btn btn-danger">Reset</a>
-                                    <?php } ?>
-                                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Cari</button>
-                                </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="table-responsive p-0">
-                    <table class="table table-bordered table-hover text-nowrap" id="mytable">
+                <a href="<?= site_url('scopus/create') ?>" class="btn btn-primary" hidden><i class="fa fa-plus"></i> Tambah Data</a>
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-hover text-nowrap" id="mytable" width="100%">
                         <thead class="bg-info">
                             <tr>
                                 <th class="text-center" width="5%">No</th>
@@ -63,11 +46,9 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer clearfix mt-2">
-                <h5>Jumlah Data : <?= $total_rows ?></h5>
-            </div>
         </div>
     </div>
 </div>
 
+<?= call_datatable("#mytable") ?>
 <?= swal_delete("#mytable", ".hapus") ?>

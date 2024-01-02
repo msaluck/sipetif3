@@ -1,16 +1,29 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Wos_model extends CI_Model
+class Wos_documents_model extends CI_Model
 {
 
-    public $table = 'wos';
+    public $table = 'wos_documents';
     public $id = 'id';
     public $order = 'DESC';
 
     function __construct()
     {
         parent::__construct();
+    }
+
+    // datatables
+    function json()
+    {
+        $this->datatables->select('id,publons_id,wos_id,doi,title,first_author,last_author,authors,publish_date,journal_name,citation,abstract,publish_type,publish_year,page_begin,page_end,issn,eissn,url,authors_id');
+        $this->datatables->from('wos_documents');
+        //add this line for join
+        //$this->datatables->join('table2', 'wos_documents.field = table2.field');
+        $this->datatables->add_column('action', anchor(site_url('wos_documents/read/$1'), '<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data')) . " 
+            " . anchor(site_url('wos_documents/update/$1'), '<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data')) . " 
+                " . anchor(site_url('wos_documents/delete/$1'), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger hapus" title="Hapus Data"'), '');
+        return $this->datatables->generate();
     }
 
     // get all
@@ -30,8 +43,11 @@ class Wos_model extends CI_Model
     // get total rows
     function total_rows($q = NULL)
     {
-        $this->db->like('id', $q);
-        $this->db->or_like('user_id', $q);
+        $this->db->like('', $q);
+        $this->db->or_like('id', $q);
+        $this->db->or_like('publons_id', $q);
+        $this->db->or_like('wos_id', $q);
+        $this->db->or_like('doi', $q);
         $this->db->or_like('title', $q);
         $this->db->or_like('first_author', $q);
         $this->db->or_like('last_author', $q);
@@ -47,8 +63,7 @@ class Wos_model extends CI_Model
         $this->db->or_like('issn', $q);
         $this->db->or_like('eissn', $q);
         $this->db->or_like('url', $q);
-        $this->db->or_like('author', $q);
-        $this->db->or_like('file', $q);
+        $this->db->or_like('authors_id', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -57,7 +72,11 @@ class Wos_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL)
     {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id', $q);
+        $this->db->like('', $q);
+        $this->db->or_like('id', $q);
+        $this->db->or_like('publons_id', $q);
+        $this->db->or_like('wos_id', $q);
+        $this->db->or_like('doi', $q);
         $this->db->or_like('title', $q);
         $this->db->or_like('first_author', $q);
         $this->db->or_like('last_author', $q);
@@ -73,8 +92,7 @@ class Wos_model extends CI_Model
         $this->db->or_like('issn', $q);
         $this->db->or_like('eissn', $q);
         $this->db->or_like('url', $q);
-        $this->db->or_like('author', $q);
-        $this->db->or_like('file', $q);
+        $this->db->or_like('authors_id', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -100,7 +118,7 @@ class Wos_model extends CI_Model
     }
 }
 
-/* End of file Wos_model.php */
-/* Location: ./application/models/Wos_model.php */
-/* Created at 2023-12-25 14:51:44 */
+/* End of file Wos_documents_model.php */
+/* Location: ./application/models/Wos_documents_model.php */
+/* Created at 2024-01-01 21:07:01 */
 /* Please DO NOT modify this information : */

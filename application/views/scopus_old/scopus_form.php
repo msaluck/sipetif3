@@ -11,7 +11,16 @@
             </div>
             <div class="card-body">
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="int">User Id</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="user_id" id="user_id" placeholder="User Id" value="<?= $user_id; ?>" />
+                                <?= form_error('user_id') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Title</label>
                             <div class="col-md-6">
@@ -20,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Publication Name</label>
                             <div class="col-md-6">
@@ -29,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Quartile</label>
                             <div class="col-md-6">
@@ -38,16 +47,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">ISSN</label>
+                            <label class="col-md-2" for="varchar">Issn</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="issn" id="issn" placeholder="ISSN" value="<?= $issn; ?>" />
+                                <input type="text" class="form-control" name="issn" id="issn" placeholder="Issn" value="<?= $issn; ?>" />
                                 <?= form_error('issn') ?>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Citeby Count</label>
                             <div class="col-md-6">
@@ -56,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Creator</label>
                             <div class="col-md-6">
@@ -65,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Page</label>
                             <div class="col-md-6">
@@ -74,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Volume</label>
                             <div class="col-md-6">
@@ -83,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Cover Date</label>
                             <div class="col-md-6">
@@ -92,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Cover Display Date</label>
                             <div class="col-md-6">
@@ -101,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Doi</label>
                             <div class="col-md-6">
@@ -110,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Aggregation Type</label>
                             <div class="col-md-6">
@@ -119,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Url</label>
                             <div class="col-md-6">
@@ -128,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Author</label>
                             <div class="col-md-6">
@@ -137,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">File</label>
                             <div class="col-md-6">
@@ -146,7 +155,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+					<div class="form-group">
+                        <div class="row">
+                            <label class="col-md-2" for="tinyint">Is Submitted</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="is_submitted" id="is_submitted" placeholder="Is Submitted" value="<?= $is_submitted; ?>" />
+                                <?= form_error('is_submitted') ?>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
                         <div class="row">
                             <div class="col-md-6 offset-md-2">
                                 <input type="hidden" name="id" value="<?= $id; ?>" />
@@ -155,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+				</form>
             </div>
         </div>
     </div>

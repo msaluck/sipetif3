@@ -265,7 +265,7 @@ class Authors extends CI_Controller
 
 	public function synchronize()
 	{
-		$authors = $this->db2->query("select * from sinta.authors limit 10")->result();
+		$authors = $this->db2->query("select * from sinta.authors")->result();
 		if ($authors) {
 			$this->Authors_model->truncate();
 			foreach ($authors as $author) {
