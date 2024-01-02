@@ -13,92 +13,24 @@
 				<div style="padding: 15px;">
 					<table class="table table-striped">
 						<tr>
-							<td width="20%"><b>User Id</b></td>
-							<td><?= $user_id; ?></td>
+							<td width="20%"><b>Authors Id</b></td>
+							<td><?= $authors_id; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Publon Id</b></td>
-							<td><?= $publon_id; ?></td>
+							<td width="20%"><b>Total Document</b></td>
+							<td><?= $total_document; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Wos Id</b></td>
-							<td><?= $wos_id; ?></td>
+							<td width="20%"><b>Total Citation</b></td>
+							<td><?= $total_citation; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Doi</b></td>
-							<td><?= $doi; ?></td>
+							<td width="20%"><b>Total Cited Doc</b></td>
+							<td><?= $total_cited_doc; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Title</b></td>
-							<td><?= $title; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>First Author</b></td>
-							<td><?= $first_author; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Last Author</b></td>
-							<td><?= $last_author; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Authors</b></td>
-							<td><?= $authors; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Publish Date</b></td>
-							<td><?= $publish_date; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Journal Name</b></td>
-							<td><?= $journal_name; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Citation</b></td>
-							<td><?= $citation; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Abstract</b></td>
-							<td><?= $abstract; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Publish Type</b></td>
-							<td><?= $publish_type; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Publish Year</b></td>
-							<td><?= $publish_year; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Page Begin</b></td>
-							<td><?= $page_begin; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Page End</b></td>
-							<td><?= $page_end; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Issn</b></td>
-							<td><?= $issn; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Eissn</b></td>
-							<td><?= $eissn; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Url</b></td>
-							<td><?= $url; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Author</b></td>
-							<td><?= $author; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>File</b></td>
-							<td><?= $file; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Is Submitted</b></td>
-							<td><?= $is_submitted; ?></td>
+							<td width="20%"><b>H Index</b></td>
+							<td><?= $h_index; ?></td>
 						</tr>
 					</table>
 					<a href="<?= site_url('wos') ?>" class="btn btn-danger float-right">

@@ -159,7 +159,10 @@
                                         $this->uri->segment(1) == 'faculties' ||
                                         $this->uri->segment(1) == 'users' ||
                                         $this->uri->segment(1) == 'role' ||
-                                        $this->uri->segment(1) == 'user_role' ? 'menu-open' : '' ?>">
+                                        $this->uri->segment(1) == 'user_role' ||
+                                        $this->uri->segment(1) == 'authors' ||
+                                        $this->uri->segment(1) == 'scopus' ||
+                                        $this->uri->segment(1) == 'scopus_documents' ? 'menu-open' : '' ?>">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Master Data
@@ -213,6 +216,30 @@
                             <a href="<?= site_url('authors') ?>" class="nav-link" <?= $this->uri->segment(1) == 'authors' ? 'active' : '' ?>>
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>Authors</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('scopus') ?>" class="nav-link" <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Scopus</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('scopus_documents') ?>" class="nav-link" <?= $this->uri->segment(1) == 'scopus_documents' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Scopus Documents</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('wos') ?>" class="nav-link" <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Web of Science</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('wos_documents') ?>" class="nav-link" <?= $this->uri->segment(1) == 'wos_documents' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Web of Science Documents</p>
                             </a>
                         </li>
                     </ul>
