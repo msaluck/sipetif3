@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Submissions extends CI_Controller
+class Submissions_all extends CI_Controller
 {
     function __construct()
     {
@@ -16,11 +16,11 @@ class Submissions extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = site_url() . 'submissions/?q=' . urlencode($q);
-            $config['first_url'] = site_url() . 'submissions/?q=' . urlencode($q);
+            $config['base_url'] = site_url() . 'submissions_all/?q=' . urlencode($q);
+            $config['first_url'] = site_url() . 'submissions_all/?q=' . urlencode($q);
         } else {
-            $config['base_url'] = site_url() . 'submissions';
-            $config['first_url'] = site_url() . 'submissions';
+            $config['base_url'] = site_url() . 'submissions_all';
+            $config['first_url'] = site_url() . 'submissions_all';
         }
 
         $config['per_page'] = 10;
@@ -123,13 +123,13 @@ class Submissions extends CI_Controller
         }
     }
 
-    public function by_users()
-    {
-        $id_user = $this->session->id_user;
-        $get_sub_user = $this->db->query("select a.*,b.name as status_name from submissions a,submission_statuses b where a.submission_status = b.id and a.user_id = '$id_user'")->result();
-        $data = ['submissions_data' => $get_sub_user];
-        $this->template->load('layout/master', 'submissions/submissions_by_user', $data);
-    }
+    // public function by_users()
+    // {
+    //     $id_user = $this->session->id_user;
+    //     $get_sub_user = $this->db->query("select a.*,b.name as status_name from submissions a,submission_statuses b where a.submission_status = b.id and a.user_id = '$id_user'")->result();
+    //     $data = ['submissions_data' => $get_sub_user];
+    //     $this->template->load('layout/master', 'submissions/submissions_by_user', $data);
+    // }
 
     public function by_all()
     {
@@ -224,9 +224,7 @@ class Submissions extends CI_Controller
                 'user_id' => $this->session->id_user,
                 'created_at'    => date('Y-m-d H:i:s')
             );
-            $this->db->insert('submissions', $data);
-            $latest_id = $this->db->insert_id();
-            $update = $this->db->query("update $table set idsubmission ='$latest_id' where id='$id'");
+            $this->Submissions_model->insert($data);
         }
 
         $this->session->set_flashdata('toastr-success', 'Portofolio Berhasil diajukan');
@@ -279,8 +277,6 @@ class Submissions extends CI_Controller
         $row = $this->Submissions_model->get_by_id($id);
 
         if ($row) {
-            $table = $row->portfolio_database;
-            $update = $this->db->query("update $table set idsubmission = null where idsubmission='$row->id'");
             $this->Submissions_model->delete($id);
             $this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
             redirect($_SERVER['HTTP_REFERER']);

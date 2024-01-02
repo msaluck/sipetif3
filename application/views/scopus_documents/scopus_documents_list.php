@@ -42,7 +42,12 @@
 								<tr>
 									<td class="text-center"><?= $no++; ?></td>
 									<td class="text-center">
-										<a href="<?= site_url('submissions/submit/' . $value->id.'/scopus_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+										<?php if ($value->idsubmission != null) { ?>
+											<a href="<?= site_url('submissions/read/' . $value->idsubmission) ?>" title="Ajukan Portofolio" class="btn btn-default"><i class="fas fa-check"></i> Sudah Pernah di ajukan</a>
+										<?php } else { ?>
+											<a href="<?= site_url('submissions/submit/' . $value->id . '/scopus_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+										<?php	} ?>
+
 									</td>
 									<!-- <td><?= $value->id ?></td> -->
 									<td><?= $value->quartile ?></td>

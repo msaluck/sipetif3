@@ -16,12 +16,12 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-                                <th>Faculty Id</th>
-                                <th>Department Id</th>
+                                <!-- <th>Faculty Id</th>
+                                <th>Department Id</th> -->
                                 <th>Email</th>
                                 <th>Name</th>
                                 <th>Username</th>
-                                <th>Password</th>
+                                <!-- <th>Password</th> -->
                                 <th class="text-center" width="15%">Aksi</th>
                             </tr>
                         </thead>
@@ -56,12 +56,7 @@
                                         "orderable": false,
                                         "className": "text-center"
                                     },
-                                    {
-                                        "data": "faculty_id"
-                                    },
-                                    {
-                                        "data": "department_id"
-                                    },
+                                   
                                     {
                                         "data": "email"
                                     },
@@ -71,9 +66,7 @@
                                     {
                                         "data": "username"
                                     },
-                                    {
-                                        "data": "password"
-                                    },
+                                  
                                     {
                                         "data": "action",
                                         "orderable": false,

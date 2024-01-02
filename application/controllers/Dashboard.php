@@ -16,7 +16,17 @@ class Dashboard extends CI_Controller
 		//$coba = $this->db2->query("select * from sinta.authors limit 10")->result();
 		//print_r($coba);
 		//die();
+
 		$id_user = $this->session->id_user;
+		$cek_role = $this->db->get_where('user_role', ['user_id' => $id_user])->num_rows();
+		if ($cek_role == 0) {
+			$delete = $this->db->query("delete from user_role where user_id='$id_user'");
+			$get_role_dosen = $this->db->get_where('role', ['name' => 'Dosen'])->row();
+			if ($get_role_dosen) {
+				$id_role = $get_role_dosen->id;
+				$this->db->insert('user_role', ['user_id' => $id_user, 'role_id' => $id_role]);
+			}
+		}
 		$cek_users = $this->db->get_where("users", ['id' => $id_user])->row();
 		if ($cek_users) {
 			if ($cek_users->iddosen == null) {

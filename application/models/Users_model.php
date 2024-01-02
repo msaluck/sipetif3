@@ -21,9 +21,7 @@ class Users_model extends CI_Model
 		$this->datatables->from('users');
 		//add this line for join
 		//$this->datatables->join('table2', 'users.field = table2.field');
-		$this->datatables->add_column('action', anchor(site_url('users/read/$1'), '<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data')) . " 
-            " . anchor(site_url('users/update/$1'), '<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data')) . " 
-                " . anchor(site_url('users/delete/$1'), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger hapus" title="Hapus Data"'), 'id');
+		$this->datatables->add_column('action', anchor(site_url('users/read/$1'), '<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data')), 'id');
 		return $this->datatables->generate();
 	}
 

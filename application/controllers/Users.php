@@ -27,7 +27,7 @@ class Users extends CI_Controller
         $row = $this->Users_model->get_by_id($id);
         if ($row) {
             $data = array(
-                'id' => $row->id,
+                'id_user' => $row->id,
                 'faculty_id' => $row->faculty_id,
                 'department_id' => $row->department_id,
                 'email' => $row->email,
@@ -40,6 +40,20 @@ class Users extends CI_Controller
             $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
             redirect(site_url('users'));
         }
+    }
+
+    public function beri_akses()
+    {
+        $id_role = $this->input->post('id', TRUE);
+        $id_user = $this->input->post('id_user', TRUE);
+        $cek_data = $this->db->get_where('user_role', ['user_id' => $id_user, 'role_id' => $id_role])->num_rows();
+        if ($cek_data == 0) {
+            $this->db->insert('user_role', ['user_id' => $id_user, 'role_id' => $id_role]);
+        } else {
+            $this->db->query("delete from user_role where user_id ='$id_user' and role_id ='$id_role'");
+        }
+
+        return true;
     }
 
     public function biodata()
