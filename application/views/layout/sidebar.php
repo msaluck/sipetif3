@@ -241,6 +241,18 @@
                                 <p>Web of Science Documents</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('google') ?>" class="nav-link" <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Google Scholar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('google_documents') ?>" class="nav-link" <?= $this->uri->segment(1) == 'google_documents' ? 'active' : '' ?>>
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>Google Scholar Documents</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

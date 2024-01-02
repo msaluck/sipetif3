@@ -3,7 +3,7 @@
 		<div class="card card-success">
 			<div class="card-header">
 				<div class="card-title">
-                    <b><i class="fa fa-eye"></i> Detail Data Google scholar</b>
+                    <b><i class="fa fa-eye"></i> Detail Data Google documents</b>
                 </div>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
@@ -12,10 +12,6 @@
 			<div class="card-body">
 				<div style="padding: 15px;">
 					<table class="table table-striped">
-						<tr>
-							<td width="20%"><b>User Id</b></td>
-							<td><?= $user_id; ?></td>
-						</tr>
 						<tr>
 							<td width="20%"><b>Title</b></td>
 							<td><?= $title; ?></td>
@@ -41,27 +37,15 @@
 							<td><?= $citation; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Author</b></td>
-							<td><?= $author; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>File</b></td>
-							<td><?= $file; ?></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Issn</b></td>
-							<td><?= $issn; ?></td>
-						</tr>
-						<tr>
 							<td width="20%"><b>Url</b></td>
 							<td><?= $url; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Is Submitted</b></td>
-							<td><?= $is_submitted; ?></td>
+							<td width="20%"><b>Authors Id</b></td>
+							<td><?= $authors_id; ?></td>
 						</tr>
 					</table>
-					<a href="<?= site_url('google_scholar') ?>" class="btn btn-danger float-right">
+					<a href="<?= site_url('google_documents') ?>" class="btn btn-danger float-right">
 						<i class="fa fa-sign-out"></i> Kembali
 					</a>
 				</div>
