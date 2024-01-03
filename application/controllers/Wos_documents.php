@@ -1,28 +1,43 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Wos_documents extends CI_Controller
 {
-    function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Wos_documents_model');
-        $this->load->library('form_validation');
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Wos_documents_model');
+		$this->load->library('form_validation');
+		$this->db2 = $this->load->database('sinelitabmas', TRUE);
+	}
 
-    public function index()
-    {
-        $data = array(
-            'wos_documents_data' => $this->Wos_documents_model->get_all(),
-        );
-        $this->template->load('layout/master','wos_documents/wos_documents_list', $data);
-    }
+	public function index()
+	{
+		$this->sync_wos();
+		$data = array(
+			'wos_documents_data' => $this->Wos_documents_model->get_all(),
+		);
+		$this->template->load('layout/master', 'wos_documents/wos_documents_list', $data);
+	}
 
-    public function read($id) 
-    {
-        $row = $this->Wos_documents_model->get_by_id($id);
-        if ($row) {
-            $data = array(
+	private function sync_wos()
+	{
+		$id_user = $this->session->id_user;
+		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
+		$cek_data = $this->db2->get_where('sinta.wos_documents', ['authors_id' => $get_user->idauthors])->result();
+		foreach ($cek_data as $value) {
+			$jml_data = $this->db->query("select id from wos_documents where id='$value->id'")->num_rows();
+			if ($jml_data == 0) {
+				$insert = $this->db->insert('wos_documents', $value);
+			}
+		}
+	}
+
+	public function read($id)
+	{
+		$row = $this->Wos_documents_model->get_by_id($id);
+		if ($row) {
+			$data = array(
 				'id' => $row->id,
 				'publons_id' => $row->publons_id,
 				'wos_id' => $row->wos_id,
@@ -44,18 +59,18 @@ class Wos_documents extends CI_Controller
 				'url' => $row->url,
 				'authors_id' => $row->authors_id,
 			);
-            $this->template->load('layout/master','wos_documents/wos_documents_read', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos_documents'));
-        }
-    }
+			$this->template->load('layout/master', 'wos_documents/wos_documents_read', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos_documents'));
+		}
+	}
 
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Tambah',
-            'action' => site_url('wos_documents/create_action'),
+	public function create()
+	{
+		$data = array(
+			'button' => 'Tambah',
+			'action' => site_url('wos_documents/create_action'),
 			'id' => set_value('id'),
 			'publons_id' => set_value('publons_id'),
 			'wos_id' => set_value('wos_id'),
@@ -77,53 +92,53 @@ class Wos_documents extends CI_Controller
 			'url' => set_value('url'),
 			'authors_id' => set_value('authors_id'),
 		);
-        $this->template->load('layout/master','wos_documents/wos_documents_form', $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
+		$this->template->load('layout/master', 'wos_documents/wos_documents_form', $data);
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-				'id' => $this->input->post('id',TRUE),
-				'publons_id' => $this->input->post('publons_id',TRUE),
-				'wos_id' => $this->input->post('wos_id',TRUE),
-				'doi' => $this->input->post('doi',TRUE),
-				'title' => $this->input->post('title',TRUE),
-				'first_author' => $this->input->post('first_author',TRUE),
-				'last_author' => $this->input->post('last_author',TRUE),
-				'authors' => $this->input->post('authors',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'journal_name' => $this->input->post('journal_name',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publish_type' => $this->input->post('publish_type',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'page_begin' => $this->input->post('page_begin',TRUE),
-				'page_end' => $this->input->post('page_end',TRUE),
-				'issn' => $this->input->post('issn',TRUE),
-				'eissn' => $this->input->post('eissn',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'authors_id' => $this->input->post('authors_id',TRUE),
+	public function create_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->create();
+		} else {
+			$data = array(
+				'id' => $this->input->post('id', TRUE),
+				'publons_id' => $this->input->post('publons_id', TRUE),
+				'wos_id' => $this->input->post('wos_id', TRUE),
+				'doi' => $this->input->post('doi', TRUE),
+				'title' => $this->input->post('title', TRUE),
+				'first_author' => $this->input->post('first_author', TRUE),
+				'last_author' => $this->input->post('last_author', TRUE),
+				'authors' => $this->input->post('authors', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'journal_name' => $this->input->post('journal_name', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publish_type' => $this->input->post('publish_type', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'page_begin' => $this->input->post('page_begin', TRUE),
+				'page_end' => $this->input->post('page_end', TRUE),
+				'issn' => $this->input->post('issn', TRUE),
+				'eissn' => $this->input->post('eissn', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'authors_id' => $this->input->post('authors_id', TRUE),
 			);
 
-            $this->Wos_documents_model->insert($data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
-            redirect(site_url('wos_documents'));
-        }
-    }
-    
-    public function update($id) 
-    {
-        $row = $this->Wos_documents_model->get_by_id($id);
+			$this->Wos_documents_model->insert($data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
+			redirect(site_url('wos_documents'));
+		}
+	}
 
-        if ($row) {
-            $data = array(
-                'button' => 'Ubah',
-                'action' => site_url('wos_documents/update_action'),
+	public function update($id)
+	{
+		$row = $this->Wos_documents_model->get_by_id($id);
+
+		if ($row) {
+			$data = array(
+				'button' => 'Ubah',
+				'action' => site_url('wos_documents/update_action'),
 				'id' => set_value('id', $row->id),
 				'publons_id' => set_value('publons_id', $row->publons_id),
 				'wos_id' => set_value('wos_id', $row->wos_id),
@@ -145,65 +160,65 @@ class Wos_documents extends CI_Controller
 				'url' => set_value('url', $row->url),
 				'authors_id' => set_value('authors_id', $row->authors_id),
 			);
-            $this->template->load('layout/master','wos_documents/wos_documents_form', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos_documents'));
-        }
-    }
-    
-    public function update_action() 
-    {
-        $this->_rules();
+			$this->template->load('layout/master', 'wos_documents/wos_documents_form', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos_documents'));
+		}
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('', TRUE));
-        } else {
-            $data = array(
-				'id' => $this->input->post('id',TRUE),
-				'publons_id' => $this->input->post('publons_id',TRUE),
-				'wos_id' => $this->input->post('wos_id',TRUE),
-				'doi' => $this->input->post('doi',TRUE),
-				'title' => $this->input->post('title',TRUE),
-				'first_author' => $this->input->post('first_author',TRUE),
-				'last_author' => $this->input->post('last_author',TRUE),
-				'authors' => $this->input->post('authors',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'journal_name' => $this->input->post('journal_name',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publish_type' => $this->input->post('publish_type',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'page_begin' => $this->input->post('page_begin',TRUE),
-				'page_end' => $this->input->post('page_end',TRUE),
-				'issn' => $this->input->post('issn',TRUE),
-				'eissn' => $this->input->post('eissn',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'authors_id' => $this->input->post('authors_id',TRUE),
+	public function update_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->update($this->input->post('', TRUE));
+		} else {
+			$data = array(
+				'id' => $this->input->post('id', TRUE),
+				'publons_id' => $this->input->post('publons_id', TRUE),
+				'wos_id' => $this->input->post('wos_id', TRUE),
+				'doi' => $this->input->post('doi', TRUE),
+				'title' => $this->input->post('title', TRUE),
+				'first_author' => $this->input->post('first_author', TRUE),
+				'last_author' => $this->input->post('last_author', TRUE),
+				'authors' => $this->input->post('authors', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'journal_name' => $this->input->post('journal_name', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publish_type' => $this->input->post('publish_type', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'page_begin' => $this->input->post('page_begin', TRUE),
+				'page_end' => $this->input->post('page_end', TRUE),
+				'issn' => $this->input->post('issn', TRUE),
+				'eissn' => $this->input->post('eissn', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'authors_id' => $this->input->post('authors_id', TRUE),
 			);
 
-            $this->Wos_documents_model->update($this->input->post('', TRUE), $data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
-            redirect(site_url('wos_documents'));
-        }
-    }
-    
-    public function delete($id) 
-    {
-        $row = $this->Wos_documents_model->get_by_id($id);
+			$this->Wos_documents_model->update($this->input->post('', TRUE), $data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
+			redirect(site_url('wos_documents'));
+		}
+	}
 
-        if ($row) {
-            $this->Wos_documents_model->delete($id);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
-            redirect(site_url('wos_documents'));
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('wos_documents'));
-        }
-    }
+	public function delete($id)
+	{
+		$row = $this->Wos_documents_model->get_by_id($id);
 
-    public function _rules() 
-    {
+		if ($row) {
+			$this->Wos_documents_model->delete($id);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
+			redirect(site_url('wos_documents'));
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('wos_documents'));
+		}
+	}
+
+	public function _rules()
+	{
 		$this->form_validation->set_rules('id', 'id', 'trim|required');
 		$this->form_validation->set_rules('publons_id', 'publons id', 'trim|required');
 		$this->form_validation->set_rules('wos_id', 'wos id', 'trim|required');
@@ -227,8 +242,7 @@ class Wos_documents extends CI_Controller
 
 		$this->form_validation->set_rules('', '', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
-
+	}
 }
 
 /* End of file Wos_documents.php */

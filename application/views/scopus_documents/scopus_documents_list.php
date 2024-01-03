@@ -54,7 +54,7 @@
 									<td><?= $value->title ?></td>
 									<td><?= $value->publication_name ?></td>
 									<td><?= $value->creator ?></td>
-									<td><?= $value->page ?></td>
+									<td><?= $value->PAGE ?></td>
 									<td><?= $value->issn ?></td>
 									<td><?= $value->volume ?></td>
 									<td><?= $value->cover_date ?></td>
