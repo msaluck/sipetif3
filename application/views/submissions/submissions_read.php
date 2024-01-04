@@ -30,7 +30,7 @@
 						</tr>
 						<tr>
 							<td width="20%"><b>Surat Pengantar Dekan</b></td>
-							
+
 							<td><?= $status_dekan ?> <a href="<?= site_url('submissions/surat_pengantar_dekan/' . $id) ?>" class="btn btn-info">
 									<i class="fa fa-envelope"></i> Surat Pengantar Dekan
 								</a></td>
@@ -48,6 +48,14 @@
 							<td>Belum
 								<a href="<?= site_url('submissions/surat_pengantar_rektor') ?>" class="btn btn-primary">
 									<i class="fa fa-envelope"></i> Surat Pengantar Rektor
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Upload Data Pendukung</b></td>
+							<td>
+								<a href="<?= site_url('') ?>" class="btn btn-primary">
+									<i class="fa fa-upload"></i>
 								</a>
 							</td>
 						</tr>
