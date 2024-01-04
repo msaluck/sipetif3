@@ -47,7 +47,7 @@ class Scopus_documents extends CI_Controller
 				'title' => $row->title,
 				'publication_name' => $row->publication_name,
 				'creator' => $row->creator,
-				'PAGE' => $row->PAGE,
+				'page' => $row->PAGE,
 				'issn' => $row->issn,
 				'volume' => $row->volume,
 				'cover_date' => $row->cover_date,

@@ -15,14 +15,13 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">MENU UTAMA</li>
-
                 <li class="nav-item">
                     <a href="<?= site_url('dashboard') ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' || empty($this->uri->segment(1)) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <?php if (akses_role('Dosen') == '1') { ?>
+                <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
                     <li class="nav-item">
                         <a href="<?= site_url('users/biodata') ?>" class="nav-link <?= $this->uri->segment(2) == 'biodata' ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-user"></i>
@@ -51,9 +50,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('google_scholar') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_scholar' ? 'active' : '' ?>">
+                                <a href="<?= site_url('google') ?>" class="nav-link <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Google Scholar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('garuda') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>Garuda</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -71,8 +76,12 @@
                         </ul>
                     </li>
                 <?php } ?>
-                <?php if (akses_role('Dosen') == '1') { ?>
-                    <li class="nav-item  <?= $this->uri->segment(1) == 'scopus_documents' || $this->uri->segment(1) == 'wos_documents' || $this->uri->segment(1) == 'google_documents' || $this->uri->segment(1) == 'iprs_documents' || $this->uri->segment(1) == 'book_documents' ? 'menu-open' : '' ?>">
+                <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
+                    <li class="nav-item  <?= $this->uri->segment(1) == 'scopus_documents' ||
+                                                $this->uri->segment(1) == 'wos_documents' ||
+                                                $this->uri->segment(1) == 'google_documents' ||
+                                                $this->uri->segment(1) == 'ipr_documents' ||
+                                                $this->uri->segment(1) == 'book_documents' ? 'menu-open' : '' ?>">
                         <a href="<?= site_url('portofolio') ?>" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>Portofolio Saya
@@ -87,25 +96,31 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('wos') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
+                                <a href="<?= site_url('wos_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos_documents' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-circle"></i>
                                     <p>Web of Science</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('google_scholar') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_scholar' ? 'active' : '' ?>">
+                                <a href="<?= site_url('google_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_documents' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-circle"></i>
                                     <p>Google Scholar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('iprs') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
+                                <a href="<?= site_url('garuda_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda_documents' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-circle"></i>
+                                    <p>Garuda</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('ipr_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'ipr_documents' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-circle"></i>
                                     <p>IPRs</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('book') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
+                                <a href="<?= site_url('book_documents') ?>" class="nav-link <?= $this->uri->segment(1) == 'book_documents' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-circle"></i>
                                     <p>Book</p>
                                 </a>
@@ -121,7 +136,7 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if (akses_role('Dosen') == '1') { ?>
+                <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
                     <li class="nav-item">
                         <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-upload"></i>
@@ -135,35 +150,36 @@
                         <p>Pengajuan</p>
                     </a>
                 </li> -->
-
-                <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'menu-open' : '' ?>">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-envelope"></i>
-                        <p>Validasi Surat Digital
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= site_url('surat_pengantar_dekan') ?>" class="nav-link <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>Validasi Dekan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>Validasi LPPM</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url('') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>Validasi Rektor</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <?php if (akses_role('Administrator') == '1' || akses_role('Rektor') == '1' || akses_role('LPPM') == '1' || akses_role('Dekan') == '1') { ?>
+                    <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'menu-open' : '' ?>">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>Validasi Surat Digital
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= site_url('surat_pengantar_dekan') ?>" class="nav-link <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>Validasi Dekan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('surat_pernyataan_lppm') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>Validasi LPPM</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url('surat_permohonan_rektor') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>Validasi Rektor</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } ?>
                 <?php if (akses_role('Administrator') == '1') { ?>
                     <li class="nav-item <?= $this->uri->segment(1) == 'submission_types' ||
                                             $this->uri->segment(1) == 'submission_type_details' ||
@@ -180,18 +196,6 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= site_url('submission_types') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_types' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-circle"></i>
-                                    <p>Submission Types</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url('submission_type_details') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_type_details' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-circle"></i>
-                                    <p>Submission Type Details</p>
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a href="<?= site_url('submission_statuses') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission_statuses' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-circle"></i>
@@ -216,7 +220,6 @@
                                     <p>Users</p>
                                 </a>
                             </li>
-
                             <!-- <li class="nav-item">
                             <a href="<?= site_url('user_role') ?>" class="nav-link" <?= $this->uri->segment(1) == 'user_role' ? 'active' : '' ?>>
                                 <i class="nav-icon fas fa-box"></i>
@@ -229,11 +232,9 @@
                                     <p>Authors</p>
                                 </a>
                             </li>
-
                         </ul>
                     </li>
                 <?php } ?>
-
             </ul>
         </nav>
     </div>

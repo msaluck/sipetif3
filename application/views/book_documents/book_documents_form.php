@@ -3,7 +3,7 @@
         <div class="card card-success">
             <div class="card-header">
                 <div class="card-title">
-                    <i class="fa fa-tasks"></i> <?= $button ?> Data Google documents
+                    <i class="fa fa-tasks"></i> <?= $button ?> Data Book documents
                 </div>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
@@ -11,15 +11,6 @@
             </div>
             <div class="card-body">
                 <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
-					<div class="form-group">
-                        <div class="row">
-                            <label class="col-md-2" for="abstract">Abstract</label>
-                            <div class="col-md-6">
-                                <textarea class="form-control" rows="3" name="abstract" id="abstract" placeholder="Abstract"><?= $abstract; ?></textarea>
-                                <? form_error('abstract')?>
-                            </div>
-                        </div>
-                    </div>
 					<div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="varchar">Authors</label>
@@ -40,37 +31,37 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Citation</label>
+                            <label class="col-md-2" for="varchar">Category</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="citation" id="citation" placeholder="Citation" value="<?= $citation; ?>" />
-                                <?= form_error('citation') ?>
+                                <input type="text" class="form-control" name="category" id="category" placeholder="Category" value="<?= $category; ?>" />
+                                <?= form_error('category') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Idsubmission</label>
+                            <label class="col-md-2" for="varchar">Isbn</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="idsubmission" id="idsubmission" placeholder="Idsubmission" value="<?= $idsubmission; ?>" />
-                                <?= form_error('idsubmission') ?>
+                                <input type="text" class="form-control" name="isbn" id="isbn" placeholder="Isbn" value="<?= $isbn; ?>" />
+                                <?= form_error('isbn') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Journal Name</label>
+                            <label class="col-md-2" for="varchar">Place</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="journal_name" id="journal_name" placeholder="Journal Name" value="<?= $journal_name; ?>" />
-                                <?= form_error('journal_name') ?>
+                                <input type="text" class="form-control" name="place" id="place" placeholder="Place" value="<?= $place; ?>" />
+                                <?= form_error('place') ?>
                             </div>
                         </div>
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="int">Publish Year</label>
+                            <label class="col-md-2" for="varchar">Publisher</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="publish_year" id="publish_year" placeholder="Publish Year" value="<?= $publish_year; ?>" />
-                                <?= form_error('publish_year') ?>
+                                <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Publisher" value="<?= $publisher; ?>" />
+                                <?= form_error('publisher') ?>
                             </div>
                         </div>
                     </div>
@@ -85,10 +76,10 @@
                     </div>
 					<div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Url</label>
+                            <label class="col-md-2" for="smallint">Year</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="url" id="url" placeholder="Url" value="<?= $url; ?>" />
-                                <?= form_error('url') ?>
+                                <input type="text" class="form-control" name="year" id="year" placeholder="Year" value="<?= $year; ?>" />
+                                <?= form_error('year') ?>
                             </div>
                         </div>
                     </div>
@@ -97,7 +88,7 @@
                             <div class="col-md-6 offset-md-2">
                                 <input type="hidden" name="id" value="<?= $id; ?>" />
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?= $button ?></button>
-                                <a href="<?= site_url('google_documents') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
+                                <a href="<?= site_url('book_documents') ?>" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
