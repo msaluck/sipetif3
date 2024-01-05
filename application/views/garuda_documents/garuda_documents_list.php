@@ -40,13 +40,15 @@
                                 <tr>
                                     <td class="text-center"><?= $no++; ?></td>
                                     <td class="text-center">
-                                        <a href="<?= site_url('garuda_documents/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
-                                        <a href="<?= site_url('garuda_documents/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= site_url('garuda_documents/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
+                                        <?php if ($value->idsubmission != null) { ?>
+                                            <a href="<?= site_url('submissions/read/' . $value->idsubmission) ?>" title="Ajukan Portofolio" class="btn btn-default"><i class="fas fa-check"></i> Sudah Pernah di ajukan</a>
+                                        <?php } else { ?>
+                                            <a href="<?= site_url('submissions/submit/' . $value->id . '/garuda_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
+                                        <?php    } ?>
                                     </td>
-                                    <td><?= $value->author_order ?></td>
-                                    <td><?= $value->accreditation ?></td>
                                     <td><?= $value->title ?></td>
+                                    <td><?= $value->accreditation ?></td>
+                                    <td><?= $value->author_order ?></td>
                                     <td><?= $value->abstract ?></td>
                                     <td><?= $value->publisher_name ?></td>
                                     <td><?= $value->publish_date ?></td>
@@ -58,7 +60,6 @@
                                     <td><?= $value->source_page ?></td>
                                     <td><?= $value->url ?></td>
                                     <td><?= $value->authors_id ?></td>
-
                                 </tr>
                             <?php } ?>
                         </tbody>

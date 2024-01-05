@@ -1,28 +1,46 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Garuda_documents extends CI_Controller
 {
-    function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Garuda_documents_model');
-        $this->load->library('form_validation');
-    }
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Garuda_documents_model');
+		$this->load->library('form_validation');
+		$this->db2 = $this->load->database('sinelitabmas', TRUE);
+	}
 
-    public function index()
-    {
-        $data = array(
-            'garuda_documents_data' => $this->Garuda_documents_model->get_all(),
-        );
-        $this->template->load('layout/master','garuda_documents/garuda_documents_list', $data);
-    }
+	public function index()
+	{
+		$this->sync_garuda();
+		$id_user = $this->session->id_user;
+		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
+		$get_data = $this->db->get_where('garuda_documents', ['authors_id' => $get_user->idauthors])->result();
+		$data = array(
+			'garuda_documents_data' => $get_data
+		);
+		$this->template->load('layout/master', 'garuda_documents/garuda_documents_list', $data);
+	}
 
-    public function read($id) 
-    {
-        $row = $this->Garuda_documents_model->get_by_id($id);
-        if ($row) {
-            $data = array(
+	private function sync_garuda()
+	{
+		$id_user = $this->session->id_user;
+		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
+		$cek_data = $this->db2->get_where('sinta.garuda_documents', ['authors_id' => $get_user->idauthors], ['accreditation' => '>=3'])->result();
+		foreach ($cek_data as $value) {
+			$jml_data = $this->db->query("select id from garuda_documents where id='$value->id'")->num_rows();
+			if ($jml_data == 0) {
+				$insert = $this->db->insert('garuda_documents', $value);
+			}
+		}
+	}
+
+	public function read($id)
+	{
+		$row = $this->Garuda_documents_model->get_by_id($id);
+		if ($row) {
+			$data = array(
 				'id' => $row->id,
 				'author_order' => $row->author_order,
 				'accreditation' => $row->accreditation,
@@ -39,18 +57,18 @@ class Garuda_documents extends CI_Controller
 				'url' => $row->url,
 				'authors_id' => $row->authors_id,
 			);
-            $this->template->load('layout/master','garuda_documents/garuda_documents_read', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('garuda_documents'));
-        }
-    }
+			$this->template->load('layout/master', 'garuda_documents/garuda_documents_read', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('garuda_documents'));
+		}
+	}
 
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Tambah',
-            'action' => site_url('garuda_documents/create_action'),
+	public function create()
+	{
+		$data = array(
+			'button' => 'Tambah',
+			'action' => site_url('garuda_documents/create_action'),
 			'id' => set_value('id'),
 			'author_order' => set_value('author_order'),
 			'accreditation' => set_value('accreditation'),
@@ -67,47 +85,47 @@ class Garuda_documents extends CI_Controller
 			'url' => set_value('url'),
 			'authors_id' => set_value('authors_id'),
 		);
-        $this->template->load('layout/master','garuda_documents/garuda_documents_form', $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
+		$this->template->load('layout/master', 'garuda_documents/garuda_documents_form', $data);
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-				'author_order' => $this->input->post('author_order',TRUE),
-				'accreditation' => $this->input->post('accreditation',TRUE),
-				'title' => $this->input->post('title',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publisher_name' => $this->input->post('publisher_name',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'doi' => $this->input->post('doi',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'source' => $this->input->post('source',TRUE),
-				'source_issue' => $this->input->post('source_issue',TRUE),
-				'source_page' => $this->input->post('source_page',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'authors_id' => $this->input->post('authors_id',TRUE),
+	public function create_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->create();
+		} else {
+			$data = array(
+				'author_order' => $this->input->post('author_order', TRUE),
+				'accreditation' => $this->input->post('accreditation', TRUE),
+				'title' => $this->input->post('title', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publisher_name' => $this->input->post('publisher_name', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'doi' => $this->input->post('doi', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'source' => $this->input->post('source', TRUE),
+				'source_issue' => $this->input->post('source_issue', TRUE),
+				'source_page' => $this->input->post('source_page', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'authors_id' => $this->input->post('authors_id', TRUE),
 			);
 
-            $this->Garuda_documents_model->insert($data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
-            redirect(site_url('garuda_documents'));
-        }
-    }
-    
-    public function update($id) 
-    {
-        $row = $this->Garuda_documents_model->get_by_id($id);
+			$this->Garuda_documents_model->insert($data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Tambah Data');
+			redirect(site_url('garuda_documents'));
+		}
+	}
 
-        if ($row) {
-            $data = array(
-                'button' => 'Ubah',
-                'action' => site_url('garuda_documents/update_action'),
+	public function update($id)
+	{
+		$row = $this->Garuda_documents_model->get_by_id($id);
+
+		if ($row) {
+			$data = array(
+				'button' => 'Ubah',
+				'action' => site_url('garuda_documents/update_action'),
 				'id' => set_value('id', $row->id),
 				'author_order' => set_value('author_order', $row->author_order),
 				'accreditation' => set_value('accreditation', $row->accreditation),
@@ -124,59 +142,59 @@ class Garuda_documents extends CI_Controller
 				'url' => set_value('url', $row->url),
 				'authors_id' => set_value('authors_id', $row->authors_id),
 			);
-            $this->template->load('layout/master','garuda_documents/garuda_documents_form', $data);
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('garuda_documents'));
-        }
-    }
-    
-    public function update_action() 
-    {
-        $this->_rules();
+			$this->template->load('layout/master', 'garuda_documents/garuda_documents_form', $data);
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('garuda_documents'));
+		}
+	}
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id', TRUE));
-        } else {
-            $data = array(
-				'author_order' => $this->input->post('author_order',TRUE),
-				'accreditation' => $this->input->post('accreditation',TRUE),
-				'title' => $this->input->post('title',TRUE),
-				'abstract' => $this->input->post('abstract',TRUE),
-				'publisher_name' => $this->input->post('publisher_name',TRUE),
-				'publish_date' => $this->input->post('publish_date',TRUE),
-				'publish_year' => $this->input->post('publish_year',TRUE),
-				'doi' => $this->input->post('doi',TRUE),
-				'citation' => $this->input->post('citation',TRUE),
-				'source' => $this->input->post('source',TRUE),
-				'source_issue' => $this->input->post('source_issue',TRUE),
-				'source_page' => $this->input->post('source_page',TRUE),
-				'url' => $this->input->post('url',TRUE),
-				'authors_id' => $this->input->post('authors_id',TRUE),
+	public function update_action()
+	{
+		$this->_rules();
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->update($this->input->post('id', TRUE));
+		} else {
+			$data = array(
+				'author_order' => $this->input->post('author_order', TRUE),
+				'accreditation' => $this->input->post('accreditation', TRUE),
+				'title' => $this->input->post('title', TRUE),
+				'abstract' => $this->input->post('abstract', TRUE),
+				'publisher_name' => $this->input->post('publisher_name', TRUE),
+				'publish_date' => $this->input->post('publish_date', TRUE),
+				'publish_year' => $this->input->post('publish_year', TRUE),
+				'doi' => $this->input->post('doi', TRUE),
+				'citation' => $this->input->post('citation', TRUE),
+				'source' => $this->input->post('source', TRUE),
+				'source_issue' => $this->input->post('source_issue', TRUE),
+				'source_page' => $this->input->post('source_page', TRUE),
+				'url' => $this->input->post('url', TRUE),
+				'authors_id' => $this->input->post('authors_id', TRUE),
 			);
 
-            $this->Garuda_documents_model->update($this->input->post('id', TRUE), $data);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
-            redirect(site_url('garuda_documents'));
-        }
-    }
-    
-    public function delete($id) 
-    {
-        $row = $this->Garuda_documents_model->get_by_id($id);
+			$this->Garuda_documents_model->update($this->input->post('id', TRUE), $data);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Ubah Data');
+			redirect(site_url('garuda_documents'));
+		}
+	}
 
-        if ($row) {
-            $this->Garuda_documents_model->delete($id);
-            $this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
-            redirect(site_url('garuda_documents'));
-        } else {
-            $this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
-            redirect(site_url('garuda_documents'));
-        }
-    }
+	public function delete($id)
+	{
+		$row = $this->Garuda_documents_model->get_by_id($id);
 
-    public function _rules() 
-    {
+		if ($row) {
+			$this->Garuda_documents_model->delete($id);
+			$this->session->set_flashdata('toastr-success', 'Berhasil Hapus Data');
+			redirect(site_url('garuda_documents'));
+		} else {
+			$this->session->set_flashdata('toastr-error', 'Data Tidak Ditemukan');
+			redirect(site_url('garuda_documents'));
+		}
+	}
+
+	public function _rules()
+	{
 		$this->form_validation->set_rules('author_order', 'author order', 'trim|required');
 		$this->form_validation->set_rules('accreditation', 'accreditation', 'trim|required');
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
@@ -194,8 +212,7 @@ class Garuda_documents extends CI_Controller
 
 		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
-
+	}
 }
 
 /* End of file Garuda_documents.php */
