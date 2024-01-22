@@ -16,10 +16,10 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-                                <th class="text-center" width="15%">Aksi</th>
-                                <th>Author Order</th>
-                                <th>Accreditation</th>
+                                <th class="text-center" width="10%">Aksi</th>
                                 <th>Title</th>
+                                <th>Accreditation</th>
+                                <th>Author Order</th>
                                 <th>Abstract</th>
                                 <th>Publisher Name</th>
                                 <th>Publish Date</th>

@@ -12,10 +12,10 @@
 			<div class="card-body">
 				<div style="padding:5px;">
 					<table class="table table-striped">
-						<!-- <tr>
+						<tr>
 							<td width="20%"><b>Submission Id</b></td>
 							<td><?= $submission_id; ?></td>
-						</tr> -->
+						</tr>
 						<tr>
 							<td width="20%"><b>Nomor Surat</b></td>
 							<td><?= $nomor_surat; ?></td>

@@ -31,23 +31,25 @@
 						<tr>
 							<td width="20%"><b>Surat Pengantar Dekan</b></td>
 
-							<td><?= $status_dekan ?> <a href="<?= site_url('submissions/surat_pengantar_dekan/' . $id) ?>" class="btn btn-info">
+							<td><?= $status_dekan ?>
+								<a href="<?= site_url('submissions/surat_pengantar_dekan/' . $id) ?>" class="btn btn-info">
 									<i class="fa fa-envelope"></i> Surat Pengantar Dekan
-								</a></td>
-						</tr>
-						<tr>
-							<td width="20%"><b>Surat Pengantar LPPM</b></td>
-							<td>Belum
-								<a href="<?= site_url('submissions/surat_pengantar_lppm') ?>" class="btn btn-success">
-									<i class="fa fa-envelope"></i> Surat Pengantar LPPM
 								</a>
 							</td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Surat Pengantar Rektor</b></td>
-							<td>Belum
-								<a href="<?= site_url('submissions/surat_pengantar_rektor') ?>" class="btn btn-primary">
-									<i class="fa fa-envelope"></i> Surat Pengantar Rektor
+							<td width="20%"><b>Surat Pernyataan LPPM</b></td>
+							<td><?= $status_lppm ?>
+								<a href="<?= site_url('submissions/surat_pernyataan_lppm/' . $id) ?>" class="btn btn-success">
+									<i class="fa fa-envelope"></i> Surat Pernyataan LPPM
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Surat Permohonan Rektor</b></td>
+							<td><?= $status_rektor; ?>
+								<a href="<?= site_url('submissions/surat_permohonan_rektor/' . $id) ?>" class="btn btn-primary">
+									<i class="fa fa-envelope"></i> Surat Permohonan Rektor
 								</a>
 							</td>
 						</tr>

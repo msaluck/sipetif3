@@ -151,7 +151,9 @@
                     </a>
                 </li> -->
                 <?php if (akses_role('Administrator') == '1' || akses_role('Rektor') == '1' || akses_role('LPPM') == '1' || akses_role('Dekan') == '1') { ?>
-                    <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ? 'menu-open' : '' ?>">
+                    <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ||
+                                            $this->uri->segment(1) == 'surat_pernyataan_lppm' ||
+                                            $this->uri->segment(1) == 'surat_permohonan_rektor' ? 'menu-open' : '' ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-envelope"></i>
                             <p>Validasi Surat Digital
@@ -166,13 +168,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('surat_pernyataan_lppm') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <a href="<?= site_url('surat_pernyataan_lppm') ?>" class="nav-link <?= $this->uri->segment(1) == 'surat_pernyataan_lppm' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Validasi LPPM</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('surat_permohonan_rektor') ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <a href="<?= site_url('surat_permohonan_rektor') ?>" class="nav-link <?= $this->uri->segment(1) == 'surat_permohonan_rektor' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Validasi Rektor</p>
                                 </a>

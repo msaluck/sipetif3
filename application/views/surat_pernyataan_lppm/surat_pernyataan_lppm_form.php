@@ -3,15 +3,15 @@
         <div class="card card-success">
             <div class="card-header">
                 <div class="card-title">
-                    <i class="fa fa-tasks"></i> <?= $button ?> Data Surat pengatar dekan
+                    <i class="fa fa-tasks"></i> <?= $button ?> Data Surat pernyataan lppm
                 </div>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                 </div>
             </div>
             <div class="card-body">
-                <form style="padding:5px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
-                    <div class="form-group" style="display: none;">
+                <form style="padding: 15px;" action="<?= $action; ?>" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
                         <div class="row">
                             <label class="col-md-2" for="int">Submission Id</label>
                             <div class="col-md-6">
@@ -34,11 +34,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" style="display: none;">
+                    <div class="form-group">
                         <div class="row">
-                            <label class="col-md-2" for="varchar">Nomor Surat</label>
+                            <label class="col-md-2" for="varchar">Nomer Surat</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="nomor_surat" id="nomor_surat" placeholder="Nomor Surat" value="<?= $nomor_surat; ?>" />
+                                <input type="text" class="form-control" name="nomer_surat" id="nomer_surat" placeholder="Nomer Surat" value="<?= $nomor_surat; ?>" />
                                 <?= form_error('nomor_surat') ?>
                             </div>
                         </div>

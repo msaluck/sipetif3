@@ -61,8 +61,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6 offset-md-2">
