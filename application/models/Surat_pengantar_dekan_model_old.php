@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Surat_pengatar_dekan_model extends CI_Model
+class Surat_pengantar_dekan_model extends CI_Model
 {
 
     public $table = 'surat_pengantar_dekan';
@@ -15,13 +15,13 @@ class Surat_pengatar_dekan_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id,submission_id,nomor_surat,hal,nama_jurnal,tanggal_surat,createdate');
-        $this->datatables->from('surat_pengatar_dekan');
+        $this->datatables->select('acc_dekan,createdate,hal,id,nama_jurnal,nomor_surat,submission_id,tanggal_surat');
+        $this->datatables->from('surat_pengantar_dekan');
         //add this line for join
-        //$this->datatables->join('table2', 'surat_pengatar_dekan.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('surat_pengatar_dekan/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data'))." 
-            ".anchor(site_url('surat_pengatar_dekan/update/$1'),'<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data'))." 
-                ".anchor(site_url('surat_pengatar_dekan/delete/$1'),'<i class="fa fa-trash" aria-hidden="true"></i>','class="btn btn-danger hapus" title="Hapus Data"'), 'id');
+        //$this->datatables->join('table2', 'surat_pengantar_dekan.field = table2.field');
+        $this->datatables->add_column('action', anchor(site_url('surat_pengantar_dekan/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success', 'title' => 'Lihat Detail Data'))." 
+            ".anchor(site_url('surat_pengantar_dekan/update/$1'),'<i class="fa fa-edit" aria-hidden="true"></i>', array('class' => 'btn btn-warning', 'title' => 'Ubah Data'))." 
+                ".anchor(site_url('surat_pengantar_dekan/delete/$1'),'<i class="fa fa-trash" aria-hidden="true"></i>','class="btn btn-danger hapus" title="Hapus Data"'), 'id');
         return $this->datatables->generate();
     }
 
@@ -42,12 +42,13 @@ class Surat_pengatar_dekan_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id', $q);
-		$this->db->or_like('submission_id', $q);
-		$this->db->or_like('nomor_surat', $q);
+		$this->db->or_like('acc_dekan', $q);
+		$this->db->or_like('createdate', $q);
 		$this->db->or_like('hal', $q);
 		$this->db->or_like('nama_jurnal', $q);
+		$this->db->or_like('nomor_surat', $q);
+		$this->db->or_like('submission_id', $q);
 		$this->db->or_like('tanggal_surat', $q);
-		$this->db->or_like('createdate', $q);
 		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -56,12 +57,13 @@ class Surat_pengatar_dekan_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id', $q);
-		$this->db->or_like('submission_id', $q);
-		$this->db->or_like('nomor_surat', $q);
+		$this->db->or_like('acc_dekan', $q);
+		$this->db->or_like('createdate', $q);
 		$this->db->or_like('hal', $q);
 		$this->db->or_like('nama_jurnal', $q);
+		$this->db->or_like('nomor_surat', $q);
+		$this->db->or_like('submission_id', $q);
 		$this->db->or_like('tanggal_surat', $q);
-		$this->db->or_like('createdate', $q);
 		$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -88,7 +90,7 @@ class Surat_pengatar_dekan_model extends CI_Model
 
 }
 
-/* End of file Surat_pengatar_dekan_model.php */
-/* Location: ./application/models/Surat_pengatar_dekan_model.php */
-/* Created at 2023-12-26 02:21:16 */
+/* End of file Surat_pengantar_dekan_model.php */
+/* Location: ./application/models/Surat_pengantar_dekan_model.php */
+/* Created at 2023-12-28 09:42:58 */
 /* Please DO NOT modify this information : */

@@ -15,13 +15,13 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-                                <th class="text-center" width="15%">Aksi</th>
                                 <th>Submission Id</th>
                                 <th>Nomor Surat</th>
                                 <th>Hal</th>
                                 <th>Nama Jurnal</th>
                                 <th>Tanggal Surat</th>
                                 <th>Createdate</th>
+                                <th class="text-center" width="15%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,17 +30,17 @@
                             foreach ($surat_pengantar_dekan_data as $value) { ?>
                                 <tr>
                                     <td class="text-center"><?= $no++; ?></td>
-                                    <td class="text-center">
-                                        <a href="<?= site_url('surat_pengantar_dekan/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
-                                        <a href="<?= site_url('surat_pengantar_dekan/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= site_url('surat_pengantar_dekan/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
-                                    </td>
                                     <td><?= $value->submission_id ?></td>
                                     <td><?= $value->nomor_surat ?></td>
                                     <td><?= $value->hal ?></td>
                                     <td><?= $value->nama_jurnal ?></td>
                                     <td><?= $value->tanggal_surat ?></td>
                                     <td><?= $value->createdate ?></td>
+                                    <td class="text-center">
+                                        <a href="<?= site_url('surat_pengantar_dekan/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                        <a href="<?= site_url('surat_pengantar_dekan/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= site_url('surat_pengantar_dekan/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
