@@ -116,14 +116,36 @@ $query_builder = TRUE;
 // 	'failover' => array(),
 // 	'save_queries' => TRUE
 // );
-
-$db['default'] = array(
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'c8sipetif',
-	'port'     => 3306,
-	'dbdriver' => 'mysqli',
+// localdevelopment
+// $db['default'] = array(
+// 	'hostname' => 'localhost',
+// 	'username' => 'root',
+// 	'password' => '',
+// 	'database' => 'c8sipetif',
+// 	'port'     => 3306,
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
+//sinelitabmas
+$db['sinelitabmas'] = array(
+	'hostname' => '172.26.1.101',
+	'username' => 'sipetif',
+	'password' => 'cBaDSn3Veoz2YJp',
+	'database' => 'sinelitabmas_migrasi',
+	'port'     => 25437,
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
@@ -138,14 +160,14 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-$db['sinelitabmas'] = array(
-	'hostname' => '172.26.1.101',
-	'username' => 'sipetif',
-	'password' => 'cBaDSn3Veoz2YJp',
-	'database' => 'sinelitabmas_migrasi',
-	'port'     => 25437,
-	'dbdriver' => 'postgre',
+// production
+$db['default'] = array(
+	'hostname' => 'localhost',
+	'username' => 'c8sipetif',
+	'password' => 'c8sipetif123',
+	'database' => 'c8sipetif',
+	'port'     => 3306,
+	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
