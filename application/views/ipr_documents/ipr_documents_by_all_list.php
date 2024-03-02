@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <a href="<?= site_url('google_documents_by_all/sync') ?>" class="btn btn-secondary"><i class="fa fa-sync"></i> Sinkronisasi Data</a>
+                <a href="<?= site_url('ipr_documents_by_all/sync') ?>" class="btn btn-secondary"><i class="fa fa-sync"></i> Sinkronisasi Data</a>
                 <div class="table-responsive mt-3">
                     <table class="table table-bordered table-striped table-hover text-nowrap" width="100%" id="mytable">
                         <thead>
