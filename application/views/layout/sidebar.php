@@ -38,37 +38,37 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= site_url('scopus') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
+                                <a href="<?= site_url('scopus_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Scopus</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('wos') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
+                                <a href="<?= site_url('wos_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Web of Science</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('google') ?>" class="nav-link <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>">
+                                <a href="<?= site_url('google_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Google Scholar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('garuda') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda' ? 'active' : '' ?>">
+                                <a href="<?= site_url('garuda_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Garuda</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('iprs') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
+                                <a href="<?= site_url('iprs_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>IPRs</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('book') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
+                                <a href="<?= site_url('book_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Book</p>
                                 </a>

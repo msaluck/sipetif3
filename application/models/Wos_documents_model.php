@@ -116,6 +116,11 @@ class Wos_documents_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+
+    function truncate()
+    {
+        $this->db->truncate($this->table);
+    }
 }
 
 /* End of file Wos_documents_model.php */
