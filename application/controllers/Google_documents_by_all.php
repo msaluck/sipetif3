@@ -14,7 +14,7 @@ class Google_documents_by_all extends CI_Controller
     public function index()
     {
         $data = array(
-            'google_documents_data' => $this->Google_documents_model->get_all(),
+            'google_documents_data' => $this->Google_documents_model->get_all()
         );
         $this->template->load('layout/master', 'google_documents/google_documents_by_all_list', $data);
     }

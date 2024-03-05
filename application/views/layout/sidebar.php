@@ -30,7 +30,12 @@
                     </li>
                 <?php } ?>
                 <?php if (akses_role('Administrator') == '1') { ?>
-                    <li class="nav-item">
+                    <li class="nav-item <?= $this->uri->segment(1) == 'scopus_documents_by_all' ||
+                                            $this->uri->segment(1) == 'wos_documents_by_all' ||
+                                            $this->uri->segment(1) == 'google_documents_by_all' ||
+                                            $this->uri->segment(1) == 'garuda_documents_by_all' ||
+                                            $this->uri->segment(1) == 'ipr_documents_by_all' ||
+                                            $this->uri->segment(1) == 'book_documents_by_all' ? 'menu-open' : '' ?>">
                         <a href="<?= site_url('portofolio') ?>" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>
                             <p>Semua Portofolio<i class="right fas fa-angle-left"></i>
@@ -38,37 +43,37 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= site_url('scopus_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus' ? 'active' : '' ?>">
+                                <a href="<?= site_url('scopus_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'scopus_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Scopus</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('wos_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos' ? 'active' : '' ?>">
+                                <a href="<?= site_url('wos_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'wos_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Web of Science</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('google_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'google' ? 'active' : '' ?>">
+                                <a href="<?= site_url('google_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'google_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Google Scholar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('garuda_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda' ? 'active' : '' ?>">
+                                <a href="<?= site_url('garuda_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'garuda_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Garuda</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('iprs_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'iprs' ? 'active' : '' ?>">
+                                <a href="<?= site_url('ipr_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'ipr_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>IPRs</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url('book_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'book' ? 'active' : '' ?>">
+                                <a href="<?= site_url('book_documents_by_all') ?>" class="nav-link <?= $this->uri->segment(1) == 'book_documents_by_all' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-box"></i>
                                     <p>Book</p>
                                 </a>

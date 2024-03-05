@@ -16,7 +16,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No</th>
-                                <th class="text-center" width="15%">Aksi</th>
+                                <th class="text-center" width="15%">Ajukan?</th>
                                 <th>Authors Id</th>
                                 <th>Category</th>
                                 <th>Filing Date</th>
@@ -30,7 +30,6 @@
                                 <th>Requests Number</th>
                                 <th>Requests Year</th>
                                 <th>Title</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -41,11 +40,14 @@
                                     <td class="text-center"><?= $no++; ?></td>
                                     <td class="text-center">
                                         <?php if ($value->idsubmission != null) { ?>
-                                            <a href="<?= site_url('submissions/read/' . $value->idsubmission) ?>" title="Ajukan Portofolio" class="btn btn-default"><i class="fas fa-check"></i> Sudah Pernah di ajukan</a>
+                                            <button type="button" class="btn btn-primary disabled">
+                                                <i class="fas fa-check"></i> Sudah
+                                            </button>
                                         <?php } else { ?>
-                                            <a href="<?= site_url('submissions/submit/' . $value->id . '/ipr_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
-                                        <?php    } ?>
-
+                                            <button type="button" class="btn btn-danger disabled">
+                                                <i class="fas fa-times"></i> Belum
+                                            </button>
+                                        <?php } ?>
                                     </td>
                                     <td><?= $value->authors_id ?></td>
                                     <td><?= $value->category ?></td>
@@ -60,7 +62,6 @@
                                     <td><?= $value->requests_number ?></td>
                                     <td><?= $value->requests_year ?></td>
                                     <td><?= $value->title ?></td>
-
                                 </tr>
                             <?php } ?>
                         </tbody>
