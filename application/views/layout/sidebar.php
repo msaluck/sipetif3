@@ -84,6 +84,7 @@
                 <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
                     <li class="nav-item  <?= $this->uri->segment(1) == 'scopus_documents' ||
                                                 $this->uri->segment(1) == 'wos_documents' ||
+                                                $this->uri->segment(1) == 'garuda_documents' ||
                                                 $this->uri->segment(1) == 'google_documents' ||
                                                 $this->uri->segment(1) == 'ipr_documents' ||
                                                 $this->uri->segment(1) == 'book_documents' ? 'menu-open' : '' ?>">
@@ -149,12 +150,6 @@
                         </a>
                     </li>
                 <?php } ?>
-                <!-- <li class="nav-item">
-                    <a href="<?= site_url('submission') ?>" class="nav-link <?= $this->uri->segment(1) == 'submission' ? 'active' : '' ?>">
-                        <i class="nav-icon fas fa-box"></i>
-                        <p>Pengajuan</p>
-                    </a>
-                </li> -->
                 <?php if (akses_role('Administrator') == '1' || akses_role('Rektor') == '1' || akses_role('LPPM') == '1' || akses_role('Dekan') == '1') { ?>
                     <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ||
                                             $this->uri->segment(1) == 'surat_pernyataan_lppm' ||
@@ -227,12 +222,6 @@
                                     <p>Users</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                            <a href="<?= site_url('user_role') ?>" class="nav-link" <?= $this->uri->segment(1) == 'user_role' ? 'active' : '' ?>>
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>User Role</p>
-                            </a>
-                        </li> -->
                             <li class="nav-item">
                                 <a href="<?= site_url('authors') ?>" class="nav-link" <?= $this->uri->segment(1) == 'authors' ? 'active' : '' ?>>
                                     <i class="nav-icon fas fa-circle"></i>

@@ -10,7 +10,6 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<!-- <a href="<?= site_url('wos_documents/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a> -->
 				<div class="table-responsive mt-3">
 					<table class="table table-bordered table-striped table-hover text-nowrap" width="100%" id="mytable">
 						<thead>
@@ -36,7 +35,7 @@
 								<th>Issn</th>
 								<th>Eissn</th>
 								<th>Url</th>
-								<!-- <th>Authors Id</th> -->
+								<th>Authors Id</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,7 +50,6 @@
 										<?php } else { ?>
 											<a href="<?= site_url('submissions/submit/' . $value->id . '/scopus_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
 										<?php	} ?>
-
 									</td>
 									<td><?= $value->id ?></td>
 									<td><?= $value->publons_id ?></td>
@@ -72,8 +70,7 @@
 									<td><?= $value->issn ?></td>
 									<td><?= $value->eissn ?></td>
 									<td><?= $value->url ?></td>
-									<!-- <td><?= $value->authors_id ?></td> -->
-
+									<td><?= $value->authors_id ?></td>
 								</tr>
 							<?php } ?>
 						</tbody>

@@ -16,9 +16,9 @@ class Scopus_documents extends CI_Controller
 		$this->sync_scopus();
 		$id_user = $this->session->id_user;
 		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
-		$get_data = $this->db->get_where('scopus_documents',['authors_id'=>$get_user->idauthors])->result();
+		$get_data = $this->db->get_where('scopus_documents', ['authors_id' => $get_user->idauthors])->result();
 		$data = array(
-			'scopus_documents_data' => $get_data,
+			'scopus_documents_data' => $get_data
 		);
 		$this->template->load('layout/master', 'scopus_documents/scopus_documents_list', $data);
 	}

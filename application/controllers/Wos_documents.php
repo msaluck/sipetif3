@@ -14,8 +14,11 @@ class Wos_documents extends CI_Controller
 	public function index()
 	{
 		$this->sync_wos();
+		$id_user = $this->session->id_user;
+		$get_user = $this->db->get_where('users', ['id' => $id_user])->row();
+		$get_data = $this->db->get_where('wos_documents', ['authors_id' => $get_user->idauthors])->result();
 		$data = array(
-			'wos_documents_data' => $this->Wos_documents_model->get_all(),
+			'wos_documents_data' => $get_data
 		);
 		$this->template->load('layout/master', 'wos_documents/wos_documents_list', $data);
 	}

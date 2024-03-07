@@ -45,7 +45,6 @@
                                         <?php } else { ?>
                                             <a href="<?= site_url('submissions/submit/' . $value->id . '/ipr_documents') ?>" title="Ajukan Portofolio" class="btn btn-primary"><i class="fas fa-paper-plane"></i></a>
                                         <?php    } ?>
-
                                     </td>
                                     <td><?= $value->authors_id ?></td>
                                     <td><?= $value->category ?></td>
@@ -60,7 +59,6 @@
                                     <td><?= $value->requests_number ?></td>
                                     <td><?= $value->requests_year ?></td>
                                     <td><?= $value->title ?></td>
-
                                 </tr>
                             <?php } ?>
                         </tbody>
