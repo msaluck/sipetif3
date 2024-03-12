@@ -21,7 +21,10 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
+                <?php if (
+                    akses_role('Administrator') == '1' ||
+                    akses_role('Dosen') == '1'
+                ) { ?>
                     <li class="nav-item">
                         <a href="<?= site_url('users/biodata') ?>" class="nav-link <?= $this->uri->segment(2) == 'biodata' ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-user"></i>
@@ -142,7 +145,10 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if (akses_role('Administrator') == '1' || akses_role('Dosen') == '1') { ?>
+                <?php if (
+                    akses_role('Administrator') == '1' ||
+                    akses_role('Dosen') == '1'
+                ) { ?>
                     <li class="nav-item">
                         <a href="<?= site_url('submissions/by_users') ?>" class="nav-link <?= $this->uri->segment(1) == 'submissions' ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-upload"></i>
@@ -150,7 +156,12 @@
                         </a>
                     </li>
                 <?php } ?>
-                <?php if (akses_role('Administrator') == '1' || akses_role('Rektor') == '1' || akses_role('LPPM') == '1' || akses_role('Dekan') == '1') { ?>
+                <?php if (
+                    akses_role('Administrator') == '1' ||
+                    akses_role('Rektor') == '1' ||
+                    akses_role('LPPM') == '1' ||
+                    akses_role('Dekan') == '1'
+                ) { ?>
                     <li class="nav-item <?= $this->uri->segment(1) == 'surat_pengantar_dekan' ||
                                             $this->uri->segment(1) == 'surat_pernyataan_lppm' ||
                                             $this->uri->segment(1) == 'surat_permohonan_rektor' ? 'menu-open' : '' ?>">
@@ -231,6 +242,50 @@
                         </ul>
                     </li>
                 <?php } ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon"></i>
+                        <p>Reviewer
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon"></i>
+                                <p>Tambah Reviewer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon"></i>
+                                <p>Riwayat Reviewer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon"></i>
+                        <p>Penilaian
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon"></i>
+                                <p>Daftar Penilaian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon"></i>
+                                <p>Riwayat Penilaian</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>

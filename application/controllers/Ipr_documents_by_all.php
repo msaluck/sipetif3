@@ -44,7 +44,7 @@ class Ipr_documents_by_all extends CI_Controller
 				$this->Ipr_documents_model->insert($data);
 				$this->session->set_flashdata('toastr-success', 'Sinkronisasi Berhasil');
 			}
-			redirect(site_url('ipr_documents_by_all'));
+			redirect(site_url('ipr_documents_by_all_list'));
 		} else {
 			$this->session->set_flashdata('toastr-error', 'Sinkronisasi Gagal');
 		}
