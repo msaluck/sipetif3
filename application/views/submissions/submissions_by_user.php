@@ -35,7 +35,6 @@
                                     <td><?= $value->status_name ?></td>
                                     <td class="text-center">
                                         <a href="<?= site_url('submissions/read/' . $value->id) ?>" title="Lihat Detail Data" class="btn btn-success"><i class="fa fa-envelope"></i></a>
-                                        <!-- <a href="<?= site_url('submissions/update/' . $value->id) ?>" title="Ubah Data" class="btn btn-warning"><i class="fa fa-edit"></i></a> -->
                                         <a href="<?= site_url('submissions/delete/' . $value->id) ?>" title="Hapus Data" class="btn btn-danger hapus"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>

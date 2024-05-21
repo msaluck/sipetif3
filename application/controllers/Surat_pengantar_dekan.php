@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class surat_pengantar_dekan extends CI_Controller
+class Surat_pengantar_dekan extends CI_Controller
 {
     function __construct()
     {

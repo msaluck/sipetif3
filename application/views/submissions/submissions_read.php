@@ -17,8 +17,12 @@
 							<td><?= $portfolio_database; ?></td>
 						</tr>
 						<tr>
-							<td width="20%"><b>Title</b></td>
+							<td width="20%"><b>Portofolio ID</b></td>
 							<td><?= $portfolio_id; ?></td>
+						</tr>
+						<tr>
+							<td width="20%"><b>Portofolio Title</b></td>
+							<td><?= $portofolio_title; ?></td>
 						</tr>
 						<tr>
 							<td width="20%"><b>Submission Status</b></td>
@@ -30,7 +34,6 @@
 						</tr>
 						<tr>
 							<td width="20%"><b>Surat Pengantar Dekan</b></td>
-
 							<td><?= $status_dekan ?>
 								<a href="<?= site_url('submissions/surat_pengantar_dekan/' . $id) ?>" class="btn btn-info">
 									<i class="fa fa-envelope"></i> Surat Pengantar Dekan

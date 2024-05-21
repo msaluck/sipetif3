@@ -46,7 +46,7 @@ class Submissions extends CI_Controller
         $id_user = $this->session->id_user;
         $cek_profile = $this->db->get_where("users", ['id' => $id_user])->row();
         if ($cek_profile) {
-            $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+            $row = $this->db->query("select a.*, b.name as status_name, c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
             if ($row) {
                 if ($cek_profile->faculty_id == null || $cek_profile->department_id == null) {
                     $this->session->set_flashdata('swal-error', 'Lengkapi Biodata Anda');
@@ -207,7 +207,7 @@ class Submissions extends CI_Controller
     public function read($id)
     {
         // $row = $this->Submissions_model->get_by_id($id);
-        $row = $this->db->query("select a.*,b.name as status_name,c.email from submissions a,submission_statuses b,users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
+        $row = $this->db->query("select a.*, b.name as status_name, c.email from submissions a, submission_statuses b, users c where a.submission_status = b.id and a.id = '$id' and a.user_id = c.id")->row();
         if ($row) {
             $namatabel = $row->portfolio_database;
             $get_title = $this->db->query("select title from $namatabel where id ='$row->portfolio_id'")->row();
@@ -249,7 +249,8 @@ class Submissions extends CI_Controller
             $data = array(
                 'id' => $row->id,
                 'portfolio_database' => $row->portfolio_database,
-                'portfolio_id' => $title,
+                'portfolio_id' => $row->id,
+                'portofolio_title' => $title,
                 'submission_status' => $row->status_name,
                 'user_id' => $row->email,
                 'status_dekan'  => $status_dekan,
